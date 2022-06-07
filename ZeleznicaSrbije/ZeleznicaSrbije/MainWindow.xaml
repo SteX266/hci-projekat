@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZeleznicaSrbije"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="260">
+        Title="Prijava" Height="350" Width="260" Icon="/voz.jpg">
     <Grid>
 
         <Grid.RowDefinitions>
