@@ -14,9 +14,7 @@ namespace ZeleznicaSrbije
         private List<Reservation> reservations { get; set; }
         private List<Train> trains { get; set; }
         private List<TrainLine> trainsLines { get; set; }
-
         private List<TimeTable> timeTables { get; set; }
-
         private List<Station> stations { get; set; }
 
 
@@ -165,7 +163,20 @@ namespace ZeleznicaSrbije
             Reservation res11 = new Reservation(client3, timeTable4, new DateTime(), true);
             Reservation res12 = new Reservation(client1, timeTable5, new DateTime(), true);
             Reservation res13 = new Reservation(client1, timeTable6, new DateTime(), false);
-
+            reservations.Add(res1);
+            reservations.Add(res2);
+            reservations.Add(res3);
+            reservations.Add(res4);
+            reservations.Add(res5);
+            reservations.Add(res6);
+            reservations.Add(res7);
+            reservations.Add(res8);    
+            reservations.Add(res9);
+            reservations.Add(res10);
+            reservations.Add(res11);
+            reservations.Add(res12);
+            reservations.Add(res13);
+            
 
 
         }

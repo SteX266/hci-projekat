@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="model\Station.cs" />
+    <Compile Include="SystemData.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,6 +71,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\Admin.cs" />
+    <Compile Include="model\Client.cs" />
+    <Compile Include="model\Reservation.cs" />
+    <Compile Include="model\TimeTable.cs" />
+    <Compile Include="model\Train.cs" />
+    <Compile Include="model\TrainLine.cs" />
+    <Compile Include="model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,5 +103,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
