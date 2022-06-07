@@ -19,10 +19,25 @@ namespace ZeleznicaSrbije
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
+
+
     {
+        public Frame Frame { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+
+
+        }
+
+        private void LocalLoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckBoxChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
