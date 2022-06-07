@@ -8,7 +8,7 @@ namespace ZeleznicaSrbije.model
 {
     public class Admin : User
     {
-        public Admin(string user, string pass, int x) : base(user, pass, x)
+        public Admin( int x,string user, string pass) : base(user, pass, x)
         {
         }
     }

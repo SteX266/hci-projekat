@@ -10,11 +10,12 @@ namespace ZeleznicaSrbije.model
     {
         private Train train { get; set; }
         
-        private List<TimeSpan> starts { get; set; }
+        private TimeSpan starts { get; set; }
 
-        private List<TimeSpan> returns { get; set; }
+        private TimeSpan returns { get; set; }
 
-        public TimeTable(Train train, List<TimeSpan> starts, List<TimeSpan> returns)
+
+        public TimeTable(Train train, TimeSpan starts, TimeSpan returns)
         {
             this.train = train;
             this.starts = starts;

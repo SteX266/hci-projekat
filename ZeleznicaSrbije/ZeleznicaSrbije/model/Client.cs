@@ -10,8 +10,9 @@ namespace ZeleznicaSrbije.model
     {
         private List<Reservation> reservations { get; set; }
 
-        public Client(string user, string pass ,int x) : base(user, pass, x)
+        public Client(int x, string user, string pass ,List<Reservation> r) : base(user, pass, x)
         {
+            reservations = r;
         }
     }
 }

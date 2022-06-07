@@ -9,14 +9,17 @@ namespace ZeleznicaSrbije.model
     public class TrainLine
     {
 
-        private List<string> stations { get; set; }
+        private List<Station> stations { get; set; }
 
-        private Dictionary<string, TimeSpan> durations { get; set; }
+        private Dictionary<Station, TimeSpan> durations { get; set; }
 
-        public TrainLine(List<string> stations, Dictionary<string, TimeSpan> durations)
+        private List<TimeTable> timeTables { get; set; }
+
+        public TrainLine(List<Station> stations, Dictionary<Station, TimeSpan> durations, List<TimeTable> timeTables)
         {
             this.stations = stations;
             this.durations = durations;
+            this.timeTables = timeTables;
         }
     }
 }
