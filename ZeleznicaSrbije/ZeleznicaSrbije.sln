@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeleznicaSrbije", "ZeleznicaSrbije\ZeleznicaSrbije.csproj", "{0BD2B9B6-FBBE-4099-942D-9B259DF64A71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerMenu", "HamburgerMenu\HamburgerMenu.csproj", "{CF1B7D25-4744-4B04-B725-7F2D8223806B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0BD2B9B6-FBBE-4099-942D-9B259DF64A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BD2B9B6-FBBE-4099-942D-9B259DF64A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BD2B9B6-FBBE-4099-942D-9B259DF64A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF1B7D25-4744-4B04-B725-7F2D8223806B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF1B7D25-4744-4B04-B725-7F2D8223806B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF1B7D25-4744-4B04-B725-7F2D8223806B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF1B7D25-4744-4B04-B725-7F2D8223806B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

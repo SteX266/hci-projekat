@@ -55,8 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ClientWindow.xaml.cs">
+      <DependentUpon>ClientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="model\Station.cs" />
     <Compile Include="SystemData.cs" />
+    <Page Include="ClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -117,6 +124,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="voz.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HamburgerMenu\HamburgerMenu.csproj">
+      <Project>{cf1b7d25-4744-4b04-b725-7f2d8223806b}</Project>
+      <Name>HamburgerMenu</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\linija.jpg" />
+    <Resource Include="icons\reservation.jpg" />
+    <Resource Include="icons\tickets.png" />
+    <Resource Include="icons\timetable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\timetable-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\lajne.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
