@@ -9,8 +9,10 @@
         mc:Ignorable="d"
         Title="ClientWindow" Height="450" Width="800">
     <Grid>
-
-        <HamburgerMenu:HamburgerMenu Background="#4287f5" MenuIconColor="White" SelectionIndicatorColor="White" MenuItemForeground="White" HorizontalAlignment="Left">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+            <HamburgerMenu:HamburgerMenu Background="#4287f5" MenuIconColor="White" SelectionIndicatorColor="White" MenuItemForeground="White" HorizontalAlignment="Left" Grid.Column="0" Panel.ZIndex="2">
             <HamburgerMenu:HamburgerMenu.Content>
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/reservation.jpg" Text="Rezervacija" SelectionCommand="{Binding ElementName=this_}"/>
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/tickets.png" Text="Pregled karata"/>
@@ -19,5 +21,7 @@
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/logout.png" Text="Odjavi se"/>
             </HamburgerMenu:HamburgerMenu.Content>
         </HamburgerMenu:HamburgerMenu>
+        <Frame x:Name="ClientContentFrame" Grid.Column="0" Panel.ZIndex="1">
+        </Frame>
     </Grid>
 </Window>

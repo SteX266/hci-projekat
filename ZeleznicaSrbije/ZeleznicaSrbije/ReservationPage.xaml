@@ -1,0 +1,36 @@
+﻿<Page x:Class="ZeleznicaSrbije.ReservationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ZeleznicaSrbije"
+      mc:Ignorable="d" 
+      d:DesignHeight="430" d:DesignWidth="750"
+      Title="ReservationPage">
+    <Border Background="#272537">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="13*"/>
+            </Grid.RowDefinitions>
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" Name="OriginPicker" IsEditable="True" IsReadOnly="True" Text="Polazište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            </ComboBox>
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="2" Name="DestinationPicker" IsEditable="True" IsReadOnly="True" Text="Odredište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            </ComboBox>
+            <DatePicker Margin="30, 40, 30, 10" Grid.Column="3" Name="Datepicker" >
+            </DatePicker>
+            <Button Margin="30, 40, 30, 10" Content="Pretraži" Grid.Column="4">
+            </Button>
+            <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Reservations">
+                
+            </ListView>
+        </Grid>
+    </Border>
+</Page>

@@ -10,25 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ZeleznicaSrbije
 {
-    public partial class ClientWindow : Window
+    /// <summary>
+    /// Interaction logic for ReservationPage.xaml
+    /// </summary>
+    public partial class ReservationPage : Page
     {
-        
-        public ClientWindow()
+        public ReservationPage()
         {
             InitializeComponent();
-            ClientContentFrame.Content = new ReservationPage();
         }
-
-        public void OnReservationClick(object sender, RoutedEventArgs e)
-        {
-            ClientContentFrame.Content = new ReservationPage();
-        }
-
+        
     }
-
-    
 }
