@@ -7,18 +7,26 @@ using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
 {
-    public class SystemData
+    public static class SystemData
     {
-        private List<Client> clients { get; set; }
-        private List<Admin> admins { get; set; }
-        private List<Reservation> reservations { get; set; }
-        private List<Train> trains { get; set; }
-        private List<TrainLine> trainsLines { get; set; }
-        private List<TimeTable> timeTables { get; set; }
-        private List<Station> stations { get; set; }
+        private static List<Client> clients { get; set; }
+        private static List<Admin> admins { get; set; }
+        private static List<Reservation> reservations { get; set; }
+        private static List<Train> trains { get; set; }
+        private static List<TrainLine> trainsLines { get; set; }
+        private static List<TimeTable> timeTables { get; set; }
+        private static List<Station> stations { get; set; }
 
-
-        public SystemData()
+        public static List<String> getStationNames()
+        {
+            List<String> names = new List<String>();
+            foreach (Station station in stations)
+            {
+                names.Add(station.Name);
+            }
+            return names;
+        }
+        public static void fillData()
         {
             clients = new List<Client>();
             Client client1 = new Client(1, "pera", "pera", new List<Reservation>());

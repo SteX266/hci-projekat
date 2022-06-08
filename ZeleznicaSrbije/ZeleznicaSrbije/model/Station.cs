@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 namespace ZeleznicaSrbije.model
 {
     public class Station
-    {
-        private string name;
-        private int x;
-        private int y;
+    {   
+        public string Name { get; set; }    
+        public int X { get; set; }
+        public int Y { get; set; }
 
         public Station(string name, int x, int y)
         {
-            this.name = name;
-            this.x = x;
-            this.y = y;
+            this.Name = name;
+            this.X = x;
+            this.Y = y;
         }
     }
 }

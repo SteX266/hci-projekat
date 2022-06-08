@@ -16,28 +16,13 @@ using System.Windows.Shapes;
 namespace ZeleznicaSrbije
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TicketsPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
-
-
+    public partial class TicketsPage : Page
     {
-        public Frame Frame { get; set; }
-        public MainWindow()
+        public TicketsPage()
         {
-            SystemData.fillData();
             InitializeComponent();
-        }
-
-        private void LocalLoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            ClientWindow clientWindow = new ClientWindow();
-            clientWindow.Show(); 
-        }
-
-        private void CheckBoxChanged(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

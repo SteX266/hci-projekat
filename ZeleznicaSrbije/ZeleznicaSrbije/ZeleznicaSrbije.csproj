@@ -63,6 +63,9 @@
       <DependentUpon>ReservationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemData.cs" />
+    <Compile Include="TicketsPage.xaml.cs">
+      <DependentUpon>TicketsPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="ClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -80,6 +83,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ReservationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TicketsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

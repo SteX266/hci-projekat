@@ -23,6 +23,14 @@ namespace ZeleznicaSrbije
         public ReservationPage()
         {
             InitializeComponent();
+            OriginPicker.ItemsSource = SystemData.getStationNames();
+            DestinationPicker.ItemsSource = SystemData.getStationNames();
+        }
+
+        public void Search()
+        {
+            String origin = OriginPicker.SelectedItem.ToString();
+            String destination = DestinationPicker.SelectedItem.ToString();
         }
         
     }
