@@ -9,9 +9,9 @@ namespace ZeleznicaSrbije.model
     public abstract class User
     {
 
-        protected int id { get; set; }
-        protected string username { get; set; }
-        protected string password { get; set; }
+        public int id { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
 
         public User(string user, string pass , int x)
             {

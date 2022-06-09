@@ -58,6 +58,8 @@
     <Compile Include="ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="model\ReservationDTO.cs" />
+    <Compile Include="model\RideDTO.cs" />
     <Compile Include="model\Station.cs" />
     <Compile Include="ReservationPage.xaml.cs">
       <DependentUpon>ReservationPage.xaml</DependentUpon>

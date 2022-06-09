@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
 {
@@ -31,8 +32,30 @@ namespace ZeleznicaSrbije
 
         private void LocalLoginButton_Click(object sender, RoutedEventArgs e)
         {
-            ClientWindow clientWindow = new ClientWindow();
-            clientWindow.Show(); 
+
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
+
+            foreach (Client c in SystemData.clients)
+            {
+                if (c.username == username && c.password == password)
+                {
+                    SystemData.setUser(c);
+                    ClientWindow clientWindow = new ClientWindow();
+                    clientWindow.Show();
+                }
+
+            }
+            foreach(Admin a in SystemData.admins)
+            {
+                if (a.username == username && a.password == password)
+                {
+                    SystemData.setUser(a);
+                    //TODO SHOW ADMIN WINDOW
+                }
+            }
+
+
         }
 
         private void CheckBoxChanged(object sender, RoutedEventArgs e)

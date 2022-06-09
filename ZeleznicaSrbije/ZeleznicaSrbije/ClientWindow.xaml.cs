@@ -20,7 +20,7 @@ namespace ZeleznicaSrbije
         public ClientWindow()
         {
             InitializeComponent();
-            ClientContentFrame.Content = new ReservationPage();
+            ClientContentFrame.Content = new TicketsPage();
         }
 
         public void OnReservationClick(object sender, RoutedEventArgs e)
@@ -28,6 +28,10 @@ namespace ZeleznicaSrbije
             ClientContentFrame.Content = new ReservationPage();
         }
 
+        private void HamburgerMenuItem_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     
