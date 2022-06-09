@@ -27,6 +27,18 @@ namespace ZeleznicaSrbije
         {
             ClientContentFrame.Content = new ReservationPage();
         }
+        public void OnTicketsClick(object sender, RoutedEventArgs e)
+        {
+            ClientContentFrame.Content = new TicketsPage();
+        }
+        public void OnTimetableClick(object sender, RoutedEventArgs e)
+        {
+            ClientContentFrame.Content = new TimetablePage();
+        }
+        public void OnRoutesClick(object sender, RoutedEventArgs e)
+        {
+            ClientContentFrame.Content = new RoutesPage();
+        }
 
     }
 

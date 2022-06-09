@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 namespace ZeleznicaSrbije
 {
     /// <summary>
-    /// Interaction logic for TicketsPage.xaml
+    /// Interaction logic for AdminRoutesPage.xaml
     /// </summary>
-    public partial class TicketsPage : Page
+    public partial class AdminRoutesPage : Page
     {
-        public TicketsPage()
+        public AdminRoutesPage()
         {
             InitializeComponent();
-            OriginPicker.ItemsSource = SystemData.getStationNames();
-            DestinationPicker.ItemsSource = SystemData.getStationNames();
-            StatusPicker.ItemsSource = new List<String> { "Rezervisana", "Otkazana", "Istekla", "Kupljena" };
         }
     }
 }
