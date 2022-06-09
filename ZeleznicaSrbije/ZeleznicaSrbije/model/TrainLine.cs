@@ -25,5 +25,15 @@ namespace ZeleznicaSrbije.model
             this.timeTables = timeTables;
             this.prices = prices;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TrainLine line &&
+                   Name == line.Name &&
+                   EqualityComparer<List<Station>>.Default.Equals(stations, line.stations) &&
+                   EqualityComparer<Dictionary<Station, TimeSpan>>.Default.Equals(durations, line.durations) &&
+                   EqualityComparer<Dictionary<Station, double>>.Default.Equals(prices, line.prices) &&
+                   EqualityComparer<List<TimeTable>>.Default.Equals(timeTables, line.timeTables);
+        }
     }
 }

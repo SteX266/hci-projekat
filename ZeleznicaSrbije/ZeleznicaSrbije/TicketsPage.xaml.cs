@@ -29,7 +29,7 @@ namespace ZeleznicaSrbije
             InitializeComponent();
             List<ReservationDTO> reservationDTOs = new List<ReservationDTO>();
 
-            List<string> stationNames = new List<string>(SystemData.getStationNames());
+            List<string> stationNames = new List<string>(Service.getStationNames());
             stationNames.Insert(0,"Sve stanice");
 
             OriginPicker.ItemsSource = stationNames;

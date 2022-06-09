@@ -24,8 +24,8 @@ namespace ZeleznicaSrbije
         public ReservationPage()
         {
             InitializeComponent();
-            OriginPicker.ItemsSource = SystemData.getStationNames();
-            DestinationPicker.ItemsSource = SystemData.getStationNames();
+            OriginPicker.ItemsSource = Service.getStationNames();
+            DestinationPicker.ItemsSource = Service.getStationNames();
         }
 
         public void Search()
@@ -33,7 +33,7 @@ namespace ZeleznicaSrbije
             String origin = OriginPicker.SelectedItem.ToString();
             String destination = DestinationPicker.SelectedItem.ToString();
 
-            List<TrainLine> trainLines = SystemData.getLinesBetweenLocations(origin, destination);
+            List<TrainLine> trainLines = Service.getLinesBetweenLocations(origin, destination);
             List<RideDTO> rides = new List<RideDTO>(); 
             foreach (TrainLine line in trainLines)
             {
@@ -55,9 +55,9 @@ namespace ZeleznicaSrbije
                         continue;
                     }
 
-                    start = SystemData.getArrivalTime(origin, timeTable, line);
-                    end = SystemData.getArrivalTime(destination, timeTable, line);
-                    price = SystemData.getTicketPrice(origin, destination, timeTable.isReverse, line);
+                    start = Service.getArrivalTime(origin, timeTable, line);
+                    end = Service.getArrivalTime(destination, timeTable, line);
+                    price = Service.getTicketPrice(origin, destination, timeTable.isReverse, line);
 
                     startString = start.ToString();
                     endString = end.ToString();
