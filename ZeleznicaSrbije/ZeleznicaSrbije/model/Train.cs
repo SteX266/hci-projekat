@@ -8,8 +8,8 @@ namespace ZeleznicaSrbije.model
 {
     public class Train
     {
-        private int numberOfSeats { get; set; }
-        private string name { get; set; }
+        public int numberOfSeats { get; set; }
+        public string name { get; set; }
 
         public Train(int numberOfSeats, string name)
         {

@@ -23,11 +23,13 @@
             </ComboBox>
             <ComboBox Margin="30, 40, 30, 10" Grid.Column="2" Name="DestinationPicker" IsEditable="True" IsReadOnly="False" Text="Odredište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
-            <Button Margin="30, 40, 30, 10" Content="Pretraži" Grid.Column="4">
+            <Button Margin="30, 40, 30, 10" Content="Pretraži" Grid.Column="4" Click="Button_Click">
             </Button>
-            <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Rir">
+
+            <DataGrid Name="ridesTable" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" >
                 
-            </ListView>
+            </DataGrid>
+
         </Grid>
     </Border>
 </Page>

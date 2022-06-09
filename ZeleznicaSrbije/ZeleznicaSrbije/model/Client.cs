@@ -8,7 +8,7 @@ namespace ZeleznicaSrbije.model
 {
     public class Client : User
     {
-        private List<Reservation> reservations { get; set; }
+        public List<Reservation> reservations { get; set; }
 
         public Client(int x, string user, string pass ,List<Reservation> r) : base(user, pass, x)
         {

@@ -8,18 +8,20 @@ namespace ZeleznicaSrbije.model
 {
     public class TimeTable
     {
-        private Train train { get; set; }
-        
-        private TimeSpan starts { get; set; }
+        public Train train { get; set; }
 
-        private TimeSpan returns { get; set; }
+        public TimeSpan starts { get; set; }
 
+        public bool isReverse { get; set; }
 
-        public TimeTable(Train train, TimeSpan starts, TimeSpan returns)
+        public TrainLine line { get; set; }
+
+        public TimeTable(Train train, TimeSpan starts, bool isReverse, TrainLine line)
         {
             this.train = train;
             this.starts = starts;
-            this.returns = returns;
+            this.isReverse = isReverse;
+            this.line = line;
         }
     }
 }

@@ -15,7 +15,7 @@
             <HamburgerMenu:HamburgerMenu Background="#4287f5" MenuIconColor="White" SelectionIndicatorColor="White" MenuItemForeground="White" HorizontalAlignment="Left" Grid.Column="0" Panel.ZIndex="2">
             <HamburgerMenu:HamburgerMenu.Content>
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/reservation.jpg" Text="Rezervacija" SelectionCommand="{Binding ElementName=this_}"/>
-                <HamburgerMenu:HamburgerMenuItem Icon="icons/tickets.png" Text="Pregled karata"/>
+                <HamburgerMenu:HamburgerMenuItem Icon="icons/tickets.png" Text="Pregled karata" Selected="HamburgerMenuItem_Selected"/>
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/timetable-removebg-preview.png" Text="Red voznje"/>
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/lajne.png" Text="Linije"/>
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/logout.png" Text="Odjavi se"/>

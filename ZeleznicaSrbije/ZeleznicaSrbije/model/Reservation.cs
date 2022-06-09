@@ -6,21 +6,32 @@ using System.Threading.Tasks;
 
 namespace ZeleznicaSrbije.model
 {
+    public enum ReservationStatus
+    {
+        OTKAZANA, ISTEKLA, REZERVISANA
+
+    }
     public class Reservation
     {
-        private  Client client { get; set; }
-        private TimeTable ride { get; set; }
-        
-        private DateTime date { get; set; }
-
-        private bool isBought { get; set; }
-
-        public Reservation(Client client, TimeTable ride, DateTime date, bool isBought)
+        public Reservation(Client client, TimeTable ride, Station startStation, Station endStation,  DateTime date, ReservationStatus status)
         {
             this.client = client;
             this.ride = ride;
+            this.startStation = startStation;
+            this.endStation = endStation;
             this.date = date;
-            this.isBought = isBought;
+            this.status = status;
         }
+
+        public Client client { get; set; }
+        public TimeTable ride { get; set; }
+        public Station startStation { get; set; }
+        public Station endStation { get; set; }
+
+        public DateTime date { get; set; }
+
+        public ReservationStatus status { get; set; }
+
+
     }
 }
