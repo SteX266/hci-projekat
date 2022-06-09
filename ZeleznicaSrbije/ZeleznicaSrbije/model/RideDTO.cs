@@ -25,6 +25,11 @@ namespace ZeleznicaSrbije.model
             }
             Trajanje = Dolazak.Subtract(Polazak);
 
+            if(Dolazak.Days > 0)
+            {
+                Dolazak = Dolazak.Subtract(new TimeSpan(1,0,0,0));  
+            }
+
             Cena = cena;
             Linija = linija;
         }
