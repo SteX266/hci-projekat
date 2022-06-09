@@ -76,6 +76,8 @@
     <Compile Include="CreateTrainPage.xaml.cs">
       <DependentUpon>CreateTrainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="model\ReservationDTO.cs" />
+    <Compile Include="model\RideDTO.cs" />
     <Compile Include="RoutesPage.xaml.cs">
       <DependentUpon>RoutesPage.xaml</DependentUpon>
     </Compile>
