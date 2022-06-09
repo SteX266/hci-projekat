@@ -55,14 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-
     <Compile Include="AdminRoutesPage.xaml.cs">
       <DependentUpon>AdminRoutesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AdminTimeTablePage.xaml.cs">
       <DependentUpon>AdminTimeTablePage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
@@ -87,11 +85,11 @@
     <Compile Include="ReservationPage.xaml.cs">
       <DependentUpon>ReservationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service.cs" />
     <Compile Include="SystemData.cs" />
     <Compile Include="TicketsPage.xaml.cs">
       <DependentUpon>TicketsPage.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="TimetablePage.xaml.cs">
       <DependentUpon>TimetablePage.xaml</DependentUpon>
     </Compile>

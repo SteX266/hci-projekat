@@ -25,5 +25,10 @@ namespace ZeleznicaSrbije
             InitializeComponent();
             // RoutePicker.ItemsSource = SystemData.getRoutes();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

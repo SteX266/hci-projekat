@@ -39,6 +39,92 @@ namespace ZeleznicaSrbije
             }
             return lines;
         }
+
+        public static List<string> getEndStations(string origin)
+        {
+            List<string> locations = new List<string>();
+            List<TrainLine> lines = new List<TrainLine>();
+            Station station = getStationByName(origin);
+
+            foreach(TrainLine trainLine in SystemData.trainsLines)
+            {
+                if (trainLine.stations.Contains(station))
+                {
+                    lines.Add(trainLine);
+                }
+            }
+            foreach(TrainLine trainLine in lines)
+            {
+                if (!locations.Contains(trainLine.stations.First().Name)){
+
+                    locations.Add(trainLine.stations.First().Name);
+
+                }
+                if (!locations.Contains(trainLine.stations.Last().Name)){
+                    locations.Add(trainLine.stations.Last().Name);
+
+                }
+            }
+
+            return locations;
+        }
+
+        public static List<RideDTO> getRidesBetweenDestinations(string origin, string destination)
+        {
+            List<TrainLine> trainLines = Service.getLinesBetweenLocations(origin, destination);
+            List<RideDTO> rides = new List<RideDTO>();
+            foreach (TrainLine line in trainLines)
+            {
+
+                bool isOriginFirst = isFirst(line, origin, destination);
+
+                List<Station> stations = line.stations;
+
+
+                foreach (TimeTable timeTable in line.timeTables)
+                {
+                    double price;
+                    string startString;
+                    string endString;
+                    TimeSpan start;
+                    TimeSpan end;
+                    if ((isOriginFirst && timeTable.isReverse) || (!isOriginFirst && !timeTable.isReverse))
+                    {
+                        continue;
+                    }
+
+                    start = Service.getArrivalTime(origin, timeTable, line);
+                    end = Service.getArrivalTime(destination, timeTable, line);
+                    price = Service.getTicketPrice(origin, destination, timeTable.isReverse, line);
+
+                   
+                    string lineName = line.Name;
+                    RideDTO ride = new RideDTO(origin, destination, start, end, price, lineName);
+                    rides.Add(ride);
+
+                }
+
+            }
+
+            return rides;
+        }
+
+        public static bool isFirst(TrainLine line, string origin, string destination)
+        {
+            foreach (Station station in line.stations)
+            {
+                if (station.Name == origin)
+                {
+                    return true;
+                }
+                if (station.Name == destination)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
         public static double getTicketPrice(string origin, string destination, bool isReverse, TrainLine line)
         {
 

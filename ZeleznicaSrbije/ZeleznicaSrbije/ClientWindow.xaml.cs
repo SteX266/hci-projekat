@@ -21,7 +21,7 @@ namespace ZeleznicaSrbije
         public ClientWindow(MainWindow mw)
         {
             mainWindow = mw;
-            mainWindow.Hide();
+        //    mainWindow.Hide();
             InitializeComponent();
 
             ClientContentFrame.Content = new TicketsPage();
@@ -55,7 +55,7 @@ namespace ZeleznicaSrbije
         }
         private void timetable_selected(object sender, RoutedEventArgs e)
         {
-            //TimetablePage
+            ClientContentFrame.Content = new TimetablePage();
         }
         private void lines_selected(object sender, RoutedEventArgs e)
         {

@@ -27,8 +27,8 @@ namespace ZeleznicaSrbije
         public TicketsPage()
         {
             InitializeComponent();
-            OriginPicker.ItemsSource = SystemData.getStationNames();
-            DestinationPicker.ItemsSource = SystemData.getStationNames();
+            OriginPicker.ItemsSource = Service.getStationNames();
+            DestinationPicker.ItemsSource = Service.getStationNames();
             StatusPicker.ItemsSource = new List<String> { "Rezervisana", "Otkazana", "Istekla", "Kupljena" };
 
             List<ReservationDTO> reservationDTOs = new List<ReservationDTO>();
