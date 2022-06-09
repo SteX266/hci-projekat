@@ -23,5 +23,14 @@ namespace ZeleznicaSrbije.model
             this.isReverse = isReverse;
             this.line = line;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TimeTable table &&
+                   EqualityComparer<Train>.Default.Equals(train, table.train) &&
+                   starts.Equals(table.starts) &&
+                   isReverse == table.isReverse &&
+                   EqualityComparer<TrainLine>.Default.Equals(line, table.line);
+        }
     }
 }

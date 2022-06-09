@@ -25,97 +25,9 @@ namespace ZeleznicaSrbije
             currentUser = u;
         }
 
-        public static double getTicketPrice(string origin, string destination, bool isReverse, TrainLine line)
-        {
+       
 
-            bool isPassed = false;
-            double price = 0;
-            if (!isReverse)
-            {
-                foreach (Station station in line.stations)
-                {
-                    if (isPassed)
-                    {
-                        price += line.prices[station];
-                    }
-                    if (station.Name.Equals(origin))
-                    {
-                        isPassed = true;
-                    }
-                    if (station.Name.Equals(destination))
-                    {
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                foreach (Station station in line.stations.Reverse<Station>())
-                {
-                    if (station.Name.Equals(destination))
-                    {
-                        break;
-                    }
-                    if (station.Name.Equals(origin))
-                    {
-                        isPassed = true;
-                    }
-                    if (isPassed)
-                    {
-                        price += line.prices[station];
-                    }
 
-                }
-            }
-            return price;
-        }
-
-        public static TimeSpan getArrivalTime(string arrivalStation, TimeTable timeTable, TrainLine line)
-        {
-            TimeSpan start;
-            if (!timeTable.isReverse)
-            {
-                start = timeTable.starts;
-
-                foreach (Station station in line.stations)
-                {
-
-                    start = start.Add(line.durations[station]);
-                    if (station.Name.Equals(arrivalStation))
-                    {
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                start = timeTable.starts;
-                foreach(Station station in line.stations.Reverse<Station>())
-                {
-                    if (station.Name.Equals(arrivalStation))
-                    {
-                        break;
-                    }
-                    start = start.Add(line.durations[station]);
-                }
-
-            }
-            if (start.Days > 0)
-            {
-                start = start.Subtract(new TimeSpan(1, 0, 0, 0));
-            }
-            return start;
-        }
-
-        public static List<String> getStationNames()
-        {
-            List<String> names = new List<String>();
-            foreach (Station station in stations)
-            {
-                names.Add(station.Name);
-            }
-            return names;
-        }
         public static void fillData()
         {
             clients = new List<Client>();
@@ -135,10 +47,10 @@ namespace ZeleznicaSrbije
 
 
             trains = new List<Train>();
-            Train train1 = new Train(45, "Soko1");
-            Train train2 = new Train(85, "Soko2");
-            Train train3 = new Train(150, "Cira");
-            Train train4 = new Train(100, "Cira2");
+            Train train1 = new Train(3,10,4,"Soko1");
+            Train train2 = new Train(4, 12, 4, "Soko2");
+            Train train3 = new Train(5, 10, 6, "Cira");
+            Train train4 = new Train(6, 10, 6, "Cira2");
             trains.Add(train1);
             trains.Add(train2);
             trains.Add(train3);
@@ -318,19 +230,19 @@ namespace ZeleznicaSrbije
 
 
             reservations = new List<Reservation>();
-            Reservation res1 = new Reservation(client1 ,timeTable3, stationNS, stationSU, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res2 = new Reservation(client1, timeTable4, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res3 = new Reservation(client1, timeTable4, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res4 = new Reservation(client2, timeTable5, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res5 = new Reservation(client2, timeTable6, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res6 = new Reservation(client2, timeTable7, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res7 = new Reservation(client2, timeTable8, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res8 = new Reservation(client3, timeTable5, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res9 = new Reservation(client3, timeTable9, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res10 = new Reservation(client3, timeTable1, stationSU, stationNS, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res11 = new Reservation(client3, timeTable4, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res12 = new Reservation(client1, timeTable5, stationBG, stationSU, new DateTime(), ReservationStatus.REZERVISANA);
-            Reservation res13 = new Reservation(client1, timeTable6, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA);
+            Reservation res1 = new Reservation(client1 ,timeTable3, stationNS, stationSU, new DateTime(), ReservationStatus.REZERVISANA,1);
+            Reservation res2 = new Reservation(client1, timeTable4, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,2);
+            Reservation res3 = new Reservation(client1, timeTable4, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,3);
+            Reservation res4 = new Reservation(client2, timeTable5, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,4);
+            Reservation res5 = new Reservation(client2, timeTable6, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,5);
+            Reservation res6 = new Reservation(client2, timeTable7, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,6);
+            Reservation res7 = new Reservation(client2, timeTable8, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,7);
+            Reservation res8 = new Reservation(client3, timeTable5, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,8);
+            Reservation res9 = new Reservation(client3, timeTable9, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,9);
+            Reservation res10 = new Reservation(client3, timeTable1, stationSU, stationNS, new DateTime(), ReservationStatus.REZERVISANA,10);
+            Reservation res11 = new Reservation(client3, timeTable4, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,6);
+            Reservation res12 = new Reservation(client1, timeTable5, stationBG, stationSU, new DateTime(), ReservationStatus.REZERVISANA,12);
+            Reservation res13 = new Reservation(client1, timeTable6, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,13);
 
 
 
@@ -360,33 +272,8 @@ namespace ZeleznicaSrbije
 
         }
 
-        internal static List<TrainLine> getLinesBetweenLocations(string origin, string destination)
-        {
-            List<TrainLine> lines = new List<TrainLine>();
-            bool hasOrigin = false;
-            bool hasDestination = false;
-            foreach(TrainLine t in trainsLines){
-                hasOrigin = false;
-                hasDestination = false;
+       
 
-                foreach(Station station in t.stations)
-                {
-                    if (station.Name == origin)
-                    {
-                        hasOrigin = true;
-                    }
-                    if(station.Name == destination)
-                    {
-                        hasDestination = true;
-                    }
-                }
-                if (hasOrigin && hasDestination)
-                {
-                    lines.Add(t);
-                }
 
-            }
-            return lines;
-        }
     }
 }

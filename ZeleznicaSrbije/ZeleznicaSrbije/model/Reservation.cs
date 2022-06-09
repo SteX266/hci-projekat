@@ -13,7 +13,7 @@ namespace ZeleznicaSrbije.model
     }
     public class Reservation
     {
-        public Reservation(Client client, TimeTable ride, Station startStation, Station endStation,  DateTime date, ReservationStatus status)
+        public Reservation(Client client, TimeTable ride, Station startStation, Station endStation,  DateTime date, ReservationStatus status,int seat)
         {
             this.client = client;
             this.ride = ride;
@@ -21,6 +21,7 @@ namespace ZeleznicaSrbije.model
             this.endStation = endStation;
             this.date = date;
             this.status = status;
+            this.seatNumber = seat;
         }
 
         public Client client { get; set; }
@@ -31,6 +32,8 @@ namespace ZeleznicaSrbije.model
         public DateTime date { get; set; }
 
         public ReservationStatus status { get; set; }
+
+        public int seatNumber { get; set; }
 
 
     }

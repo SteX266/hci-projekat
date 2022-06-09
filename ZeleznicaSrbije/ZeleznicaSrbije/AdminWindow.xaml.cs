@@ -23,7 +23,7 @@ namespace ZeleznicaSrbije
         public AdminWindow(MainWindow mw)
         {
             this.mainWindow = mw;
-            mainWindow.Hide();
+          //  mainWindow.Hide();
             InitializeComponent();
         }
 

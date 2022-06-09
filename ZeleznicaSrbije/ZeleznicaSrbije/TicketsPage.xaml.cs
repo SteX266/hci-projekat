@@ -27,13 +27,13 @@ namespace ZeleznicaSrbije
         public TicketsPage()
         {
             InitializeComponent();
-            OriginPicker.ItemsSource = SystemData.getStationNames();
-            DestinationPicker.ItemsSource = SystemData.getStationNames();
+            OriginPicker.ItemsSource = Service.getStationNames();
+            DestinationPicker.ItemsSource = Service.getStationNames();
             StatusPicker.ItemsSource = new List<String> { "Rezervisana", "Otkazana", "Istekla", "Kupljena" };
 
             List<ReservationDTO> reservationDTOs = new List<ReservationDTO>();
 
-            List<string> stationNames = new List<string>(SystemData.getStationNames());
+            List<string> stationNames = new List<string>(Service.getStationNames());
             stationNames.Insert(0,"Sve stanice");
 
             OriginPicker.ItemsSource = stationNames;

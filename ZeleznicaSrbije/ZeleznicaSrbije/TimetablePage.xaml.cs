@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
 {
@@ -23,7 +24,21 @@ namespace ZeleznicaSrbije
         public TimetablePage()
         {
             InitializeComponent();
-            StationPicker.ItemsSource = SystemData.getStationNames();
+            StationPicker.ItemsSource = Service.getStationNames();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string origin = StationPicker.SelectedItem.ToString();
+            List<string> stations = Service.getEndStations(origin);
+            List<RideDTO> leavingRides = new List<RideDTO>();
+            List<RideDTO> arrivingRides = new List<RideDTO>();
+            foreach (string station in stations)
+            {
+                leavingRides.AddRange(Service.getRidesBetweenDestinations(origin, station));
+                arrivingRides.AddRange(Service.getRidesBetweenDestinations(station, origin));
+            }
+            Timetables.ItemsSource=leavingRides;
         }
     }
 }
