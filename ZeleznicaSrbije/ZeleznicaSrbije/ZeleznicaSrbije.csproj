@@ -67,8 +67,20 @@
     <Compile Include="ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateRoutePage.xaml.cs">
+      <DependentUpon>CreateRoutePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateTimetablePage.xaml.cs">
+      <DependentUpon>CreateTimetablePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateTrainPage.xaml.cs">
+      <DependentUpon>CreateTrainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="model\ReservationDTO.cs" />
     <Compile Include="model\RideDTO.cs" />
+    <Compile Include="RoutesPage.xaml.cs">
+      <DependentUpon>RoutesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="model\Station.cs" />
     <Compile Include="ReservationPage.xaml.cs">
       <DependentUpon>ReservationPage.xaml</DependentUpon>
@@ -100,6 +112,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CreateRoutePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateTimetablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateTrainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RoutesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -117,6 +145,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TicketsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimetablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrainsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,7 +194,10 @@
     <Resource Include="icons\employees-server.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AdminPages\" />
+    <Folder Include="ClientPages\" />
     <Folder Include="Styles\" />
+    <Folder Include="Windows\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\vozic.png" />
@@ -187,6 +226,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\lajne.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\Karta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\map-pin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
