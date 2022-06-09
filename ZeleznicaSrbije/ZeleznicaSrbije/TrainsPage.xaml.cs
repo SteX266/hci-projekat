@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
 {
@@ -23,6 +24,16 @@ namespace ZeleznicaSrbije
         public TrainsPage()
         {
             InitializeComponent();
+
+            List<Train> trains = SystemData.trains;
+
+            List<TrainDTO> trainsToShow = new List<TrainDTO>();
+            foreach (Train tr in trains)
+            {
+                trainsToShow.Add(new TrainDTO(tr));
+            }   
+
+            Trains.ItemsSource = trainsToShow;
         }
     }
 }

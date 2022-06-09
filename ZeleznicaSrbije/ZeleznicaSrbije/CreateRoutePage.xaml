@@ -14,7 +14,7 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="6*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="13*"/>
@@ -22,7 +22,7 @@
             </Grid.RowDefinitions>
             <DataGrid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="20, 20" Name="stations" ColumnWidth="*">
             </DataGrid>
-            <Image Source="/icons/Karta.png" Grid.Column="3" Grid.Row="0" Margin="10, 10, 10, 10" Grid.ColumnSpan="1">
+            <Image Source="/icons/mapa.png" Grid.Column="3" Grid.Row="0" Margin="10, 10, 10, 10" Grid.ColumnSpan="1">
             </Image>
             <Button Margin="30, 10, 30, 20" Content="Dodaj novu stanicu" Grid.Column="1" Grid.Row="1">
             </Button>

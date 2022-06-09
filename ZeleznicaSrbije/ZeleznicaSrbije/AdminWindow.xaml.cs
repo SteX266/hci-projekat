@@ -27,22 +27,22 @@ namespace ZeleznicaSrbije
             InitializeComponent();
         }
 
-        private void tickets_selected(object sender, RoutedEventArgs e)
+        private void reports_selected(object sender, RoutedEventArgs e)
         {
-            ClientContentFrame.Content = new TicketsPage();
+            //reports page
 
         }
-        private void reservations_selected(object sender, RoutedEventArgs e)
+        private void trains_selected(object sender, RoutedEventArgs e)
         {
-            ClientContentFrame.Content = new ReservationPage();
+            ClientContentFrame.Content = new TrainsPage();
         }
         private void timetable_selected(object sender, RoutedEventArgs e)
         {
-            //TimetablePage
+            ClientContentFrame.Content = new AdminTimeTablePage();
         }
         private void lines_selected(object sender, RoutedEventArgs e)
         {
-            //LinesPage
+            ClientContentFrame.Content = new CreateRoutePage();
         }
         private void logout_selected(object sender, RoutedEventArgs e)
         {
