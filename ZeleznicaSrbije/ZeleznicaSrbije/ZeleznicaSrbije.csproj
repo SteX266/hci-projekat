@@ -213,6 +213,10 @@
       <Project>{cf1b7d25-4744-4b04-b725-7f2d8223806b}</Project>
       <Name>HamburgerMenu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ModalControl\ModalControl.csproj">
+      <Project>{7d41ef7c-5279-4550-8aa1-f4cbc9b17c25}</Project>
+      <Name>ModalControl</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\reservation.jpg" />

@@ -24,5 +24,13 @@ namespace ZeleznicaSrbije
         {
             InitializeComponent();
         }
+        public void OpenCreateModal(object sender, RoutedEventArgs e)
+        {
+            CreateModal.IsOpen = true;
+        }
+        public void CloseCreateModal(object sender, RoutedEventArgs e)
+        {
+            CreateModal.IsOpen = false;
+        }
     }
 }

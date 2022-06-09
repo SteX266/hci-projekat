@@ -46,5 +46,15 @@ namespace ZeleznicaSrbije
         {
             this.Search();
         }
+
+        private void OpenTicketModal(object sender, RoutedEventArgs e)
+        {
+            ReserveTicketModal.IsOpen = true;
+        }
+
+        private void CloseTicketModal(object sender, RoutedEventArgs e)
+        {
+            ReserveTicketModal.IsOpen = false;
+        }
     }
 }

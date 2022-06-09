@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeleznicaSrbije", "Zeleznic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerMenu", "HamburgerMenu\HamburgerMenu.csproj", "{CF1B7D25-4744-4B04-B725-7F2D8223806B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModalControl", "ModalControl\ModalControl.csproj", "{7D41EF7C-5279-4550-8AA1-F4CBC9B17C25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CF1B7D25-4744-4B04-B725-7F2D8223806B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF1B7D25-4744-4B04-B725-7F2D8223806B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF1B7D25-4744-4B04-B725-7F2D8223806B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D41EF7C-5279-4550-8AA1-F4CBC9B17C25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D41EF7C-5279-4550-8AA1-F4CBC9B17C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D41EF7C-5279-4550-8AA1-F4CBC9B17C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D41EF7C-5279-4550-8AA1-F4CBC9B17C25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

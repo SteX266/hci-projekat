@@ -24,5 +24,49 @@ namespace ZeleznicaSrbije
         {
             InitializeComponent();
         }
+        public void OpenCreateModal(object sender, RoutedEventArgs e)
+        {
+            CreateModal.IsOpen = true;
+        }
+
+        public void CloseCreateModal(object sender, RoutedEventArgs e)
+        {
+            CreateModal.IsOpen = false;
+        }
+
+        public void CreateTrain(object sender, RoutedEventArgs e)
+        {
+            // ovde ide logika za kreiranje voza
+        }
+
+
+        public void OpenEditModal(object sender, RoutedEventArgs e)
+        {
+            EditModal.IsOpen = true;
+        }
+
+        public void CloseEditModal(object sender, RoutedEventArgs e)
+        {
+            EditModal.IsOpen = false;
+        }
+
+        public void EditTrain(object sender, RoutedEventArgs e)
+        {
+            // ovde ide logika za azuriranje voza
+        }
+
+        public void OpenDeleteModal(object sender, RoutedEventArgs e)
+        {
+            DeleteModal.IsOpen = true;  
+        }
+
+        public void CloseDeleteModal(object sender, RoutedEventArgs e)
+        {
+            DeleteModal.IsOpen = false;
+        }
+        public void DeleteTrain(object sender, RoutedEventArgs e)
+        {
+            // ovde ide logika za brisanje voza
+        }
     }
 }

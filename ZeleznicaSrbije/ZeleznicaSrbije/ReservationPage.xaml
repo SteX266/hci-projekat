@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ZeleznicaSrbije"
+      xmlns:local="clr-namespace:ZeleznicaSrbije" xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
       mc:Ignorable="d" 
       d:DesignHeight="430" d:DesignWidth="750"
       Title="ReservationPage">
@@ -26,10 +26,47 @@
             <Button Margin="30, 40, 30, 10" Content="Pretraži" Grid.Column="4" Click="Button_Click">
             </Button>
 
+
             <DataGrid Name="ridesTable" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" >
                 
             </DataGrid>
+            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="CreateTrainModal">
+                <custom:Modal.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                </custom:Modal.Background>
+                <Border Background="WhiteSmoke" Height="300" Width="250" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Ime Voza" Margin="10, 15" FontSize="20"/>
+                        <TextBox Grid.Column="1" Grid.Row="0" x:Name="TrainName" Text="" Margin="5, 15" FontSize="20"/>
 
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Broj Vagona" Margin="10, 15" FontSize="20"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" x:Name="VagonNumber" Text="" Margin="5, 15" FontSize="20"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Broj Redovi" Margin="10, 15" FontSize="20"/>
+                        <TextBox Grid.Column="1" Grid.Row="2" x:Name="RowNumber" Text="" Margin="5, 15" FontSize="20"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Broj Sedista" Margin="10, 15" FontSize="20"/>
+                        <TextBox Grid.Column="1" Grid.Row="3" x:Name="SeatsNumber" Text="" Margin="5, 15" FontSize="20"/>
+
+                        <Button Click="CreateTrain" Content="Kreiraj" Grid.Column="0" Grid.Row="4" Margin="20, 10" FontSize="20">
+                        </Button>
+                        <Button Click="CloseTrainModal" Content="Otkazi" Grid.Column="1"  Grid.Row="4" Margin="20, 10" FontSize="20">
+                        </Button>
+                    </Grid>
+                </Border>
+                    
+            </custom:Modal>
         </Grid>
     </Border>
 </Page>
