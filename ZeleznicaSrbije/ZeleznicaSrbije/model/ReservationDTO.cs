@@ -12,9 +12,9 @@ namespace ZeleznicaSrbije.model
         public ReservationDTO(Reservation r)
         {
             this.Datum = r.date;
-            this.Polazak = SystemData.getArrivalTime(r.startStation.Name, r.ride, r.ride.line);
-            this.Dolazak = SystemData.getArrivalTime(r.endStation.Name, r.ride, r.ride.line);
-            this.Cena = SystemData.getTicketPrice(r.startStation.Name, r.endStation.Name,r.ride.isReverse, r.ride.line);
+            this.Polazak = Service.getArrivalTime(r.startStation.Name, r.ride, r.ride.line);
+            this.Dolazak = Service.getArrivalTime(r.endStation.Name, r.ride, r.ride.line);
+            this.Cena = Service.getTicketPrice(r.startStation.Name, r.endStation.Name,r.ride.isReverse, r.ride.line);
             this.Status = r.status;
             this.Polaziste = r.startStation.Name;
             this.Odrediste = r.endStation.Name;

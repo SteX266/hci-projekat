@@ -21,13 +21,13 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" Name="OriginPicker" IsEditable="True" IsReadOnly="True" Text="Polazište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" Name="TrainPicker" IsEditable="True" IsReadOnly="True" Text="Voz" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="2" Name="DestinationPicker" IsEditable="True" IsReadOnly="True" Text="Odredište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="2" Name="LinePicker" IsEditable="True" IsReadOnly="True" Text="Linija" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="3" Name="StatusPicker" IsEditable="True" IsReadOnly="True" Text="Status" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="3" Name="TimeStartPicker" IsEditable="True" IsReadOnly="True" Text="Vreme polaska" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
-            <Button Margin="30, 40, 30, 10" Content="Pretraži" Grid.Column="4">
+            <Button Margin="30, 40, 30, 10" Content="Kreiraj red voznje" Grid.Column="4">
             </Button>
             <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Reservations">
 
