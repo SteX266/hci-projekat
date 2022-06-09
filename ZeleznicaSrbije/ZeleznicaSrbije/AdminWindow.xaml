@@ -1,18 +1,19 @@
-﻿<Window x:Class="ZeleznicaSrbije.ClientWindow"
+﻿<Window x:Class="ZeleznicaSrbije.AdminWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZeleznicaSrbije"
+
         xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         
         mc:Ignorable="d"
-        Title="ClientWindow" Height="430" Width="750">
+        Title="AdminWindow" Height="430" Width="750">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-            <HamburgerMenu:HamburgerMenu Background="#4287f5" MenuIconColor="White" SelectionIndicatorColor="White" MenuItemForeground="White" HorizontalAlignment="Left" Grid.Column="0" Panel.ZIndex="2">
+        <HamburgerMenu:HamburgerMenu Background="#4287f5" MenuIconColor="White" SelectionIndicatorColor="White" MenuItemForeground="White" HorizontalAlignment="Left" Grid.Column="0" Panel.ZIndex="2">
             <HamburgerMenu:HamburgerMenu.Content>
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/reservation.jpg" Text="Rezervacija" SelectionCommand="{Binding ElementName=this_}" Selected = "reservations_selected" />
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/tickets.png" Text="Pregled karata" Selected="tickets_selected"/>
@@ -23,5 +24,6 @@
         </HamburgerMenu:HamburgerMenu>
         <Frame x:Name="ClientContentFrame" Grid.Column="0" Panel.ZIndex="1">
         </Frame>
+
     </Grid>
 </Window>

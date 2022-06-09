@@ -41,7 +41,7 @@ namespace ZeleznicaSrbije
                 if (c.username == username && c.password == password)
                 {
                     SystemData.setUser(c);
-                    ClientWindow clientWindow = new ClientWindow();
+                    ClientWindow clientWindow = new ClientWindow(this);
                     clientWindow.Show();
                 }
 
@@ -51,7 +51,8 @@ namespace ZeleznicaSrbije
                 if (a.username == username && a.password == password)
                 {
                     SystemData.setUser(a);
-                    //TODO SHOW ADMIN WINDOW
+                    AdminWindow adminWindow = new AdminWindow(this);
+                    adminWindow.Show();
                 }
             }
 
