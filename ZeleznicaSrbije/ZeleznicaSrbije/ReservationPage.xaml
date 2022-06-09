@@ -59,9 +59,9 @@
                         <TextBlock Grid.Column="0" Grid.Row="3" Text="Broj Sedista" Margin="10, 15" FontSize="20"/>
                         <TextBox Grid.Column="1" Grid.Row="3" x:Name="SeatsNumber" Text="" Margin="5, 15" FontSize="20"/>
 
-                        <Button Click="CreateTrain" Content="Kreiraj" Grid.Column="0" Grid.Row="4" Margin="20, 10" FontSize="20">
+                        <Button Content="Kreiraj" Grid.Column="0" Grid.Row="4" Margin="20, 10" FontSize="20">
                         </Button>
-                        <Button Click="CloseTrainModal" Content="Otkazi" Grid.Column="1"  Grid.Row="4" Margin="20, 10" FontSize="20">
+                        <Button Content="Otkazi" Grid.Column="1"  Grid.Row="4" Margin="20, 10" FontSize="20">
                         </Button>
                     </Grid>
                 </Border>

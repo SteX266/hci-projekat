@@ -20,12 +20,14 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <Button Margin="30, 40, 30, 10" Content="Izmeni red voznje" Grid.Column="1" Click="OpenEditModal">
+            <Button Margin="30, 40, 30, 10" Content="Izmeni red voznje" Grid.Column="1">
             </Button>
-            <Button Margin="30, 40, 30, 10" Content="Izbrisi red voznje" Grid.Column="2" Click="OpenDeleteModal">
+            <Button Margin="30, 40, 30, 10" Content="Izbrisi red voznje" Grid.Column="2">
             </Button>
             <Button Margin="30, 40, 30, 10" Content="Kreiraj novi red voznje" Grid.Column="3" Click="OpenCreateModal">
             </Button>
+
+            <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="TimeTables" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" SelectionUnit="FullRow" ColumnWidth="*" IsReadOnly="true" CanUserReorderColumns="false"/>
 
             <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="CreateModal">
                 <custom:Modal.Background>
@@ -44,16 +46,16 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <ComboBox Margin="30, 40, 30, 40" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Name="TrainPicker" IsEditable="True" IsReadOnly="True" Text="Izbor voza" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                        <ComboBox Margin="10, 10, 10, 10" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Name="TrainPicker" IsEditable="True" IsReadOnly="True" Text="Izbor voza" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18">
                         </ComboBox>
 
-                        <ComboBox Margin="30, 40, 30, 40" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Name="LinePicker" IsEditable="True" IsReadOnly="True" Text="Izbor linije" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                        <ComboBox Margin="10, 10, 10, 10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Name="LinePicker" IsEditable="True" IsReadOnly="True" Text="Izbor linije" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18">
                         </ComboBox>
 
-                        <ComboBox Margin="30, 40, 30, 40" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Name="TimePicker" IsEditable="True" IsReadOnly="True" Text="Pocetak voznje" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                        <ComboBox Margin="10, 10, 10, 10" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Name="TimePicker" IsEditable="True" IsReadOnly="True" Text="Pocetak voznje" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18">
                         </ComboBox>
 
-                        <CheckBox Margin="30, 40, 30, 40" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Obrnuta voznja?">
+                        <CheckBox Margin="10, 10, 10, 10" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Obrnuta voznja?" FontSize="18">
 
                         </CheckBox>
 
@@ -65,7 +67,6 @@
                 </Border>
 
             </custom:Modal>
-            <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="TimeTables" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" SelectionUnit="FullRow" ColumnWidth="*" IsReadOnly="true" CanUserReorderColumns="false"/>
         </Grid>
     </Border>
 </Page>

@@ -54,5 +54,9 @@ namespace ZeleznicaSrbije
         {
             CreateModal.IsOpen = false;
         }
+        public void CreateTimetable(object sender, RoutedEventArgs e)
+        {
+            // ovde ide logika za kreiranje reda voznje
+        }
     }
 }
