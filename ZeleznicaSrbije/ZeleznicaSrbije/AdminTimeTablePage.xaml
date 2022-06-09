@@ -26,9 +26,7 @@
             </Button>
             <Button Margin="30, 40, 30, 10" Content="Kreiraj novi red voznje" Grid.Column="3" Click="OpenCreateModal">
             </Button>
-            <ListView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Timetables">
 
-            </ListView>
             <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="CreateModal">
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
@@ -56,9 +54,9 @@
                         </ComboBox>
 
                         <CheckBox Margin="30, 40, 30, 40" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Obrnuta voznja?">
-                            
+
                         </CheckBox>
-                        
+
                         <Button Click="CreateTimetable" Content="Kreiraj" Grid.Column="0" Grid.Row="4" Margin="20, 10" FontSize="20">
                         </Button>
                         <Button Click="CloseCreateModal" Content="Otkazi" Grid.Column="1"  Grid.Row="4" Margin="20, 10" FontSize="20">
@@ -67,6 +65,7 @@
                 </Border>
 
             </custom:Modal>
+            <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="TimeTables" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" SelectionUnit="FullRow" ColumnWidth="*" IsReadOnly="true" CanUserReorderColumns="false"/>
         </Grid>
     </Border>
 </Page>

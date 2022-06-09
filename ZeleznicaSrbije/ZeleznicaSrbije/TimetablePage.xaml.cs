@@ -25,11 +25,13 @@ namespace ZeleznicaSrbije
         {
             InitializeComponent();
             StationPicker.ItemsSource = Service.getStationNames();
+            TypePicker.ItemsSource = new List<string> { "Polasci", "Dolasci" };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string origin = StationPicker.SelectedItem.ToString();
+            string type = TypePicker.SelectedItem.ToString();
             List<string> stations = Service.getEndStations(origin);
             List<RideDTO> leavingRides = new List<RideDTO>();
             List<RideDTO> arrivingRides = new List<RideDTO>();
@@ -38,7 +40,16 @@ namespace ZeleznicaSrbije
                 leavingRides.AddRange(Service.getRidesBetweenDestinations(origin, station));
                 arrivingRides.AddRange(Service.getRidesBetweenDestinations(station, origin));
             }
-            Timetables.ItemsSource=leavingRides;
+
+            if (type.Equals("Polasci"))
+            {
+                Timetables.ItemsSource = leavingRides;
+
+            }
+            else
+            {
+                Timetables.ItemsSource=arrivingRides;
+            }
         }
     }
 }

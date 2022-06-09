@@ -200,7 +200,7 @@ namespace ZeleznicaSrbije
                 }
 
             }
-            if (start.Days > 0)
+            if (start.Days == 1)
             {
                 start = start.Subtract(new TimeSpan(1, 0, 0, 0));
             }
