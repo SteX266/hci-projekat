@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,21 +14,17 @@ using System.Windows.Shapes;
 
 namespace ZeleznicaSrbije
 {
-    public partial class ClientWindow : Window
+    /// <summary>
+    /// Interaction logic for AdminWindow.xaml
+    /// </summary>
+    public partial class AdminWindow : Window
     {
         MainWindow mainWindow;
-        public ClientWindow(MainWindow mw)
+        public AdminWindow(MainWindow mw)
         {
-            mainWindow = mw;
+            this.mainWindow = mw;
             mainWindow.Hide();
             InitializeComponent();
-
-            ClientContentFrame.Content = new TicketsPage();
-        }
-
-        public void OnReservationClick(object sender, RoutedEventArgs e)
-        {
-            ClientContentFrame.Content = new ReservationPage();
         }
 
         private void tickets_selected(object sender, RoutedEventArgs e)
@@ -55,6 +50,4 @@ namespace ZeleznicaSrbije
             mainWindow.Show();
         }
     }
-
-    
 }
