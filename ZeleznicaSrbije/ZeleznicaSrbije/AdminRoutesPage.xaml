@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ZeleznicaSrbije"
+      xmlns:local="clr-namespace:ZeleznicaSrbije" xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminRoutesPage">
@@ -20,11 +20,37 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <Button Margin="30, 40, 30, 10" Content="Kreiraj novu voznu liniju" Grid.Column="4">
-            </Button>
-            <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Routes">
+            <Button Margin="30, 40, 30, 10" Content="Azuriraj voznu liniju" Grid.Column="1" Click="NavigateToEdit"/>
+            <Button Margin="30, 40, 30, 10" Content="Izbrisi voznu liniju" Grid.Column="2" Click="OpenDeleteModal"/>
+            <Button Margin="30, 40, 30, 10" Content="Kreiraj novu voznu liniju" Grid.Column="3" Click="NavigateToCreate"/>
 
-            </DataGrid>
+            <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Routes"/>
+
+            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="DeleteModal">
+                <custom:Modal.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                </custom:Modal.Background>
+                <Border Background="WhiteSmoke" Height="200" Width="300" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Da li ste sigurni da zelite da izbrisete red voznje?" Margin="10, 10" FontSize="20"/>
+
+                        <Button Click="DeleteRoute" Content="Da" Grid.Column="0" Grid.Row="1" Margin="30, 30" FontSize="20"/>
+
+                        <Button Click="CloseDeleteModal" Content="Otkazi" Grid.Column="1"  Grid.Row="1" Margin="25, 30" FontSize="20"/>
+
+                    </Grid>
+                </Border>
+
+            </custom:Modal>
+            
         </Grid>
     </Border>
 </Page>

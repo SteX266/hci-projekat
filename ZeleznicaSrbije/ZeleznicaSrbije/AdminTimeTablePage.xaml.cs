@@ -50,13 +50,46 @@ namespace ZeleznicaSrbije
         {
             CreateModal.IsOpen = true;
         }
+
         public void CloseCreateModal(object sender, RoutedEventArgs e)
         {
             CreateModal.IsOpen = false;
         }
+
         public void CreateTimetable(object sender, RoutedEventArgs e)
         {
             // ovde ide logika za kreiranje reda voznje
         }
+
+        public void OpenEditModal(object sender, RoutedEventArgs e)
+        {
+            EditModal.IsOpen = true;
+        }
+
+        public void CloseEditModal(object sender, RoutedEventArgs e)
+        {
+            EditModal.IsOpen = false;
+        }
+
+        public void EditTimetable(object sender, RoutedEventArgs e)
+        {
+            // ovde ide logika za azuriranje reda voznje
+        }
+
+        public void OpenDeleteModal(object sender, RoutedEventArgs e)
+        {
+            DeleteModal.IsOpen = true;
+        }
+
+        public void CloseDeleteModal(object sender, RoutedEventArgs e)
+        {
+            DeleteModal.IsOpen = false;
+        }
+
+        public void DeleteTimetable(object sender, RoutedEventArgs e)
+        {
+            // ovde ide logika za azuriranje reda voznje
+        }
+
     }
 }

@@ -25,5 +25,30 @@ namespace ZeleznicaSrbije
         {
             InitializeComponent();
         }
+
+        public void NavigateToCreate(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void NavigateToEdit(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void OpenDeleteModal(object sender, RoutedEventArgs e)
+        {
+            DeleteModal.IsOpen = true; 
+        }
+        public void CloseDeleteModal(object sender, RoutedEventArgs e)
+        {
+            DeleteModal.IsOpen = false;
+        }
+
+        public void DeleteRoute(object sender, RoutedEventArgs e)
+        {
+            // ovde ide kod za brisanje vozne linije
+        }
+
     }
 }

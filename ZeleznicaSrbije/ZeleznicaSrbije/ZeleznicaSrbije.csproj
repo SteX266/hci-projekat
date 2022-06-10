@@ -70,12 +70,6 @@
     <Compile Include="CreateRoutePage.xaml.cs">
       <DependentUpon>CreateRoutePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateTimetablePage.xaml.cs">
-      <DependentUpon>CreateTimetablePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CreateTrainPage.xaml.cs">
-      <DependentUpon>CreateTrainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="model\ReservationDTO.cs" />
     <Compile Include="model\RideDTO.cs" />
     <Compile Include="model\TrainDTO.cs" />
@@ -114,14 +108,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateRoutePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CreateTimetablePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CreateTrainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

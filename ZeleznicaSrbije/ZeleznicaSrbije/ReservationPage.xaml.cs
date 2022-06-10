@@ -45,16 +45,21 @@ namespace ZeleznicaSrbije
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Search();
+            ReservationModal.IsOpen = true;
         }
 
-        private void OpenTicketModal(object sender, RoutedEventArgs e)
+        private void OpenReservationModal(object sender, RoutedEventArgs e)
         {
-            CreateTrainModal.IsOpen = true;
+            ReservationModal.IsOpen = true;
         }
 
-        private void CloseTicketModal(object sender, RoutedEventArgs e)
+        private void CloseReservationModal(object sender, RoutedEventArgs e)
         {
-            CreateTrainModal.IsOpen = false;
+            ReservationModal.IsOpen = false;
+        }
+        private void MakeReservation(object sender, RoutedEventArgs e)
+        {
+            // ovde ide kod za pravljenje rezervacije
         }
     }
 }

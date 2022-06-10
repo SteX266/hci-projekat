@@ -20,20 +20,26 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <Button Margin="30, 40, 30, 10" Content="Izmeni red voznje" Grid.Column="1">
-            </Button>
-            <Button Margin="30, 40, 30, 10" Content="Izbrisi red voznje" Grid.Column="2">
-            </Button>
-            <Button Margin="30, 40, 30, 10" Content="Kreiraj novi red voznje" Grid.Column="3" Click="OpenCreateModal">
-            </Button>
+            <Button Margin="30, 40, 30, 10" Content="Izmeni red voznje" Grid.Column="1" Click="OpenEditModal"/>
+
+            <Button Margin="30, 40, 30, 10" Content="Izbrisi red voznje" Grid.Column="2" Click="OpenDeleteModal"/>
+
+            <Button Margin="30, 40, 30, 10" Content="Kreiraj novi red voznje" Grid.Column="3" Click="OpenCreateModal"/>
+
 
             <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="TimeTables" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" SelectionUnit="FullRow" ColumnWidth="*" IsReadOnly="true" CanUserReorderColumns="false"/>
 
-            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="CreateModal">
+            <custom:Modal Name="CreateModal"
+                Grid.Column="1" Grid.Row="0"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="2">
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
-                <Border Background="WhiteSmoke" Height="300" Width="250" CornerRadius="5">
+                <Border 
+                    Background="WhiteSmoke"
+                    Height="300" Width="250"
+                    CornerRadius="5">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -46,23 +52,183 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <ComboBox Margin="10, 10, 10, 10" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Name="TrainPicker" IsEditable="True" IsReadOnly="True" Text="Izbor voza" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18">
-                        </ComboBox>
+                        <ComboBox 
+                            Margin="10, 10"
+                            Grid.Column="0" Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            Name="TrainPicker"
+                            IsEditable="True"
+                            IsReadOnly="True"
+                            Text="Izbor voza"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            FontSize="18"/>
 
-                        <ComboBox Margin="10, 10, 10, 10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Name="LinePicker" IsEditable="True" IsReadOnly="True" Text="Izbor linije" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18">
-                        </ComboBox>
 
-                        <ComboBox Margin="10, 10, 10, 10" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Name="TimePicker" IsEditable="True" IsReadOnly="True" Text="Pocetak voznje" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18">
-                        </ComboBox>
+                        <ComboBox 
+                            Margin="10, 10"
+                            Grid.Column="0" Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Name="LinePicker"
+                            IsEditable="True"
+                            IsReadOnly="True"
+                            Text="Izbor linije"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            FontSize="18"/>
 
-                        <CheckBox Margin="10, 10, 10, 10" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Obrnuta voznja?" FontSize="18">
 
-                        </CheckBox>
+                        <ComboBox 
+                            Margin="10, 10"
+                            Grid.Column="0" Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            Name="TimePicker"
+                            IsEditable="True"
+                            IsReadOnly="True" 
+                            Text="Pocetak voznje"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            FontSize="18"/>
 
-                        <Button Click="CreateTimetable" Content="Kreiraj" Grid.Column="0" Grid.Row="4" Margin="20, 10" FontSize="20">
-                        </Button>
-                        <Button Click="CloseCreateModal" Content="Otkazi" Grid.Column="1"  Grid.Row="4" Margin="20, 10" FontSize="20">
-                        </Button>
+
+                        <CheckBox 
+                            Margin="10, 10"
+                            Grid.Column="0" Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            Content="Obrnuta voznja?"
+                            FontSize="18"
+                            Name="Reverse"/>
+
+
+                        <Button 
+                            Click="CreateTimetable"
+                            Content="Kreiraj" 
+                            Grid.Column="0" Grid.Row="4"
+                            Margin="20, 10"
+                            FontSize="20"/>
+
+                        <Button 
+                            Click="CloseCreateModal"
+                            Content="Otkazi"
+                            Grid.Column="1" Grid.Row="4"
+                            Margin="20, 10"
+                            FontSize="20"/>
+
+                    </Grid>
+                </Border>
+
+            </custom:Modal>
+
+            <custom:Modal Name="EditModal"
+                Grid.Column="1" Grid.Row="0"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="2">
+                <custom:Modal.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                </custom:Modal.Background>
+                <Border 
+                    Background="WhiteSmoke"
+                    Height="300" Width="250"
+                    CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox 
+                            Margin="10, 10"
+                            Grid.Column="0" Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            Name="EditTrainPicker"
+                            IsEditable="True"
+                            IsReadOnly="True"
+                            Text="Izbor voza"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            FontSize="18"/>
+
+
+                        <ComboBox 
+                            Margin="10, 10"
+                            Grid.Column="0" Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Name="EditLinePicker"
+                            IsEditable="True"
+                            IsReadOnly="True"
+                            Text="Izbor linije"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            FontSize="18"/>
+
+
+                        <ComboBox 
+                            Margin="10, 10"
+                            Grid.Column="0" Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            Name="EditTimePicker"
+                            IsEditable="True"
+                            IsReadOnly="True" 
+                            Text="Pocetak voznje"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            FontSize="18"/>
+
+
+                        <CheckBox 
+                            Margin="10, 10"
+                            Grid.Column="0" Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            Content="Obrnuta voznja?"
+                            FontSize="18"
+                            Name="EditReverse"/>
+
+
+                        <Button 
+                            Click="EditTimetable"
+                            Content="Kreiraj" 
+                            Grid.Column="0" Grid.Row="4"
+                            Margin="20, 10"
+                            FontSize="20"/>
+
+                        <Button 
+                            Click="CloseEditModal"
+                            Content="Otkazi"
+                            Grid.Column="1" Grid.Row="4"
+                            Margin="20, 10"
+                            FontSize="20"/>
+
+                    </Grid>
+                </Border>
+
+            </custom:Modal>
+
+            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="DeleteModal">
+                <custom:Modal.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                </custom:Modal.Background>
+                <Border Background="WhiteSmoke" Height="200" Width="300" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Da li ste sigurni da zelite da izbrisete red voznje?" Margin="10, 10" FontSize="20"/>
+
+                        <Button Click="DeleteTimetable" Content="Da" Grid.Column="0" Grid.Row="1" Margin="30, 30" FontSize="20"/>
+
+                        <Button Click="CloseDeleteModal" Content="Otkazi" Grid.Column="1"  Grid.Row="1" Margin="25, 30" FontSize="20"/>
+
                     </Grid>
                 </Border>
 
