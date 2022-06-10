@@ -31,14 +31,12 @@ namespace ZeleznicaSrbije
         public TrainsPage()
         {
             InitializeComponent();
-            Trace.WriteLine("ALOOO");
             List<Train> trains = SystemData.trains;
             DataContext = this;
             trainsToShow = new ObservableCollection<TrainDTO>();
 
             foreach (Train tr in trains)
             {
-                Trace.WriteLine("ALOOO");
                 trainsToShow.Add(new TrainDTO(tr));
             }   
 

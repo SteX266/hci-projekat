@@ -1,53 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ZeleznicaSrbije.model
 {
-    public class RideDTO
+    public class RideDTO:INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        private string _polaziste;
+        private string _odrediste;
+        private TimeSpan _polazak;
+        private TimeSpan _dolazak;
+        private TimeSpan _trajanje;
+        private double _cena;
+        private string _linija;
         public RideDTO()
         {
         }
 
         public RideDTO(string polaziste, string odrediste, TimeSpan polazak, TimeSpan dolazak, double cena, string linija)
         {
-            Polaziste = polaziste;
-            Odrediste = odrediste;
-            Polazak = polazak;
-            Dolazak = dolazak;
+            _polaziste = polaziste;
+            _odrediste = odrediste;
+            _polazak = polazak;
+            _dolazak = dolazak;
             
-            if (Polazak > Dolazak)
+            if (_polazak > _dolazak)
             {
-                Dolazak = Dolazak.Add(new TimeSpan(1,0,0,0));
+                _dolazak = _dolazak.Add(new TimeSpan(1,0,0,0));
             }
-            Trajanje = Dolazak.Subtract(Polazak);
+            _trajanje = _dolazak.Subtract(_polazak);
 
-            if(Dolazak.Days > 0)
+            if(_dolazak.Days > 0)
             {
-                Dolazak = Dolazak.Subtract(new TimeSpan(1,0,0,0));  
+                _dolazak = _dolazak.Subtract(new TimeSpan(1,0,0,0));  
             }
 
-            Cena = cena;
-            Linija = linija;
+            _cena = cena;
+            _linija = linija;
         }
 
-        public string Polaziste { get; set; }
-        public string Odrediste { get; set; }
-        public TimeSpan Polazak { get; set; }
-        public TimeSpan Dolazak { get; set; }
-        public TimeSpan Trajanje { get; set; }
-
-        public double Cena { get; set; }
-
-        public string Linija { get; set; }
+        public string Polaziste { get { return _polaziste; } set { if (value!=_polaziste) { _polaziste = value; OnPropertyChanged("Polaziste"); } } }
+        public string Odrediste { get { return _odrediste; } set { if (value != _odrediste) { _odrediste = value; OnPropertyChanged("Odrediste"); } } }
+        public TimeSpan Polazak { get { return _polazak; } set { if (value != _polazak) { _polazak = value; OnPropertyChanged("Polazak"); } } }
+        public TimeSpan Dolazak { get { return _dolazak; } set { if (value != _dolazak) { _dolazak = value; OnPropertyChanged("Dolazak"); } } }
+        public TimeSpan Trajanje { get { return _trajanje; } set { if (value != _trajanje) { _trajanje = value; OnPropertyChanged("Trajanje"); } } }
+        public double Cena { get { return _cena; } set { if (value != _cena) { _cena = value; OnPropertyChanged("Cena"); } } }
+        public string Linija { get { return _linija; } set { if (value != _linija) { _linija = value; OnPropertyChanged("Linija"); } } }
 
 
 
 
-       
+
 
 
     }

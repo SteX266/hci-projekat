@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,19 @@ namespace ZeleznicaSrbije
     /// </summary>
     public partial class AdminTimeTablePage : Page
     {
+
+        public ObservableCollection<RideDTO> routes
+        {
+            get;
+            set;
+        }
         public AdminTimeTablePage()
         {
-            InitializeComponent();
 
-            List<RideDTO> routes = new List<RideDTO>();
+
+            InitializeComponent();
+            DataContext = this;
+            routes = new ObservableCollection<RideDTO>();
             List<TimeTable> timeTables = SystemData.timeTables;
 
             foreach (TimeTable t in timeTables)
@@ -44,7 +53,6 @@ namespace ZeleznicaSrbije
                 }
 
             }
-            TimeTables.ItemsSource = routes;
         }
         public void OpenCreateModal(object sender, RoutedEventArgs e)
         {
@@ -88,7 +96,7 @@ namespace ZeleznicaSrbije
 
         public void DeleteTimetable(object sender, RoutedEventArgs e)
         {
-            // ovde ide logika za azuriranje reda voznje
+
         }
 
     }
