@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,19 +23,25 @@ namespace ZeleznicaSrbije
     /// </summary>
     public partial class TrainsPage : Page
     {
+        public ObservableCollection<TrainDTO> trainsToShow
+        {
+            get;
+            set;
+        }
         public TrainsPage()
         {
             InitializeComponent();
-
+            Trace.WriteLine("ALOOO");
             List<Train> trains = SystemData.trains;
+            DataContext = this;
+            trainsToShow = new ObservableCollection<TrainDTO>();
 
-            List<TrainDTO> trainsToShow = new List<TrainDTO>();
             foreach (Train tr in trains)
             {
+                Trace.WriteLine("ALOOO");
                 trainsToShow.Add(new TrainDTO(tr));
             }   
 
-            Trains.ItemsSource = trainsToShow;
         }
         public void OpenCreateModal(object sender, RoutedEventArgs e)
         {
@@ -68,7 +76,9 @@ namespace ZeleznicaSrbije
 
         public void OpenDeleteModal(object sender, RoutedEventArgs e)
         {
-            DeleteModal.IsOpen = true;  
+            DeleteModal.IsOpen = true;
+            trainsToShow.RemoveAt(0);
+
         }
 
         public void CloseDeleteModal(object sender, RoutedEventArgs e)
