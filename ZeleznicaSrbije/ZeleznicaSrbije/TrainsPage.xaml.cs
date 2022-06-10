@@ -55,13 +55,24 @@ namespace ZeleznicaSrbije
 
         public void CreateTrain(object sender, RoutedEventArgs e)
         {
-            // ovde ide logika za kreiranje voza
+            Train t = new Train(Int32.Parse(VagonNumber.Text), Int32.Parse(RowNumber.Text), Int32.Parse(SeatsNumber.Text), TrainName.Text);
+            SystemData.trains.Add(t);
+
+            trainsToShow.Add(new TrainDTO(t));
+            CloseCreateModal(sender, e);
         }
 
 
         public void OpenEditModal(object sender, RoutedEventArgs e)
         {
             EditModal.IsOpen = true;
+            TrainDTO train = (TrainDTO)Trains.SelectedItem;
+            string trainName = train.Naziv;
+
+            ETrainName.Text = train.Naziv;
+            EVagonNumber.Text = train.BrojVagona.ToString();
+            ERowNumber.Text = train.BrojRedova.ToString();
+            ESeatsNumber.Text = train.BrojSedista.ToString();
         }
 
         public void CloseEditModal(object sender, RoutedEventArgs e)
@@ -71,13 +82,33 @@ namespace ZeleznicaSrbije
 
         public void EditTrain(object sender, RoutedEventArgs e)
         {
-            // ovde ide logika za azuriranje voza
+            TrainDTO train = (TrainDTO) Trains.SelectedItem;
+            foreach(TrainDTO t in trainsToShow)
+            {
+                if (train.Naziv.Equals(t.Naziv))
+                {
+                    t.BrojVagona = Int32.Parse(EVagonNumber.Text);
+                    t.BrojSedista = Int32.Parse(ESeatsNumber.Text);
+                    t.BrojRedova = Int32.Parse(ERowNumber.Text);
+                }
+            }
+            foreach(Train t in SystemData.trains)
+            {
+                if (t.name.Equals(train.Naziv))
+                {
+                    t.numberOfWagons = Int32.Parse(EVagonNumber.Text);
+                    t.numberOfRowsInWagon = Int32.Parse(ERowNumber.Text);
+                    t.numberOfSeatsPerRow = Int32.Parse(ESeatsNumber.Text);
+                }
+            }
+            CloseEditModal(sender, e);
+
         }
 
         public void OpenDeleteModal(object sender, RoutedEventArgs e)
         {
             DeleteModal.IsOpen = true;
-            trainsToShow.RemoveAt(0);
+
 
         }
 
@@ -87,7 +118,10 @@ namespace ZeleznicaSrbije
         }
         public void DeleteTrain(object sender, RoutedEventArgs e)
         {
-            // ovde ide logika za brisanje voza
+            TrainDTO train = (TrainDTO)Trains.SelectedItem;
+            trainsToShow.Remove(train);
+            SystemData.deleteTrainByName(train.Naziv);
+            CloseDeleteModal(sender, e);
         }
     }
 }

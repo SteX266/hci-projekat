@@ -272,8 +272,16 @@ namespace ZeleznicaSrbije
 
         }
 
-       
-
-
+        internal static void deleteTrainByName(string naziv)
+        {
+            foreach (Train train in trains)
+            {
+                if (train.name.Equals(naziv))
+                {
+                    trains.Remove(train);
+                    break;
+                }
+            }
+        }
     }
 }

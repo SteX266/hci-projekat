@@ -84,7 +84,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="Ime Voza" Margin="10, 15" FontSize="20"/>
-                        <TextBox Grid.Column="1" Grid.Row="0" x:Name="ETrainName" Text="" Margin="5, 15" FontSize="20"/>
+                        <TextBox Grid.Column="1" Grid.Row="0" x:Name="ETrainName" Text="" Margin="5, 15" FontSize="20" IsEnabled="False"/>
 
                         <TextBlock Grid.Column="0" Grid.Row="1" Text="Broj Vagona" Margin="10, 15" FontSize="20"/>
                         <TextBox Grid.Column="1" Grid.Row="1" x:Name="EVagonNumber" Text="" Margin="5, 15" FontSize="20"/>
