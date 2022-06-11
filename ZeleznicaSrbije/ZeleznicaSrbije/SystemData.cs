@@ -272,6 +272,42 @@ namespace ZeleznicaSrbije
 
         }
 
+        internal static Train getTrainByName(string trainName)
+        {
+            foreach(Train t in trains)
+            {
+                if (t.name == trainName)
+                {
+                    return t;
+                }
+            }
+            return null;
+        }
+
+        public static TrainLine getTrainLineByName(string line)
+        {
+            foreach(TrainLine trainLine in trainsLines)
+            {
+                if (trainLine.Name == line)
+                {
+                    return trainLine;
+                }
+            }
+            return null;
+        }
+
+        internal static void deleteTimeTable(RideDTO ride)
+        {
+            foreach(TimeTable table in timeTables)
+            {
+                if (table.line.Name == ride.Linija && ride.Polazak == table.starts)
+                {
+                    timeTables.Remove(table);
+                    break;
+                }
+            }
+        }
+
         internal static void deleteTrainByName(string naziv)
         {
             foreach (Train train in trains)

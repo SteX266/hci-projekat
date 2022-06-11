@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
             <HamburgerMenu:HamburgerMenu Background="#4287f5" MenuIconColor="White" SelectionIndicatorColor="White" MenuItemForeground="White" HorizontalAlignment="Left" Grid.Column="0" Panel.ZIndex="2">
             <HamburgerMenu:HamburgerMenu.Content>
-                <HamburgerMenu:HamburgerMenuItem Icon="icons/reservation.jpg" Text="Rezervacija" SelectionCommand="{Binding ElementName=this_}" Selected = "reservations_selected" />
+                <HamburgerMenu:HamburgerMenuItem Icon="icons/reservation.jpg" Text="Rezervacija"  Selected = "reservations_selected" />
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/tickets.png" Text="Pregled karata" Selected="tickets_selected"/>
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/timetable-removebg-preview.png" Text="Red voznje" Selected="timetable_selected" />
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/lajne.png" Text="Linije" Selected="lines_selected"/>
