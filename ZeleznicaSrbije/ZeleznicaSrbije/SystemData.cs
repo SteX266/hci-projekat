@@ -272,6 +272,18 @@ namespace ZeleznicaSrbije
 
         }
 
+        internal static TimeTable findTimeTable(RideDTO timeTable)
+        {
+            foreach(TimeTable table in timeTables)
+            {
+                if(table.line.Name.Equals(timeTable.Linija)  && timeTable.Polazak == table.starts)
+                {
+                    return table;
+                }
+            }
+            return null;
+        }
+
         internal static Train getTrainByName(string trainName)
         {
             foreach(Train t in trains)

@@ -42,9 +42,11 @@ namespace ZeleznicaSrbije
                 lineStrings.Add(line.Name);
             }
             LinePicker.ItemsSource = lineStrings;
+            EditLinePicker.ItemsSource = lineStrings;
 
             List<string> time = new List<string> {"12:00", "15:00", "17:00" };
             TimePicker.ItemsSource = time;
+            EditTimePicker.ItemsSource = time;
 
             List<Train> trains = SystemData.trains;
             List<string> trainStrings = new List<string>();
@@ -55,6 +57,7 @@ namespace ZeleznicaSrbije
             }
 
             TrainPicker.ItemsSource = trainStrings;
+            EditTrainPicker.ItemsSource = trainStrings;
 
             routes = new ObservableCollection<RideDTO>();
 
@@ -131,6 +134,13 @@ namespace ZeleznicaSrbije
         public void OpenEditModal(object sender, RoutedEventArgs e)
         {
             EditModal.IsOpen = true;
+            RideDTO ride = (RideDTO)TimeTables.SelectedItem;
+
+            TimeTable timeTable = SystemData.findTimeTable(ride);
+
+            EditTrainPicker.Text = timeTable.train.name;
+            EditLinePicker.Text = timeTable.line.Name;
+            EditTimePicker.Text = timeTable.starts.ToString(@"hh\:mm");
         }
 
         public void CloseEditModal(object sender, RoutedEventArgs e)
@@ -141,13 +151,66 @@ namespace ZeleznicaSrbije
         public void EditTimetable(object sender, RoutedEventArgs e)
         {
             RideDTO ride = (RideDTO)TimeTables.SelectedItem;
+            
+
             rideToEdit = (RideDTO)TimeTables.SelectedItem;
 
-            foreach(RideDTO r in routes)
+            TimeTable timeTable = SystemData.findTimeTable(ride);
+
+            string originStation="";
+            string destination="";
+
+
+
+            foreach(TimeTable tt in SystemData.timeTables)
+            {
+                if (tt.line.Name == rideToEdit.Linija && tt.starts == rideToEdit.Polazak)
+                {
+                    if (EditLinePicker.SelectedIndex != -1)
+                    {
+                        tt.line = SystemData.getTrainLineByName(EditLinePicker.SelectedItem.ToString());
+                        originStation = tt.line.stations.First().Name;
+                        destination = tt.line.stations.Last().Name;
+                    }
+                    if (EditTimePicker.SelectedIndex != -1)
+                    {
+                        string[] tokens = EditTimePicker.SelectedItem.ToString().Split(':');
+                        int hours = Int32.Parse(tokens[0]);
+                        int minutes = Int32.Parse(tokens[1]);
+
+                        TimeSpan startTime = new TimeSpan(hours, minutes, 0);
+                        tt.starts = startTime;
+                    }
+                    if (EditTrainPicker.SelectedIndex != -1)
+                    {
+                        tt.train = SystemData.getTrainByName(EditTrainPicker.SelectedItem.ToString());
+                    }
+                }
+            }
+
+
+
+            foreach (RideDTO r in routes)
             {
                 if (rideToEdit.Linija == r.Linija && r.Polazak == rideToEdit.Polazak)
                 {
-                    
+                    if (EditLinePicker.SelectedIndex != -1)
+                    {
+                        r.Linija = EditLinePicker.SelectedItem.ToString();
+                        r.Polaziste = originStation;
+                        r.Odrediste = destination;
+                    }
+                    if (EditTimePicker.SelectedIndex != -1)
+                    {
+
+                        string[] tokens = EditTimePicker.SelectedItem.ToString().Split(':');
+                        int hours = Int32.Parse(tokens[0]);
+                        int minutes = Int32.Parse(tokens[1]);
+
+                        TimeSpan startTime = new TimeSpan(hours, minutes, 0);
+                        r.Polazak = startTime;
+                        r.Dolazak = Service.getArrivalTime(ride.Odrediste, timeTable, timeTable.line);
+                    }
                 }
             }
         }
