@@ -59,7 +59,7 @@ namespace ZeleznicaSrbije
         }
         private void lines_selected(object sender, RoutedEventArgs e)
         {
-            //LinesPage
+            ClientContentFrame.Content = new RoutesPage();
         }
         private void logout_selected(object sender, RoutedEventArgs e)
         {

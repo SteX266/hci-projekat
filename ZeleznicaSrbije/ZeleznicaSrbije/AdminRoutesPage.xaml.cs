@@ -21,14 +21,16 @@ namespace ZeleznicaSrbije
     /// </summary>
     public partial class AdminRoutesPage : Page
     {
-        public AdminRoutesPage()
+        Frame f;
+        public AdminRoutesPage(Frame f)
         {
             InitializeComponent();
+            this.f = f;
         }
 
         public void NavigateToCreate(object sender, RoutedEventArgs e)
         {
-
+            f.Content = new CreateRoutePage();
         }
 
         public void NavigateToEdit(object sender, RoutedEventArgs e)

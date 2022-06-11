@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Maps.MapControl.WPF;
+using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
 {
@@ -23,12 +25,57 @@ namespace ZeleznicaSrbije
         public RoutesPage()
         {
             InitializeComponent();
-            // RoutePicker.ItemsSource = SystemData.getRoutes();
+
+            List<TrainLine> trainLines = SystemData.trainsLines;
+            List<string> lineStrings = new List<string>();
+
+            foreach (TrainLine line in trainLines)
+            {
+                lineStrings.Add(line.Name);
+            }
+
+            RoutePicker.ItemsSource = lineStrings;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            string lineName = RoutePicker.SelectedItem.ToString();
 
+            TrainLine line = SystemData.getTrainLineByName(lineName);
+            addPins(line.stations);
+            connectPins(line);
+
+        }
+
+        private void connectPins(TrainLine line)
+        {
+            MapPolyline polyLine = new MapPolyline()
+            { 
+                Stroke = new SolidColorBrush(Color.FromRgb(255, 0, 0)),
+                Locations = new LocationCollection()
+            };
+            foreach (Station station in line.stations)
+            {
+                polyLine.Locations.Add(station.Location);
+            }
+            MainMap.Children.Add(polyLine);
+        }
+
+        private void addPins(List<Station> stations)
+        {
+            List<Pushpin> pins = new List<Pushpin>();
+
+            foreach (Station station in stations)
+            {
+                Pushpin pin = new Pushpin
+                {
+                    Location = station.Location,
+                    Content = station.Name
+                };
+                pins.Add(pin);
+                MainMap.Children.Add(pin);
+            }
         }
     }
 }

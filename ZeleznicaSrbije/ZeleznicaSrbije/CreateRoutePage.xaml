@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       xmlns:local="clr-namespace:ZeleznicaSrbije"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -20,13 +21,12 @@
                 <RowDefinition Height="13*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            
+
             <DataGrid Grid.Row="0" Grid.Column="1" Margin="20, 20" Name="stations" ColumnWidth="*"/>
 
-            <Image Source="/icons/mapa.png" 
-                   Grid.Column="3" Grid.Row="0"
-                   Margin="10, 10, 10, 10"
-                   Grid.RowSpan="2"/>
+
+            <m:Map  x:Name="MainMap" CredentialsProvider="l9xWt8P3CjQ55RX6uLgj~iBGvWRv6V5c41-w4kjxVnQ~AmX9wKBN8ediYL1sv0cefEwKH8cuBM7fdKee2to583NcA4JdaIL378u7S-BYT0g7" Grid.Column="2" Margin="91,20,25,20" Grid.ColumnSpan="2" Mode="Road" ZoomLevel="7" Center="44.2108 , 20.9224" AllowDrop="true" DragEnter="MainMap_DragEnter" Drop="MainMap_Drop">
+            </m:Map>
 
             <Button Margin="50, 10, 50, 20"
                     Content="Dodaj novu stanicu"
@@ -35,6 +35,10 @@
             <Button Margin="20, 10, 20, 20" 
                     Content="Kreiraj"
                     Grid.Column="2" Grid.Row="1"/>
+
+            <Image Source="/icons/pin.png" Margin="0 0 150 0"
+               PreviewMouseLeftButtonDown="MapView_PreviewMouseLeftButtonDown" HorizontalAlignment="Right"
+               MouseMove="Image_MouseMove" Grid.Column="3" Grid.Row="1" />
 
         </Grid>
     </Border>
