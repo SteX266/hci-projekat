@@ -9,7 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminTimeTablePage">
 
-    <Border Background="#272537">
+    <Border Background="#E8EBF7">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -21,14 +21,14 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <Button Margin="30, 40, 30, 10" Content="Izmeni red voznje" Grid.Column="1" Click="OpenEditModal"/>
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Izmeni red voznje" Grid.Column="1" Click="OpenEditModal"/>
 
-            <Button Margin="30, 40, 30, 10" Content="Izbrisi red voznje" Grid.Column="2" Click="OpenDeleteModal"/>
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Izbrisi red voznje" Grid.Column="2" Click="OpenDeleteModal"/>
 
-            <Button Margin="30, 40, 30, 10" Content="Kreiraj novi red voznje" Grid.Column="3" Click="OpenCreateModal"/>
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Kreiraj red voznje" Grid.Column="3" Click="OpenCreateModal"/>
 
 
-            <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="TimeTables" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" SelectionUnit="FullRow" ColumnWidth="*" IsReadOnly="true" CanUserReorderColumns="false" ItemsSource="{Binding Path=routes}"/>
+            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="TimeTables" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" SelectionUnit="FullRow" ColumnWidth="*" IsReadOnly="true" CanUserReorderColumns="false" ItemsSource="{Binding Path=routes}"/>
 
             <custom:Modal Name="CreateModal"
                 Grid.Column="1" Grid.Row="0"
@@ -39,10 +39,11 @@
                 </custom:Modal.Background>
                 <Border 
                     Background="WhiteSmoke"
-                    Height="300" Width="250"
-                    CornerRadius="5">
+                    Height="320" Width="250"
+                    CornerRadius="2">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -53,9 +54,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
+                        <TextBlock Text="Kreiranje reda voznje" Margin="10, 10" FontSize="20" FontWeight="DemiBold" Grid.Row="0" Grid.ColumnSpan="2"/>
                         <ComboBox 
                             Margin="10, 10"
-                            Grid.Column="0" Grid.Row="0"
+                            Grid.Column="0" Grid.Row="1"
                             Grid.ColumnSpan="2"
                             Name="TrainPicker"
                             IsEditable="True"
@@ -68,7 +70,7 @@
 
                         <ComboBox 
                             Margin="10, 10"
-                            Grid.Column="0" Grid.Row="1"
+                            Grid.Column="0" Grid.Row="2"
                             Grid.ColumnSpan="2"
                             Name="LinePicker"
                             IsEditable="True"
@@ -80,7 +82,7 @@
 
                         <ComboBox 
                             Margin="10, 10"
-                            Grid.Column="0" Grid.Row="2"
+                            Grid.Column="0" Grid.Row="3"
                             Grid.ColumnSpan="2"
                             Name="TimePicker"
                             IsEditable="True"
@@ -93,7 +95,7 @@
 
                         <CheckBox 
                             Margin="10, 10"
-                            Grid.Column="0" Grid.Row="3"
+                            Grid.Column="0" Grid.Row="4"
                             Grid.ColumnSpan="2"
                             Content="Obrnuta voznja?"
                             FontSize="18"
@@ -101,18 +103,21 @@
 
 
                         <Button 
+                            Style="{StaticResource ButtonStyle}"
                             Click="CreateTimetable"
                             Content="Kreiraj" 
-                            Grid.Column="0" Grid.Row="4"
-                            Margin="20, 10"
+                            Grid.ColumnSpan="2" Grid.Row="5"
+                            Margin="80, 10"
                             FontSize="20"/>
 
                         <Button 
+                            Style="{StaticResource CloseButton}"
                             Click="CloseCreateModal"
-                            Content="Otkazi"
-                            Grid.Column="1" Grid.Row="4"
-                            Margin="20, 10"
-                            FontSize="20"/>
+                            Grid.Column="1" Grid.Row="0"
+                            Margin="90, 10, 0, 10"
+                            FontSize="20">
+                            <Image Source="icons/close.png"/>
+                        </Button>
 
                     </Grid>
                 </Border>
@@ -128,10 +133,11 @@
                 </custom:Modal.Background>
                 <Border 
                     Background="WhiteSmoke"
-                    Height="300" Width="250"
-                    CornerRadius="5">
+                    Height="320" Width="250"
+                    CornerRadius="2">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -142,9 +148,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
+                        <TextBlock Text="Azuriranje reda voznje" Margin="10, 10" FontSize="20" FontWeight="DemiBold" Grid.Row="0" Grid.ColumnSpan="2"/>
                         <ComboBox 
                             Margin="10, 10"
-                            Grid.Column="0" Grid.Row="0"
+                            Grid.Column="0" Grid.Row="1"
                             Grid.ColumnSpan="2"
                             Name="EditTrainPicker"
                             IsEditable="True"
@@ -157,7 +164,7 @@
 
                         <ComboBox 
                             Margin="10, 10"
-                            Grid.Column="0" Grid.Row="1"
+                            Grid.Column="0" Grid.Row="2"
                             Grid.ColumnSpan="2"
                             Name="EditLinePicker"
                             IsEditable="True"
@@ -170,7 +177,7 @@
 
                         <ComboBox 
                             Margin="10, 10"
-                            Grid.Column="0" Grid.Row="2"
+                            Grid.Column="0" Grid.Row="3"
                             Grid.ColumnSpan="2"
                             Name="EditTimePicker"
                             IsEditable="True"
@@ -183,7 +190,7 @@
 
                         <CheckBox 
                             Margin="10, 10"
-                            Grid.Column="0" Grid.Row="3"
+                            Grid.Column="0" Grid.Row="4"
                             Grid.ColumnSpan="2"
                             Content="Obrnuta voznja?"
                             FontSize="18"
@@ -191,18 +198,21 @@
 
 
                         <Button 
+                            Style="{StaticResource ButtonStyle}"
                             Click="EditTimetable"
-                            Content="Kreiraj" 
-                            Grid.Column="0" Grid.Row="4"
-                            Margin="20, 10"
+                            Content="Azuriraj" 
+                            Grid.ColumnSpan="2" Grid.Row="5"
+                            Margin="80, 10"
                             FontSize="20"/>
 
                         <Button 
+                            Style="{StaticResource CloseButton}"
                             Click="CloseEditModal"
-                            Content="Otkazi"
-                            Grid.Column="1" Grid.Row="4"
-                            Margin="20, 10"
-                            FontSize="20"/>
+                            Grid.Column="1" Grid.Row="0"
+                            Margin="90, 10, 0, 10"
+                            FontSize="20">
+                            <Image Source="icons/close.png"/>
+                        </Button>
 
                     </Grid>
                 </Border>
@@ -213,7 +223,7 @@
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
-                <Border Background="WhiteSmoke" Height="200" Width="300" CornerRadius="5">
+                <Border Background="WhiteSmoke" Height="150" Width="260" CornerRadius="2">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -225,9 +235,13 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock TextWrapping="Wrap" TextAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Da li ste sigurni da zelite da izbrisete red voznje?" Margin="10, 10" FontSize="20"/>
 
-                        <Button Click="DeleteTimetable" Content="Da" Grid.Column="0" Grid.Row="1" Margin="30, 30" FontSize="20"/>
+                        <Button Style="{StaticResource ButtonStyle}" Click="DeleteTimetable" Grid.Column="0" Grid.Row="1" Margin="40, 20" FontSize="20">
+                            <Image Source="icons/done.png"/>
+                        </Button>
 
-                        <Button Click="CloseDeleteModal" Content="Otkazi" Grid.Column="1"  Grid.Row="1" Margin="25, 30" FontSize="20"/>
+                        <Button Style="{StaticResource ButtonStyle}" Click="CloseDeleteModal" Grid.Column="1"  Grid.Row="1" Margin="40, 20">
+                            <Image Source="icons/close.png"/>
+                        </Button>
 
                     </Grid>
                 </Border>

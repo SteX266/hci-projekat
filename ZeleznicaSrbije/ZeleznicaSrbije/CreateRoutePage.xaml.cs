@@ -142,6 +142,14 @@ namespace ZeleznicaSrbije
                 e.Effects = DragDropEffects.None;
             }
         }
+        private void setPriceAndTime(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void CloseStationModal(object sender, RoutedEventArgs e)
+        {
+            StationModal.IsOpen = false;
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -173,6 +181,7 @@ namespace ZeleznicaSrbije
                 pushpins.Add(pin);
 
                 MainMap.Children.Add(pin);
+                StationModal.IsOpen = true;
             }
 
         }

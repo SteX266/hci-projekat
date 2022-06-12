@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TrainsPage">
 
-    <Border Background="#272537">
+    <Border Background="#E8EBF7">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -20,21 +20,38 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <Button Margin="30, 40, 30, 10" Content="Izmeni voz" Grid.Column="1"  Click="OpenEditModal">
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Grid.Column="1"  Click="OpenEditModal">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Ažuriraj voz " FontWeight="DemiBold"/>
+                    <Image Source="icons/edit.png" Width="20" VerticalAlignment="Center" Margin="2, 3"/>
+                </StackPanel>
             </Button>
-            <Button Margin="30, 40, 30, 10" Content="Izbrisi voz" Grid.Column="2"  Click="OpenDeleteModal">
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Grid.Column="2"  Click="OpenDeleteModal">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Izbriši voz " FontWeight="DemiBold"/>
+                    <Image Source="icons/delete.png" Width="20" VerticalAlignment="Center" Margin="2, 3"/>
+                </StackPanel>
             </Button>
-            <Button Margin="30, 40, 30, 10" Content="Kreiraj novi voz" Grid.Column="3"  Click="OpenCreateModal">
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Grid.Column="3"  Click="OpenCreateModal">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Kreiraj voz " FontWeight="DemiBold"/>
+                    <Image Source="icons/create_plus.png" Width="20" VerticalAlignment="Center" Margin="2, 3"/>
+                </StackPanel>
             </Button>
-            <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Trains" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="false" IsReadOnly="True"  ColumnWidth="*" ItemsSource="{Binding Path=trainsToShow}"/>
+            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Trains" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="false" IsReadOnly="True"  ColumnWidth="*" ItemsSource="{Binding Path=trainsToShow}"/>
 
             <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="CreateModal">
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
-                <Border Background="WhiteSmoke" Height="300" Width="250" CornerRadius="5">
+                <Border Background="WhiteSmoke" Height="380" Width="300" CornerRadius="2">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -45,21 +62,24 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Ime Voza" Margin="10, 15" FontSize="20"/>
-                        <TextBox Grid.Column="1" Grid.Row="0" x:Name="TrainName" Text="" Margin="5, 15" FontSize="20"/>
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Kreiranje Voza" Margin="10, 5, 5, 5" FontSize="20" FontWeight="DemiBold"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Broj Vagona" Margin="10, 15" FontSize="20"/>
-                        <TextBox Grid.Column="1" Grid.Row="1" x:Name="VagonNumber" Text="" Margin="5, 15" FontSize="20"/>
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Ime Voza" Margin="10, 15, 5, 5" FontSize="15" FontWeight="DemiBold"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="2" Grid.ColumnSpan="2" x:Name="TrainName" Text=""/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Broj Redovi" Margin="10, 15" FontSize="20"/>
-                        <TextBox Grid.Column="1" Grid.Row="2" x:Name="RowNumber" Text="" Margin="5, 15" FontSize="20"/>
+                        <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="Broj Vagona" Margin="10, 15, 5, 5" FontSize="15" FontWeight="DemiBold"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="4" Grid.ColumnSpan="2" x:Name="VagonNumber" Text=""/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Broj Sedista" Margin="10, 15" FontSize="20"/>
-                        <TextBox Grid.Column="1" Grid.Row="3" x:Name="SeatsNumber" Text="" Margin="5, 15" FontSize="20"/>
+                        <TextBlock Grid.Row="5" Grid.ColumnSpan="2" Text="Broj Redovi" Margin="10, 15, 5, 5" FontSize="15" FontWeight="DemiBold"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="6" Grid.ColumnSpan="2" x:Name="RowNumber" Text=""/>
 
-                        <Button Click="CreateTrain" Content="Kreiraj" Grid.Column="0" Grid.Row="4" Margin="20, 10" FontSize="20">
+                        <TextBlock Grid.Row="7" Grid.ColumnSpan="2" Text="Broj Sedista" Margin="10, 15, 5, 5" FontSize="15" FontWeight="DemiBold"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="8" Grid.ColumnSpan="2" x:Name="SeatsNumber" Text=""/>
+
+                        <Button Click="CreateTrain" Style="{StaticResource ButtonStyle}" Content="Kreiraj" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="9" Margin="80, 5">
                         </Button>
-                        <Button Click="CloseCreateModal" Content="Otkazi" Grid.Column="1"  Grid.Row="4" Margin="20, 10" FontSize="20">
+                        <Button Click="CloseCreateModal" Style="{StaticResource CloseButton}" Grid.Column="1"  Grid.Row="0" Margin="120, 5, 5, 10">
+                            <Image Source="icons/close.png"/>
                         </Button>
                     </Grid>
                 </Border>
@@ -70,9 +90,14 @@
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
-                <Border Background="WhiteSmoke" Height="300" Width="250" CornerRadius="5">
+                <Border Background="WhiteSmoke" Height="380" Width="300" CornerRadius="2">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -83,21 +108,27 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Ime Voza" Margin="10, 15" FontSize="20"/>
-                        <TextBox Grid.Column="1" Grid.Row="0" x:Name="ETrainName" Text="" Margin="5, 15" FontSize="20" IsEnabled="False"/>
+                        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="Azuriranje voza" Margin="10, 5, 5, 5" FontSize="20" FontWeight="DemiBold"/>
+                        <TextBlock Grid.ColumnSpan="2" Grid.Row="1" Text="Ime" Margin="10, 15, 5, 5" FontSize="15"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" Grid.Row="2" x:Name="ETrainName" Text="" IsEnabled="False"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Broj Vagona" Margin="10, 15" FontSize="20"/>
-                        <TextBox Grid.Column="1" Grid.Row="1" x:Name="EVagonNumber" Text="" Margin="5, 15" FontSize="20"/>
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Broj Vagona" Margin="10, 15, 5, 5" FontSize="15"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" Grid.Row="4" x:Name="EVagonNumber" Text=""/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Broj Redovi" Margin="10, 15" FontSize="20"/>
-                        <TextBox Grid.Column="1" Grid.Row="2" x:Name="ERowNumber" Text="" Margin="5, 15" FontSize="20"/>
+                        <TextBlock Grid.Column="0" Grid.Row="5" Text="Broj Redovi" Margin="10, 15, 5, 5" FontSize="15"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" Grid.Row="6" x:Name="ERowNumber" Text=""/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Broj Sedista" Margin="10, 15" FontSize="20"/>
-                        <TextBox Grid.Column="1" Grid.Row="3" x:Name="ESeatsNumber" Text="" Margin="5, 15" FontSize="20"/>
+                        <TextBlock Grid.Column="0" Grid.Row="7" Text="Broj Sedista" Margin="10, 15, 5, 5" FontSize="15"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" Grid.Row="8" x:Name="ESeatsNumber" Text=""/>
 
-                        <Button Click="EditTrain" Content="Azuriraj" Grid.Column="0" Grid.Row="4" Margin="20, 10" FontSize="20">
+                        <Button Style="{StaticResource ButtonStyle}" Click="EditTrain" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="9" Margin="100, 0, 100, 5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Azuriraj " FontWeight="DemiBold"/>
+                                <Image Source="icons/edit.png" Width="20" VerticalAlignment="Center" Margin="2, 3"/>
+                            </StackPanel>
                         </Button>
-                        <Button Click="CloseEditModal" Content="Otkazi" Grid.Column="1"  Grid.Row="4" Margin="20, 10" FontSize="20">
+                        <Button Click="CloseEditModal" Style="{StaticResource CloseButton}" Grid.Column="1"  Grid.Row="0" Margin="120, 5, 5, 10">
+                            <Image Source="icons/close.png"/>
                         </Button>
                     </Grid>
                 </Border>
@@ -108,7 +139,7 @@
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
-                <Border Background="WhiteSmoke" Height="200" Width="300" CornerRadius="5">
+                <Border Background="WhiteSmoke" Height="150" Width="260" CornerRadius="2">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -118,11 +149,13 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Da li ste sigurni da zelite da izbrisete voz?" Margin="10, 10" FontSize="20"/>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Da li ste sigurni da želite da izbrišete voz?" Margin="10, 10" FontSize="20"/>
 
-                        <Button Click="DeleteTrain" Content="Da" Grid.Column="0" Grid.Row="1" Margin="30, 30" FontSize="20">
+                        <Button Style="{StaticResource ButtonStyle}" Click="DeleteTrain" Grid.Column="0" Grid.Row="1" Margin="40, 20">
+                            <Image Source="icons/done.png"/>
                         </Button>
-                        <Button Click="CloseDeleteModal" Content="Otkazi" Grid.Column="1"  Grid.Row="1" Margin="25, 30" FontSize="20">
+                        <Button Style="{StaticResource ButtonStyle}" Click="CloseDeleteModal" Grid.Column="1"  Grid.Row="1" Margin="40, 20">
+                            <Image Source="icons/close.png"/>
                         </Button>
                     </Grid>
                 </Border>

@@ -4,12 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-      xmlns:local="clr-namespace:ZeleznicaSrbije"
+      xmlns:local="clr-namespace:ZeleznicaSrbije" xmlns:modalcontrol="clr-namespace:ModalControl;assembly=ModalControl"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CreateRoutePage">
 
-    <Border Background="#272537">
+    <Border Background="#E8EBF7">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -62,23 +62,65 @@
             </DataGrid>
 
 
-            <m:Map  x:Name="MainMap" CredentialsProvider="l9xWt8P3CjQ55RX6uLgj~iBGvWRv6V5c41-w4kjxVnQ~AmX9wKBN8ediYL1sv0cefEwKH8cuBM7fdKee2to583NcA4JdaIL378u7S-BYT0g7" Grid.Column="4" Margin="10"  Mode="Road" ZoomLevel="7" Center="44.2108 , 20.9224" AllowDrop="true" DragEnter="MainMap_DragEnter" Drop="MainMap_Drop">
+            <m:Map  x:Name="MainMap" CredentialsProvider="l9xWt8P3CjQ55RX6uLgj~iBGvWRv6V5c41-w4kjxVnQ~AmX9wKBN8ediYL1sv0cefEwKH8cuBM7fdKee2to583NcA4JdaIL378u7S-BYT0g7" Grid.Column="3" Margin="10" Grid.ColumnSpan="2" Mode="Road" ZoomLevel="7" Center="44.2108 , 20.9224" AllowDrop="true" DragEnter="MainMap_DragEnter" Drop="MainMap_Drop">
             </m:Map>
 
             <ComboBox Grid.Column="1" Grid.Row="1" Margin="10" Name="allStations"/>
 
-            <Button Margin="10"
-                    Content="Dodaj novu stanicu"
+            <Button Style="{StaticResource ButtonStyle}" Margin="10"
+                    Content="Dodaj stanicu"
                     Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Click="Button_Click"/>
 
-            <Button Name="createButton" Margin="20,10,20,20" 
+            <Button Style="{StaticResource ButtonStyle}" Name="createButton" Margin="20,20,20,10" 
                     Content="Kreiraj"
                     Grid.Column="3" Grid.Row="1" Click="createTrainLine"/>
 
             <Image Source="/icons/pin.png" Margin="147,0,0,0"
                PreviewMouseLeftButtonDown="MapView_PreviewMouseLeftButtonDown" HorizontalAlignment="Left"
                MouseMove="Image_MouseMove" Grid.Column="4" Grid.Row="1" />
+            
+            <modalcontrol:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="2" Name="StationModal">
+                <modalcontrol:Modal.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                </modalcontrol:Modal.Background>
+                <Border Background="WhiteSmoke" Height="280" Width="300" CornerRadius="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Text="Dodavanje stanice" Margin="10, 5, 5, 5" FontSize="20" FontWeight="DemiBold"/>
+                        
+                        <TextBlock Grid.ColumnSpan="2" Grid.Row="1" Text="Cena" Margin="10, 15, 5, 5" FontSize="15"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" Grid.Row="2" x:Name="Price" Text=""/>
 
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Vreme" Margin="10, 15, 5, 5" FontSize="15"/>
+                        <TextBox Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" Grid.Row="4" x:Name="EVagonNumber" Text="Vreme(minuti)"/>
+                        
+                        <Button Style="{StaticResource ButtonStyle}" Click="setPriceAndTime" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="100, 0, 100, 5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Dodaj " FontWeight="DemiBold"/>
+                                <Image Source="icons/create_plus.png" Width="20" VerticalAlignment="Center" Margin="2, 3"/>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button Click="CloseStationModal" Style="{StaticResource CloseButton}" Grid.Column="1"  Grid.Row="0" Margin="120, 5, 5, 10">
+                            <Image Source="icons/close.png"/>
+                        </Button>
+                    </Grid>
+                </Border>
+            </modalcontrol:Modal>
         </Grid>
+
+        
     </Border>
+    
 </Page>

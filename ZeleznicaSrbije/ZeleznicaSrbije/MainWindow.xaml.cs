@@ -34,7 +34,7 @@ namespace ZeleznicaSrbije
         {
 
             string username = txtUsername.Text;
-            string password = txtPassword.Text;
+            string password = txtPassword.Password;
 
             foreach (Client c in SystemData.clients)
             {

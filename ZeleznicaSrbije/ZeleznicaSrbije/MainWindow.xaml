@@ -18,8 +18,8 @@
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Grid.RowSpan="1"  Source="icons/voz.jpg" Height="64" Width="64" Margin="0,20,0,0" />
         <Label Grid.Row="1"  Content="Login" Margin="0,0,0,0" HorizontalAlignment="Center"  FontFamily="Segoe UI Semilight" FontSize="26"></Label>
-        <TextBox Name="txtUsername" Grid.Row="2"   TextWrapping="Wrap" Text="" Margin="5" Width="170" Height="30px"/>
-        <TextBox Name="txtPassword" Grid.Row="3"  TextWrapping="Wrap" Text="" Margin="0,0,0,0" Width="170" Height="30px"/>
+        <TextBox Name="txtUsername" Grid.Row="2"   TextWrapping="Wrap" Text="" Margin="5" Width="170" Height="30px" FontSize="20"/>
+        <PasswordBox Name="txtPassword" Grid.Row="3" Margin="0,0,0,0" Width="170" Height="30px" FontSize="20"/>
         <CheckBox Grid.Row="4"  Visibility="Visible" Name="WindowsCredentialsCheckBox" Content="Remember me" Height="26" Margin="0,4,0,0" HorizontalAlignment="Center" IsChecked="False" VerticalAlignment="Top" Checked="CheckBoxChanged" Unchecked="CheckBoxChanged" TabIndex="7" Grid.RowSpan="2"/>
         <Button Grid.Row="5" Background="#e0f2ff" Name="LocalLoginButton" Content="Login" Width="170" Height="32" Margin="0,0,0,32" TabIndex="8" Click="LocalLoginButton_Click" IsDefault="True" />
     </Grid>

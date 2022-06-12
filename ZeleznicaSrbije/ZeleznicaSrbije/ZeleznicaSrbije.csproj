@@ -250,6 +250,15 @@
   <ItemGroup>
     <Resource Include="icons\edit.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\create_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\done.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
