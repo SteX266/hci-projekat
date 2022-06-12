@@ -243,6 +243,9 @@
   <ItemGroup>
     <Resource Include="icons\pin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\delete.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

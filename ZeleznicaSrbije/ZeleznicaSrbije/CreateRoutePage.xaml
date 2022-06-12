@@ -13,32 +13,71 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="16*"/>
-                <ColumnDefinition Width="6*"/>
-                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="143*"/>
+                <ColumnDefinition Width="142*"/>
+                <ColumnDefinition Width="107*"/>
+                <ColumnDefinition Width="357*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="13*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
-            <DataGrid Grid.Row="0" Grid.Column="1" Margin="20, 20" Name="stations" ColumnWidth="*"/>
+            <DataGrid Grid.Row="0" Grid.Column="1" Margin="20,20,20,20" Name="stations" ColumnWidth="*" Grid.ColumnSpan="2" ItemsSource="{Binding routeStations}" AutoGenerateColumns="False">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Foreground" Value="#00264d"/>
+                        <Setter Property="BorderThickness" Value="0.6"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+                    </Style>
+                </DataGrid.CellStyle>
 
 
-            <m:Map  x:Name="MainMap" CredentialsProvider="l9xWt8P3CjQ55RX6uLgj~iBGvWRv6V5c41-w4kjxVnQ~AmX9wKBN8ediYL1sv0cefEwKH8cuBM7fdKee2to583NcA4JdaIL378u7S-BYT0g7" Grid.Column="2" Margin="91,20,25,20" Grid.ColumnSpan="2" Mode="Road" ZoomLevel="7" Center="44.2108 , 20.9224" AllowDrop="true" DragEnter="MainMap_DragEnter" Drop="MainMap_Drop">
+                <DataGrid.Columns >
+
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Stanica"  Width="2.3*"/>
+
+                    <DataGridTemplateColumn Header="Obriši"  Width="0.7*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="deleteRowButton" Click="deleteStation" Height="30" Background="White">
+                                    <StackPanel>
+                                        <Image x:Name="deleteIconTable" Source="/icons/delete.png"  Width="20" Height="20"></Image>
+                                    </StackPanel>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Brisanje stanice" />
+                                    </Button.ToolTip>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+
+
+
+            </DataGrid>
+
+
+            <m:Map  x:Name="MainMap" CredentialsProvider="l9xWt8P3CjQ55RX6uLgj~iBGvWRv6V5c41-w4kjxVnQ~AmX9wKBN8ediYL1sv0cefEwKH8cuBM7fdKee2to583NcA4JdaIL378u7S-BYT0g7" Grid.Column="4" Margin="10"  Mode="Road" ZoomLevel="7" Center="44.2108 , 20.9224" AllowDrop="true" DragEnter="MainMap_DragEnter" Drop="MainMap_Drop">
             </m:Map>
 
-            <Button Margin="50, 10, 50, 20"
+            <ComboBox Grid.Column="1" Grid.Row="1" Margin="10" Name="allStations"/>
+
+            <Button Margin="10"
                     Content="Dodaj novu stanicu"
-                    Grid.Column="1" Grid.Row="1"/>
+                    Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Click="Button_Click"/>
 
-            <Button Margin="20, 10, 20, 20" 
+            <Button Margin="20,10,20,20" 
                     Content="Kreiraj"
-                    Grid.Column="2" Grid.Row="1"/>
+                    Grid.Column="3" Grid.Row="1" Click="createTrainLine"/>
 
-            <Image Source="/icons/pin.png" Margin="0 0 150 0"
-               PreviewMouseLeftButtonDown="MapView_PreviewMouseLeftButtonDown" HorizontalAlignment="Right"
-               MouseMove="Image_MouseMove" Grid.Column="3" Grid.Row="1" />
+            <Image Source="/icons/pin.png" Margin="147,0,0,0"
+               PreviewMouseLeftButtonDown="MapView_PreviewMouseLeftButtonDown" HorizontalAlignment="Left"
+               MouseMove="Image_MouseMove" Grid.Column="4" Grid.Row="1" />
 
         </Grid>
     </Border>

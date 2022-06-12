@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Maps.MapControl.WPF;
 using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
@@ -67,6 +68,30 @@ namespace ZeleznicaSrbije
             }
 
             return locations;
+        }
+
+        internal static Station getClosestStation(Location mouseLocation)
+        {
+            Station closestStation = SystemData.stations.First();
+
+            double minDistance = calculateDistance(mouseLocation, closestStation.Location);
+           
+            foreach (Station station in SystemData.stations)
+            {
+                if (calculateDistance(mouseLocation, station.Location) < minDistance)
+                {
+                    minDistance = calculateDistance(mouseLocation, station.Location);
+                    closestStation = station;
+                }
+            }
+
+
+            return closestStation;
+        }
+
+        private static double calculateDistance(Location mouseLocation, Location location)
+        {
+            return Math.Sqrt(Math.Pow(mouseLocation.Altitude - location.Altitude, 2) + Math.Pow(mouseLocation.Latitude - location.Latitude, 2));
         }
 
         public static List<RideDTO> getRidesBetweenDestinations(string origin, string destination)
