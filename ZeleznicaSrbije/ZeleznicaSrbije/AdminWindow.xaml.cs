@@ -29,7 +29,7 @@ namespace ZeleznicaSrbije
 
         private void reports_selected(object sender, RoutedEventArgs e)
         {
-            //reports page
+            ClientContentFrame.Content = new ReportPage();
 
         }
         private void trains_selected(object sender, RoutedEventArgs e)
