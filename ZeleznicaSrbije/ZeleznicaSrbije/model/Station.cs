@@ -34,5 +34,9 @@ namespace ZeleznicaSrbije.model
             this._name = name;
             this._location = location;
         }
+        public Station()
+        {
+
+        }
     }
 }

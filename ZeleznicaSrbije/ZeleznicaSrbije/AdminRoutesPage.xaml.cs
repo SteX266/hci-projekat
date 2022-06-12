@@ -46,7 +46,7 @@ namespace ZeleznicaSrbije
 
         public void NavigateToCreate(object sender, RoutedEventArgs e)
         {
-            f.Content = new CreateRoutePage();
+            f.Content = new CreateRoutePage(f);
         }
 
         public void NavigateToEdit(object sender, RoutedEventArgs e)
@@ -59,7 +59,7 @@ namespace ZeleznicaSrbije
                 TrainLine line = SystemData.trainsLines.ElementAt(trainLineId);
 
 
-                f.Content = new CreateRoutePage(line);
+                f.Content = new CreateRoutePage(line, f);
             }
 
         }
