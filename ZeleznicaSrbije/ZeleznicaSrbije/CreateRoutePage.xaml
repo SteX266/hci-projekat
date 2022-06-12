@@ -43,7 +43,7 @@
                     <DataGridTemplateColumn Header="Obriši"  Width="0.7*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="deleteRowButton" Click="deleteStation" Height="30" Background="White">
+                                <Button  Click="deleteStation" Height="30" Background="White">
                                     <StackPanel>
                                         <Image x:Name="deleteIconTable" Source="/icons/delete.png"  Width="20" Height="20"></Image>
                                     </StackPanel>

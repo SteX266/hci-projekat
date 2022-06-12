@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,25 @@ namespace ZeleznicaSrbije
     public partial class AdminRoutesPage : Page
     {
         Frame f;
+        public ObservableCollection<TrainLineDTO> allTrainLines
+        {
+            get;
+            set;
+        }
         public AdminRoutesPage(Frame f)
         {
             InitializeComponent();
             this.f = f;
+
+            DataContext = this;
+
+            allTrainLines = new ObservableCollection<TrainLineDTO>();
+
+            foreach (TrainLine t in SystemData.trainsLines)
+            {
+                double price = Service.getTicketPrice(t.stations.First().Name, t.stations.Last().Name, false, t);
+                allTrainLines.Add(new TrainLineDTO(t.Name, t.stations.First().Name,t.stations.Last().Name, price));
+            }
         }
 
         public void NavigateToCreate(object sender, RoutedEventArgs e)
@@ -50,7 +66,38 @@ namespace ZeleznicaSrbije
         public void DeleteRoute(object sender, RoutedEventArgs e)
         {
             // ovde ide kod za brisanje vozne linije
+            if (trainLines.SelectedIndex != -1)
+            {
+                int trainLineIndex = trainLines.SelectedIndex;
+                TrainLine trainLine = SystemData.trainsLines.ElementAt(trainLineIndex);
+
+                foreach(TrainLineDTO tl in allTrainLines)
+                {
+                    if (tl.Name.Equals(trainLine.Name))
+                    {
+                        allTrainLines.Remove(tl);
+                        break;
+                    }
+                }
+
+                SystemData.trainsLines.Remove(trainLine);
+
+            }
+
+
+
+            CloseDeleteModal(sender, e);
         }
+
+        public void editTrainLine(object sender, RoutedEventArgs e)
+        {
+
+        }
+        public void deleteTrainLine(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
     }
 }

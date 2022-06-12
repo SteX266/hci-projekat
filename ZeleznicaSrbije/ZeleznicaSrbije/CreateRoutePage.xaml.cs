@@ -92,6 +92,9 @@ namespace ZeleznicaSrbije
                 Content = station.Name
 
             };
+
+            durations[station] = new TimeSpan(0, 0, 0, 0);
+            prices[station] = 0;
             routeStations.Add(station);
             pushpins.Add(pin);
 
@@ -128,6 +131,9 @@ namespace ZeleznicaSrbije
                     Content = station.Name
                 };
 
+                durations[station] = new TimeSpan(0, 0, 0, 0);
+                prices[station] = 0;
+
 
                 routeStations.Add(station);
                 pushpins.Add(pin);
@@ -141,6 +147,11 @@ namespace ZeleznicaSrbije
             int stationIndex = stations.SelectedIndex;
 
             Station station = routeStations.ElementAt(stationIndex);
+
+
+
+            durations.Remove(station);
+            prices.Remove(station);
 
             foreach (Pushpin pin in pushpins)
             {

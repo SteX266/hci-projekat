@@ -42,7 +42,8 @@ namespace ZeleznicaSrbije
         }
         private void lines_selected(object sender, RoutedEventArgs e)
         {
-            ClientContentFrame.Content = new CreateRoutePage();
+            
+            ClientContentFrame.Content = new AdminRoutesPage(ClientContentFrame);
         }
         private void logout_selected(object sender, RoutedEventArgs e)
         {
