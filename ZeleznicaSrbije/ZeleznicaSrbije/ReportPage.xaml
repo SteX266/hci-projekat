@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ZeleznicaSrbije"
+      xmlns:local="clr-namespace:ZeleznicaSrbije" xmlns:modalcontrol="clr-namespace:ModalControl;assembly=ModalControl"
       mc:Ignorable="d" 
       d:DesignHeight="430" d:DesignWidth="750"
       Title="ReportPage">
@@ -30,6 +30,33 @@
             <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Timetables">
 
             </DataGrid>
+
+            <modalcontrol:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="DeleteModal">
+                <modalcontrol:Modal.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                </modalcontrol:Modal.Background>
+                <Border Background="WhiteSmoke" Height="150" Width="260" CornerRadius="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Da li ste sigurni da želite da izbrišete voz?" Margin="10, 10" FontSize="20"/>
+
+                        <Button Style="{StaticResource ButtonStyle}" Grid.Column="0" Grid.Row="1" Margin="40, 20">
+                            <Image Source="icons/done.png"/>
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Grid.Column="1"  Grid.Row="1" Margin="40, 20">
+                            <Image Source="icons/close.png"/>
+                        </Button>
+                    </Grid>
+                </Border>
+
+            </modalcontrol:Modal>
         </Grid>
     </Border>
 </Page>
