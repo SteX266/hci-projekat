@@ -53,6 +53,40 @@ namespace ZeleznicaSrbije
             allStations.ItemsSource = stationNames;
         }
 
+        public CreateRoutePage(TrainLine trainLine)
+        {
+            InitializeComponent();
+            DataContext = this;
+            this.pushpins = new List<Pushpin>();
+            this.routeStations = new ObservableCollection<Station>();
+            this.durations = trainLine.durations;
+            this.prices = trainLine.prices;
+
+            foreach(Station station in trainLine.stations)
+            {
+                Pushpin pin = new Pushpin
+                {
+                    Location = station.Location,
+                    Content = station.Name
+
+                };
+
+                this.pushpins.Add(pin);
+                this.routeStations.Add(station);
+                MainMap.Children.Add(pin);
+            }
+
+            List<string> stationNames = new List<string>();
+            foreach (Station station in SystemData.stations)
+            {
+                stationNames.Add(station.Name);
+            }
+
+            allStations.ItemsSource = stationNames;
+
+            createButton.Content = "Izmeni";
+        }
+
         private void MapView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             StartPoint = e.GetPosition(null);

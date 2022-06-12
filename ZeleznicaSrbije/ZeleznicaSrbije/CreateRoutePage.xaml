@@ -71,7 +71,7 @@
                     Content="Dodaj novu stanicu"
                     Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Click="Button_Click"/>
 
-            <Button Margin="20,10,20,20" 
+            <Button Name="createButton" Margin="20,10,20,20" 
                     Content="Kreiraj"
                     Grid.Column="3" Grid.Row="1" Click="createTrainLine"/>
 

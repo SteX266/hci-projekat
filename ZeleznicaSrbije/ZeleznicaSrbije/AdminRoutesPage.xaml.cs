@@ -52,6 +52,16 @@ namespace ZeleznicaSrbije
         public void NavigateToEdit(object sender, RoutedEventArgs e)
         {
 
+            if (trainLines.SelectedIndex != -1)
+            {
+                int trainLineId = trainLines.SelectedIndex;
+
+                TrainLine line = SystemData.trainsLines.ElementAt(trainLineId);
+
+
+                f.Content = new CreateRoutePage(line);
+            }
+
         }
 
         public void OpenDeleteModal(object sender, RoutedEventArgs e)
