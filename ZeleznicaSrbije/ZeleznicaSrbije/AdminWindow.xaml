@@ -22,7 +22,7 @@
                 <HamburgerMenu:HamburgerMenuItem Icon="icons/logout.png" Text="Odjavi se" Selected="logout_selected"/>
             </HamburgerMenu:HamburgerMenu.Content>
         </HamburgerMenu:HamburgerMenu>
-        <Frame x:Name="ClientContentFrame" Grid.Column="0" Panel.ZIndex="1">
+        <Frame x:Name="ClientContentFrame" Grid.Column="0" Panel.ZIndex="1" NavigationUIVisibility="Hidden">
         </Frame>
 
     </Grid>

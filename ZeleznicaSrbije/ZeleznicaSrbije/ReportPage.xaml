@@ -1,13 +1,12 @@
-﻿<Page x:Class="ZeleznicaSrbije.RoutesPage"
+﻿<Page x:Class="ZeleznicaSrbije.ReportPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       xmlns:local="clr-namespace:ZeleznicaSrbije"
       mc:Ignorable="d" 
       d:DesignHeight="430" d:DesignWidth="750"
-      Title="RoutesPage">
+      Title="ReportPage">
 
     <Border Background="#E8EBF7">
         <Grid>
@@ -21,14 +20,16 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" Name="RoutePicker" IsEditable="True" IsReadOnly="False" Text="Linija" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" Name="ReportPicker" IsEditable="True" IsReadOnly="False" Text="Tip izvestaja" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
-            <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" Content="Prikaži" Grid.Column="4" Click="Button_Click">
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="2" Name="TypePicker" IsEditable="True" IsReadOnly="False" Text="Polasci" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            </ComboBox>
+
+            <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" Content="Prikaži" Grid.Column="4">
             </Button>
+            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Timetables">
 
-            <m:Map  x:Name="MainMap" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" CredentialsProvider="l9xWt8P3CjQ55RX6uLgj~iBGvWRv6V5c41-w4kjxVnQ~AmX9wKBN8ediYL1sv0cefEwKH8cuBM7fdKee2to583NcA4JdaIL378u7S-BYT0g7" Mode="Road" ZoomLevel="7" Center="43.981270 , 21.257441">
-            </m:Map>
-
+            </DataGrid>
         </Grid>
     </Border>
 </Page>
