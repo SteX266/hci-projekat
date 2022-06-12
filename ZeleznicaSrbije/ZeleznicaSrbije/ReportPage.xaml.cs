@@ -24,5 +24,24 @@ namespace ZeleznicaSrbije
         {
             InitializeComponent();
         }
+        private void OpenLineChoiceModal(object sender, RoutedEventArgs e)
+        {
+            LineChoiceModal.IsOpen = true;
+        }
+
+        private void CloseLineChoiceModal(object sender, RoutedEventArgs e)
+        {
+            LineChoiceModal.IsOpen = false;
+        }
+
+        private void LineReport(object sender, RoutedEventArgs e)
+        {
+            // ovde ide logika za izvestaj po liniji
+        }
+
+        private void MonthlyReport(object sender, RoutedEventArgs e)
+        {
+            // ovde ide logika za mesecni izvestaj
+        }
     }
 }
