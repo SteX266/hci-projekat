@@ -231,19 +231,19 @@ namespace ZeleznicaSrbije
 
 
             reservations = new List<Reservation>();
-            Reservation res1 = new Reservation(client1 ,timeTable3, stationNS, stationSU, new DateTime(), ReservationStatus.REZERVISANA,1);
-            Reservation res2 = new Reservation(client1, timeTable4, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,2);
-            Reservation res3 = new Reservation(client1, timeTable4, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,3);
-            Reservation res4 = new Reservation(client2, timeTable5, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,4);
-            Reservation res5 = new Reservation(client2, timeTable6, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,5);
-            Reservation res6 = new Reservation(client2, timeTable7, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,6);
-            Reservation res7 = new Reservation(client2, timeTable8, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,7);
-            Reservation res8 = new Reservation(client3, timeTable5, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,8);
-            Reservation res9 = new Reservation(client3, timeTable9, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,9);
-            Reservation res10 = new Reservation(client3, timeTable1, stationSU, stationNS, new DateTime(), ReservationStatus.REZERVISANA,10);
-            Reservation res11 = new Reservation(client3, timeTable4, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,6);
-            Reservation res12 = new Reservation(client1, timeTable5, stationBG, stationSU, new DateTime(), ReservationStatus.REZERVISANA,12);
-            Reservation res13 = new Reservation(client1, timeTable6, stationSU, stationBG, new DateTime(), ReservationStatus.REZERVISANA,13);
+            Reservation res1 = new Reservation(client1 ,timeTable3, stationNS, stationSU, new DateTime(2022,6,9), ReservationStatus.REZERVISANA,1);
+            Reservation res2 = new Reservation(client1, timeTable4, stationSU, stationBG, new DateTime(2022,6,5), ReservationStatus.REZERVISANA,2);
+            Reservation res3 = new Reservation(client1, timeTable4, stationSU, stationBG, new DateTime(2022, 6, 4), ReservationStatus.REZERVISANA,3);
+            Reservation res4 = new Reservation(client2, timeTable5, stationSU, stationBG, new DateTime(2022, 6, 3), ReservationStatus.REZERVISANA,4);
+            Reservation res5 = new Reservation(client2, timeTable6, stationSU, stationBG, new DateTime(2022, 6, 2), ReservationStatus.REZERVISANA,5);
+            Reservation res6 = new Reservation(client2, timeTable7, stationSU, stationBG, new DateTime(2022, 6, 5), ReservationStatus.REZERVISANA,6);
+            Reservation res7 = new Reservation(client2, timeTable8, stationSU, stationBG, new DateTime(2022, 6, 9), ReservationStatus.REZERVISANA,7);
+            Reservation res8 = new Reservation(client3, timeTable5, stationSU, stationBG, new DateTime(2022, 6, 2), ReservationStatus.REZERVISANA,8);
+            Reservation res9 = new Reservation(client3, timeTable9, stationSU, stationBG, new DateTime(2022, 6, 3), ReservationStatus.REZERVISANA,9);
+            Reservation res10 = new Reservation(client3, timeTable1, stationSU, stationNS, new DateTime(2022, 6, 5), ReservationStatus.REZERVISANA,10);
+            Reservation res11 = new Reservation(client3, timeTable4, stationSU, stationBG, new DateTime(2022, 6, 6), ReservationStatus.REZERVISANA,6);
+            Reservation res12 = new Reservation(client1, timeTable5, stationBG, stationSU, new DateTime(2022, 6, 10), ReservationStatus.REZERVISANA,12);
+            Reservation res13 = new Reservation(client1, timeTable6, stationSU, stationBG, new DateTime(2022, 6, 12), ReservationStatus.REZERVISANA,13);
 
 
 
