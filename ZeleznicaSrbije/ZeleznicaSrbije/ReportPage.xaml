@@ -21,10 +21,10 @@
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
 
-            <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" Content="Mesecni izvestaj" Grid.Column="1" Click="MonthlyReport">
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Mesecni izvestaj" Grid.Column="1" Click="MonthlyReport">
             </Button>
 
-            <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" Content="Izvestaj po liniji" Grid.Column="4" Click="OpenLineChoiceModal">
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Izvestaj po liniji" Grid.Column="4" Click="OpenLineChoiceModal">
             </Button>
 
 

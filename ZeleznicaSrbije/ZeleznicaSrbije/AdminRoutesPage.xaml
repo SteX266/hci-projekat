@@ -8,7 +8,7 @@
       d:DesignHeight="430" d:DesignWidth="750"
       Title="AdminRoutesPage">
 
-    <Border Background="#272537">
+    <Border Background="#E8EBF7">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -20,11 +20,11 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <Button Margin="30, 20, 30, 10" Content="Azuriraj voznu liniju" Grid.Column="1" Click="NavigateToEdit"/>
-            <Button Margin="30, 20, 30, 10" Content="Izbrisi voznu liniju" Grid.Column="2" Click="OpenDeleteModal"/>
-            <Button Margin="30, 20, 30, 10" Content="Kreiraj novu voznu liniju" Grid.Column="3" Click="NavigateToCreate"/>
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Ažuriraj voznu liniju" Grid.Column="1" Click="NavigateToEdit"/>
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Izbriši voznu liniju" Grid.Column="2" Click="OpenDeleteModal"/>
+            <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Kreiraj voznu liniju" Grid.Column="3" Click="NavigateToCreate"/>
 
-            <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="trainLines" ItemsSource="{Binding allTrainLines}" AutoGenerateColumns="False">
+            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="trainLines" ItemsSource="{Binding allTrainLines}" AutoGenerateColumns="False">
 
 
                 <DataGrid.CellStyle>
@@ -47,7 +47,10 @@
 
 
 
-                    <DataGridTemplateColumn Header="Izmeni"  Width="0.7*">
+                    <DataGridTemplateColumn Width="0.7*">
+                        <DataGridTemplateColumn.Header>
+                            <Image Source="/icons/edit.png" Width="30" Height="30"/>
+                        </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Click="NavigateToEdit" Height="30" Background="White">
@@ -62,7 +65,10 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Obriši"  Width="0.7*">
+                    <DataGridTemplateColumn Width="0.7*">
+                        <DataGridTemplateColumn.Header>
+                            <Image Source="/icons/delete.png" Width="30" Height="30"/>
+                        </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Click="OpenDeleteModal" Height="30" Background="White">
