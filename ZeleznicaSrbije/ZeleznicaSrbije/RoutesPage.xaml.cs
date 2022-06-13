@@ -22,6 +22,9 @@ namespace ZeleznicaSrbije
     /// </summary>
     public partial class RoutesPage : Page
     {
+
+        List<Pushpin> pushpins = new List<Pushpin>();
+        List<MapPolyline> polylines = new List<MapPolyline>();
         public RoutesPage()
         {
             InitializeComponent();
@@ -33,6 +36,7 @@ namespace ZeleznicaSrbije
             {
                 lineStrings.Add(line.Name);
             }
+            lineStrings.Add("Sve linije");
 
             RoutePicker.ItemsSource = lineStrings;
 
@@ -40,11 +44,41 @@ namespace ZeleznicaSrbije
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (polylines.Count > 0)
+            {
+                foreach(MapPolyline line in polylines)
+                {
+                    MainMap.Children.Remove(line);
+                }
+                polylines = new List<MapPolyline>();
+            }
+            if (pushpins.Count > 0)
+            {
+                foreach (Pushpin pin in pushpins)
+                {
+                    MainMap.Children.Remove(pin);
+                }
+                pushpins = new List<Pushpin>();
+            }
+
             string lineName = RoutePicker.SelectedItem.ToString();
 
-            TrainLine line = SystemData.getTrainLineByName(lineName);
-            addPins(line.stations);
-            connectPins(line);
+            if (lineName == "Sve linije")
+            {
+                foreach(TrainLine line in SystemData.trainsLines)
+                {
+                    addPins(line.stations);
+                    connectPins(line);
+                }
+            }
+
+            else
+            {
+                TrainLine line = SystemData.getTrainLineByName(lineName);
+                addPins(line.stations);
+                connectPins(line);
+            }
+            
 
         }
 
@@ -59,6 +93,7 @@ namespace ZeleznicaSrbije
             {
                 polyLine.Locations.Add(station.Location);
             }
+            polylines.Add(polyLine);
             MainMap.Children.Add(polyLine);
         }
 
@@ -74,6 +109,7 @@ namespace ZeleznicaSrbije
                     Content = station.Name
                 };
                 pins.Add(pin);
+                pushpins.Add(pin);
                 MainMap.Children.Add(pin);
             }
         }
