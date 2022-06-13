@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
@@ -22,6 +26,22 @@ namespace ZeleznicaSrbije
     /// </summary>
     public partial class AdminTimeTablePage : Page
     {
+
+        private Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows[1],
+                corner: Corner.BottomRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
+
         RideDTO rideToEdit;
         public ObservableCollection<RideDTO> routes
         {
@@ -129,6 +149,7 @@ namespace ZeleznicaSrbije
                 routes.Add(new RideDTO(t.line.stations.First().Name, t.line.stations.Last().Name, t.starts, end, price, t.line.Name, t));
             }
             CloseCreateModal(sender,e);
+            notifier.ShowSuccess("Uspesno kreiran red voznje.");
         }
 
         public void OpenEditModal(object sender, RoutedEventArgs e)
@@ -213,6 +234,7 @@ namespace ZeleznicaSrbije
                     }
                 }
             }
+            notifier.ShowSuccess("Uspesno azuriran red voznje.");
         }
 
         public void OpenDeleteModal(object sender, RoutedEventArgs e)
@@ -231,6 +253,7 @@ namespace ZeleznicaSrbije
             routes.Remove(ride);
             SystemData.deleteTimeTable(ride);
             CloseDeleteModal(sender, e);
+            notifier.ShowSuccess("Uspesno izbrisan red voznje.");
         }
 
     }

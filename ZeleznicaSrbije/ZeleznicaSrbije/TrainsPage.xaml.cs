@@ -14,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
@@ -21,8 +25,25 @@ namespace ZeleznicaSrbije
     /// <summary>
     /// Interaction logic for TrainsPage.xaml
     /// </summary>
+    /// 
+
     public partial class TrainsPage : Page
     {
+        private Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows[1],
+                corner: Corner.BottomRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
+
         public ObservableCollection<TrainDTO> trainsToShow
         {
             get;
@@ -57,6 +78,8 @@ namespace ZeleznicaSrbije
             SystemData.trains.Add(t);
 
             trainsToShow.Add(new TrainDTO(t));
+            notifier.ShowSuccess($"Uspesno kreiran voz {t.name}.");
+
             CloseCreateModal(sender, e);
         }
 
@@ -66,7 +89,6 @@ namespace ZeleznicaSrbije
             EditModal.IsOpen = true;
             TrainDTO train = (TrainDTO)Trains.SelectedItem;
             string trainName = train.Naziv;
-
             ETrainName.Text = train.Naziv;
             EVagonNumber.Text = train.BrojVagona.ToString();
             ERowNumber.Text = train.BrojRedova.ToString();
@@ -80,6 +102,7 @@ namespace ZeleznicaSrbije
 
         public void EditTrain(object sender, RoutedEventArgs e)
         {
+            
             TrainDTO train = (TrainDTO) Trains.SelectedItem;
             foreach(TrainDTO t in trainsToShow)
             {
@@ -100,14 +123,12 @@ namespace ZeleznicaSrbije
                 }
             }
             CloseEditModal(sender, e);
-
+            notifier.ShowSuccess($"Uspesno azuriran voz {train.Naziv}.");
         }
 
         public void OpenDeleteModal(object sender, RoutedEventArgs e)
         {
             DeleteModal.IsOpen = true;
-
-
         }
 
         public void CloseDeleteModal(object sender, RoutedEventArgs e)
@@ -116,10 +137,18 @@ namespace ZeleznicaSrbije
         }
         public void DeleteTrain(object sender, RoutedEventArgs e)
         {
-            TrainDTO train = (TrainDTO)Trains.SelectedItem;
-            trainsToShow.Remove(train);
-            SystemData.deleteTrainByName(train.Naziv);
-            CloseDeleteModal(sender, e);
+            if(Trains.SelectedIndex == -1)
+            {
+                notifier.ShowError("Niste izabrali voz!");
+            } else
+            {
+                TrainDTO train = (TrainDTO)Trains.SelectedItem;
+                trainsToShow.Remove(train);
+                SystemData.deleteTrainByName(train.Naziv);
+                CloseDeleteModal(sender, e);
+                notifier.ShowSuccess($"Uspesno izbrisan voz {train.Naziv}.");
+            }
+            
         }
     }
 }
