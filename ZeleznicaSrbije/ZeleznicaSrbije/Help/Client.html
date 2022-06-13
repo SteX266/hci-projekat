@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Help</title>
+    <style>
+        p,
+        li {
+            font-size: 16pt;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100vh;
+            height: auto;
+            border: solid;
+            border-color: cornflowerblue;
+        }
+    </style>
+</head>
+
+<body style="padding: 0 20% 0 20%" ;>
+    <h1>Shortcuts</h1>
+
+    <table>
+        <tr>
+            <th>Action</th>
+            <th>Shortcut</th>
+            <th>Description</th>
+        </tr>
+        <!-- dodato -->
+        <tr>
+            <td><a href="#search_timetable">Search a timetable</a></td>
+            <td>Ctrl + f + t</td>
+            <td>Search timetable by choosing a from and to stations and selecting days of departure.</td>
+        </tr>
+        <tr>
+            <td><a href="#search_trainline">Search a train line</a></td>
+            <td>Ctrl + f + l</td>
+            <td>Search train lines by either choosing them with a combobox picker or with a serach bar</td>
+            <!--or simply entering desired stations that are contained by a train line or id number of a train line, then choose one that you want out of the generated bunch</td>-->
+        </tr>
+
+
+
+    </table>
+    <!-- dodato -->
+    <h1 id="search_timetable">Kako rezervisati kartu</h1>
+    <div>
+        <p>
+            Ovo si koraci kojima se može rezervisati karta
+        </p>
+        <ol>
+            <li>
+                <b>Odaberite polaziŠte</b> iz prve liste stanica.  
+            </li
+            <li>
+                <b>Odaberite odredište </b> iz druge liste stanica.
+            </li>
+            <li>
+                Pritisnite dugme <i>Pretraži </i>  nakon čega će vam se prikazati svi postojeći termini vožnji između dve odabrane stanice. </li>
+            <li>
+              Kada pronađete odgovarajući termin pritisnite gume <i>Rezerviši </i> koje se nalazi pored njega</li>
+        </ol>
+        <img src="clientHelpImages/searchtraintable.png" />
+    </div>
+
+    <h1 id="search_trainline">Kako pregledati sve svoje karte</h1>
+    <div>
+        <p>
+            Ovo su koraci kojima se mogu pregledati karte
+        </p>
+        <ol>
+            <li>
+                <b>Odaberite polaziŠte</b> iz prve liste stanica. Ako želite karte iz razliščitih polazišta možete odabrati opciju  <i>Sve stanice </i>.
+            </li>
+            <li>
+                <b>Odaberite odredište</b> iz druge liste stanica. Ako želite karte iz razliščitih odredišta možete odabrati opciju  <i>Sve stanice </i>.
+            </li>
+            <li>
+                <b>Odaberite status</b>  vaše karte iz naredne liste. Ako želite karte različitih statusa možete odabrati opciju  <i>Svi statusi </i>.
+            </li>
+            <li>
+                Pritisnite dugme <i>Pretraži </i>  nakon čega će vam se prikazati svi postojeći termini vožnji između dve odabrane stanice.
+            </li>
+            <li>
+        </ol>
+        <p>
+            Here are the steps for successfuly searching train lines with a search bar.
+        </p>
+        <ol>
+            <li>
+                Type in the search bar the name or names of the desired stations or simply enter the train line id
+            </li>
+            <li>
+                Press the "Enter" key on the keyboard to get the results in the listbox down below
+            </li>
+            <li>
+                Select the desired train line, and it will be shown to you on the map
+            </li>
+        </ol>
+        <img src="clientHelpImages/searchtrainline1.png" />
+    </div>
+
+</body>
+
+</html>
