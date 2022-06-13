@@ -11,27 +11,30 @@ namespace ZeleznicaSrbije.model
 
         public ReservationDTO(Reservation r)
         {
-            this.Datum = r.date;
-            this.Polazak = Service.getArrivalTime(r.startStation.Name, r.ride, r.ride.line);
-            this.Dolazak = Service.getArrivalTime(r.endStation.Name, r.ride, r.ride.line);
-            this.Cena = Service.getTicketPrice(r.startStation.Name, r.endStation.Name,r.ride.isReverse, r.ride.line);
+            this.Date = r.date;
+            this.StartTime = Service.getArrivalTime(r.startStation.Name, r.ride, r.ride.line);
+            this.ArrivalTime = Service.getArrivalTime(r.endStation.Name, r.ride, r.ride.line);
+            this.Price = Service.getTicketPrice(r.startStation.Name, r.endStation.Name,r.ride.isReverse, r.ride.line);
             this.Status = r.status;
-            this.Polaziste = r.startStation.Name;
-            this.Odrediste = r.endStation.Name;
-            this.Linija = r.ride.line.Name;
+            this.OriginStation = r.startStation.Name;
+            this.ArrivalStation = r.endStation.Name;
+            this.Line = r.ride.line.Name;
+            this.Client = r.client.username;
         }
 
-        public DateTime Datum { get; set; }
-        public TimeSpan Polazak { get; set; }
-        public TimeSpan Dolazak { get; set; }   
-        public double Cena { get; set; }
+        public DateTime Date { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan ArrivalTime { get; set; }   
+        public double Price { get; set; }
         public ReservationStatus Status { get; set; }
 
-        public string Polaziste { get; set; }
+        public string OriginStation { get; set; }
 
-        public string Odrediste { get; set; }
+        public string ArrivalStation { get; set; }
 
-        public string Linija { get; set; }
+        public string Line { get; set; }
+
+        public string Client { get; set; }
 
     }
 }

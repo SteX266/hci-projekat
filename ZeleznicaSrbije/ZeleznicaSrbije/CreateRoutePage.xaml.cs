@@ -205,6 +205,20 @@ namespace ZeleznicaSrbije
 
 
             routeStations.RemoveAt(stationIndex);
+
+
+            if (createButton.Content.ToString() == "Izmeni")
+            {
+                foreach(TrainLine t in SystemData.trainsLines)
+                {
+                    if (t.Name.Equals(editTrainLine.Name))
+                    {
+                        t.stations = routeStations.ToList();
+                        t.durations = durations;
+                        t.prices = prices;
+                    }
+                }
+            }
         }
 
 

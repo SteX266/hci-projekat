@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,14 +25,20 @@ namespace ZeleznicaSrbije
 
         List<Reservation> reservationList = ((Client)SystemData.currentUser).reservations;
 
+        ObservableCollection<ReservationDTO> reservationsToShow
+        {
+
+            get;set;
+        }
+
         public TicketsPage()
         {
             InitializeComponent();
+            DataContext = this;
             OriginPicker.ItemsSource = Service.getStationNames();
             DestinationPicker.ItemsSource = Service.getStationNames();
             StatusPicker.ItemsSource = new List<String> { "Rezervisana", "Otkazana", "Istekla", "Kupljena" };
-
-            List<ReservationDTO> reservationDTOs = new List<ReservationDTO>();
+            reservationsToShow = new ObservableCollection<ReservationDTO>();
 
             List<string> stationNames = new List<string>(Service.getStationNames());
             stationNames.Insert(0,"Sve stanice");
@@ -51,10 +58,9 @@ namespace ZeleznicaSrbije
             foreach(Reservation r in reservationList)
             {
                 ReservationDTO reservationDTO = new ReservationDTO(r);
-                reservationDTOs.Add(reservationDTO);
+                reservationsToShow.Add(reservationDTO);
             }
 
-            reservationsTable.ItemsSource = reservationDTOs;    
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
