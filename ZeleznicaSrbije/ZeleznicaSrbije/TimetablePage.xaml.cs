@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
@@ -21,34 +25,56 @@ namespace ZeleznicaSrbije
     /// </summary>
     public partial class TimetablePage : Page
     {
+        private Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows[1],
+                corner: Corner.BottomRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
+
         public TimetablePage()
         {
             InitializeComponent();
             StationPicker.ItemsSource = Service.getStationNames();
             TypePicker.ItemsSource = new List<string> { "Polasci", "Dolasci" };
+            TypePicker.SelectedIndex = 0;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string origin = StationPicker.SelectedItem.ToString();
-            string type = TypePicker.SelectedItem.ToString();
-            List<string> stations = Service.getEndStations(origin);
-            List<RideDTO> leavingRides = new List<RideDTO>();
-            List<RideDTO> arrivingRides = new List<RideDTO>();
-            foreach (string station in stations)
+            if(StationPicker.SelectedIndex == -1)
             {
-                leavingRides.AddRange(Service.getRidesBetweenDestinations(origin, station));
-                arrivingRides.AddRange(Service.getRidesBetweenDestinations(station, origin));
-            }
+                notifier.ShowError("Niste izabrali validnu stanicu.");
+            } else
+            {
+                string origin = StationPicker.SelectedItem.ToString();
+                string type = TypePicker.SelectedItem.ToString();
+                List<string> stations = Service.getEndStations(origin);
+                List<RideDTO> leavingRides = new List<RideDTO>();
+                List<RideDTO> arrivingRides = new List<RideDTO>();
+                foreach (string station in stations)
+                {
+                    leavingRides.AddRange(Service.getRidesBetweenDestinations(origin, station));
+                    arrivingRides.AddRange(Service.getRidesBetweenDestinations(station, origin));
+                }
 
-            if (type.Equals("Polasci"))
-            {
-                Timetables.ItemsSource = leavingRides;
+                if (type.Equals("Polasci"))
+                {
+                    Timetables.ItemsSource = leavingRides;
 
-            }
-            else
-            {
-                Timetables.ItemsSource=arrivingRides;
+                }
+                else
+                {
+                    Timetables.ItemsSource=arrivingRides;
+                }
             }
         }
     }

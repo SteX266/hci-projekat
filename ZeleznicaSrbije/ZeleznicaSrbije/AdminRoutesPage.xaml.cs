@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
@@ -23,6 +27,22 @@ namespace ZeleznicaSrbije
     public partial class AdminRoutesPage : Page
     {
         Frame f;
+
+        private Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows[1],
+                corner: Corner.BottomRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
+
         public ObservableCollection<TrainLineDTO> allTrainLines
         {
             get;
@@ -60,13 +80,22 @@ namespace ZeleznicaSrbije
 
 
                 f.Content = new CreateRoutePage(line, f);
+            } else
+            {
+                notifier.ShowError("Niste izabrali nijednu liniju!");
             }
 
         }
 
         public void OpenDeleteModal(object sender, RoutedEventArgs e)
         {
-            DeleteModal.IsOpen = true; 
+            if(trainLines.SelectedIndex == -1)
+            {
+                notifier.ShowError("Niste izabrali nijednu liniju!");
+            } else
+            {
+                DeleteModal.IsOpen = true;
+            }
         }
         public void CloseDeleteModal(object sender, RoutedEventArgs e)
         {
@@ -75,7 +104,6 @@ namespace ZeleznicaSrbije
 
         public void DeleteRoute(object sender, RoutedEventArgs e)
         {
-            // ovde ide kod za brisanje vozne linije
             if (trainLines.SelectedIndex != -1)
             {
                 int trainLineIndex = trainLines.SelectedIndex;

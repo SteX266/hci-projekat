@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
@@ -24,6 +28,20 @@ namespace ZeleznicaSrbije
     {
 
         public ObservableCollection<RideDTO> ridesToShow;
+        private Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows[1],
+                corner: Corner.BottomRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
         public ReservationPage()
         {
             InitializeComponent();
@@ -38,19 +56,33 @@ namespace ZeleznicaSrbije
 
         public void Search()
         {
-            String origin = OriginPicker.SelectedItem.ToString();
-            String destination = DestinationPicker.SelectedItem.ToString();
-
-            List<RideDTO> rides = Service.getRidesBetweenDestinations(origin, destination);
-            ridesToShow = new ObservableCollection<RideDTO>();
-
-            foreach (RideDTO ride in rides)
+            if (OriginPicker.SelectedIndex == -1)
             {
-                ridesToShow.Add(ride);
+                notifier.ShowError("Niste izabrali polaziste!");
+            } else if (DestinationPicker.SelectedIndex == -1)
+            {
+                notifier.ShowError("Niste izabrali odrediste!");
+            } else
+            {
+
+            
+                String origin = OriginPicker.SelectedItem.ToString();
+                String destination = DestinationPicker.SelectedItem.ToString();
+
+                List<RideDTO> rides = Service.getRidesBetweenDestinations(origin, destination);
+                ridesToShow = new ObservableCollection<RideDTO>();
+
+                foreach (RideDTO ride in rides)
+                {
+                    ridesToShow.Add(ride);
+                }
+
+                if(ridesToShow.Count <= 0)
+                {
+                    notifier.ShowInformation("Nista nije nadjeno!");
+                }
+                ridesTable.ItemsSource = ridesToShow;
             }
-
-
-            ridesTable.ItemsSource = ridesToShow;
         }
 
 
@@ -78,34 +110,45 @@ namespace ZeleznicaSrbije
         }
         private void MakeReservation(object sender, RoutedEventArgs e)
         {
-            DateTime date = new DateTime();
-            if (DatePicker.SelectedDate != null)
+            if (DatePicker.SelectedDate == null)
             {
-                date = DatePicker.SelectedDate.Value.Date;
+                notifier.ShowWarning("Niste izabrali datum rezervacije!");
+            } else if (TicketNumberPicker.SelectedIndex == -1) 
+            {
+                notifier.ShowWarning("Niste izabrali broj karata!");
+            } else
+            {
+
+            
+                DateTime date = new DateTime();
+                if (DatePicker.SelectedDate != null)
+                {
+                    date = DatePicker.SelectedDate.Value.Date;
+
+                }
+                else
+                {
+                    return;
+                }
+                if (DateTime.Compare(date, DateTime.Now) < 0)
+                {
+                    return;
+                }
+
+                if (TicketNumberPicker.SelectedIndex == -1)
+                {
+                    return;
+                }
+                int numberOfTickets = TicketNumberPicker.SelectedIndex + 1;
+
+                int selectedRideIndex = ridesTable.SelectedIndex;
+
+                RideDTO selectedRide = ridesToShow.ElementAt(selectedRideIndex);
+                Service.reserveTickets(numberOfTickets,(Client)SystemData.currentUser, selectedRide.TimeTable, date, selectedRide.Polaziste, selectedRide.Odrediste);
+
+                ReservationModal.IsOpen = false;
 
             }
-            else
-            {
-                return;
-            }
-            if (DateTime.Compare(date, DateTime.Now) < 0)
-            {
-                return;
-            }
-
-            if (TicketNumberPicker.SelectedIndex == -1)
-            {
-                return;
-            }
-            int numberOfTickets = TicketNumberPicker.SelectedIndex + 1;
-
-            int selectedRideIndex = ridesTable.SelectedIndex;
-
-            RideDTO selectedRide = ridesToShow.ElementAt(selectedRideIndex);
-            Service.reserveTickets(numberOfTickets,(Client)SystemData.currentUser, selectedRide.TimeTable, date, selectedRide.Polaziste, selectedRide.Odrediste);
-
-            ReservationModal.IsOpen = false;
-
         }
     }
 }

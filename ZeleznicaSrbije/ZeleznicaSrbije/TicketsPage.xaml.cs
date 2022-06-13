@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
 using ToastNotifications.Position;
 using ZeleznicaSrbije.model;
 
@@ -33,6 +34,21 @@ namespace ZeleznicaSrbije
 
             get;set;
         }
+
+        private Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows[1],
+                corner: Corner.BottomRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
 
         public TicketsPage()
         {
@@ -70,26 +86,38 @@ namespace ZeleznicaSrbije
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            List<ReservationDTO> reservationDTOs = new List<ReservationDTO>();
-            string origin = OriginPicker.SelectedItem.ToString();
-            string destination = DestinationPicker.SelectedItem.ToString();
-            string status = StatusPicker.SelectedItem.ToString();
-
-            foreach(Reservation r in reservationList)
+            if(OriginPicker.SelectedIndex == -1)
             {
-                if (r.startStation.Name.Contains(origin) || origin.Equals("Sve stanice"))
+                notifier.ShowError("Niste izabrali validno polaziste!");
+            } else if(DestinationPicker.SelectedIndex == -1)
+            {
+                notifier.ShowError("Niste izabrali validno odrediste!");
+            }
+            else if (StatusPicker.SelectedIndex == -1)
+            {
+                notifier.ShowError("Niste izabrali validan status!");
+            } else
+            {
+                List<ReservationDTO> reservationDTOs = new List<ReservationDTO>();
+                string origin = OriginPicker.SelectedItem.ToString();
+                string destination = DestinationPicker.SelectedItem.ToString();
+                string status = StatusPicker.SelectedItem.ToString();
+
+                foreach(Reservation r in reservationList)
                 {
-                    if (r.endStation.Name.Contains(destination) || destination.Equals("Sve stanice"))
+                    if (r.startStation.Name.Contains(origin) || origin.Equals("Sve stanice"))
                     {
-                        if (r.status.ToString().ToLower().Equals(status.ToLower()) || status.Equals("Svi statusi"))
+                        if (r.endStation.Name.Contains(destination) || destination.Equals("Sve stanice"))
                         {
-                            reservationDTOs.Add(new ReservationDTO(r));
+                            if (r.status.ToString().ToLower().Equals(status.ToLower()) || status.Equals("Svi statusi"))
+                            {
+                                reservationDTOs.Add(new ReservationDTO(r));
+                            }
                         }
                     }
                 }
+                reservationsTable.ItemsSource = reservationDTOs;
             }
-            reservationsTable.ItemsSource = reservationDTOs;
-
         }
     }
 }
