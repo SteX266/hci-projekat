@@ -19,6 +19,7 @@ namespace ZeleznicaSrbije.model
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
+        public TimeTable TimeTable { get; set; }
         private string _polaziste;
         private string _odrediste;
         private TimeSpan _polazak;
@@ -30,13 +31,13 @@ namespace ZeleznicaSrbije.model
         {
         }
 
-        public RideDTO(string polaziste, string odrediste, TimeSpan polazak, TimeSpan dolazak, double cena, string linija)
+        public RideDTO(string polaziste, string odrediste, TimeSpan polazak, TimeSpan dolazak, double cena, string linija, TimeTable table)
         {
             _polaziste = polaziste;
             _odrediste = odrediste;
             _polazak = polazak;
             _dolazak = dolazak;
-            
+            TimeTable = table;
             if (_polazak > _dolazak)
             {
                 _dolazak = _dolazak.Add(new TimeSpan(1,0,0,0));
@@ -59,6 +60,11 @@ namespace ZeleznicaSrbije.model
         public TimeSpan Trajanje { get { return _trajanje; } set { if (value != _trajanje) { _trajanje = value; OnPropertyChanged("Trajanje"); } } }
         public double Cena { get { return _cena; } set { if (value != _cena) { _cena = value; OnPropertyChanged("Cena"); } } }
         public string Linija { get { return _linija; } set { if (value != _linija) { _linija = value; OnPropertyChanged("Linija"); } } }
+
+
+        public string PolazakString { get { return _polazak.ToString(@"hh\:mm"); } }
+        public string DolazakString { get { return _dolazak.ToString(@"hh\:mm"); } }
+        public string TrajanjeString { get { return _trajanje.ToString(@"hh\:mm"); } }
 
 
 

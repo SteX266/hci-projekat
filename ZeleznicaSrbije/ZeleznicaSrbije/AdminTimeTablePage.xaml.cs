@@ -73,13 +73,13 @@ namespace ZeleznicaSrbije
                 {
                     TimeSpan end = Service.getArrivalTime(t.line.stations.First().Name, t, t.line);
                     double price = Service.getTicketPrice(t.line.stations.Last().Name, t.line.stations.First().Name, t.isReverse, t.line);
-                    routes.Add(new RideDTO(t.line.stations.Last().Name, t.line.stations.First().Name, t.starts, end, price, t.line.Name));
+                    routes.Add(new RideDTO(t.line.stations.Last().Name, t.line.stations.First().Name, t.starts, end, price, t.line.Name, t));
                 }
                 else
                 {
                     TimeSpan end = Service.getArrivalTime(t.line.stations.Last().Name, t, t.line);
                     double price = Service.getTicketPrice(t.line.stations.First().Name, t.line.stations.Last().Name, t.isReverse, t.line);
-                    routes.Add(new RideDTO(t.line.stations.First().Name, t.line.stations.Last().Name, t.starts, end, price, t.line.Name));
+                    routes.Add(new RideDTO(t.line.stations.First().Name, t.line.stations.Last().Name, t.starts, end, price, t.line.Name, t));
                 }
 
             }
@@ -120,13 +120,13 @@ namespace ZeleznicaSrbije
             {
                 TimeSpan end = Service.getArrivalTime(t.line.stations.First().Name, t, t.line);
                 double price = Service.getTicketPrice(t.line.stations.Last().Name, t.line.stations.First().Name, t.isReverse, t.line);
-                routes.Add(new RideDTO(t.line.stations.Last().Name, t.line.stations.First().Name, t.starts, end, price, t.line.Name));
+                routes.Add(new RideDTO(t.line.stations.Last().Name, t.line.stations.First().Name, t.starts, end, price, t.line.Name, t));
             }
             else
             {
                 TimeSpan end = Service.getArrivalTime(t.line.stations.Last().Name, t, t.line);
                 double price = Service.getTicketPrice(t.line.stations.First().Name, t.line.stations.Last().Name, t.isReverse, t.line);
-                routes.Add(new RideDTO(t.line.stations.First().Name, t.line.stations.Last().Name, t.starts, end, price, t.line.Name));
+                routes.Add(new RideDTO(t.line.stations.First().Name, t.line.stations.Last().Name, t.starts, end, price, t.line.Name, t));
             }
             CloseCreateModal(sender,e);
         }

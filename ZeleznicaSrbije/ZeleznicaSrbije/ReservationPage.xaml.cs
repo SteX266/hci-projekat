@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,18 @@ namespace ZeleznicaSrbije
     /// </summary>
     public partial class ReservationPage : Page
     {
+
+        public ObservableCollection<RideDTO> ridesToShow;
         public ReservationPage()
         {
             InitializeComponent();
+            DataContext = this;
+            ridesToShow = new ObservableCollection<RideDTO>();
+
             OriginPicker.ItemsSource = Service.getStationNames();
             DestinationPicker.ItemsSource = Service.getStationNames();
+
+
         }
 
         public void Search()
@@ -34,8 +42,15 @@ namespace ZeleznicaSrbije
             String destination = DestinationPicker.SelectedItem.ToString();
 
             List<RideDTO> rides = Service.getRidesBetweenDestinations(origin, destination);
+            ridesToShow = new ObservableCollection<RideDTO>();
 
-            ridesTable.ItemsSource = rides;
+            foreach (RideDTO ride in rides)
+            {
+                ridesToShow.Add(ride);
+            }
+
+
+            ridesTable.ItemsSource = ridesToShow;
         }
 
 
@@ -45,12 +60,16 @@ namespace ZeleznicaSrbije
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Search();
-            ReservationModal.IsOpen = true;
         }
+
+        
 
         private void OpenReservationModal(object sender, RoutedEventArgs e)
         {
             ReservationModal.IsOpen = true;
+            List<string> cards = new List<string> { "1", "2", "3", "4" };
+
+            TicketNumberPicker.ItemsSource = cards;
         }
 
         private void CloseReservationModal(object sender, RoutedEventArgs e)
@@ -59,7 +78,34 @@ namespace ZeleznicaSrbije
         }
         private void MakeReservation(object sender, RoutedEventArgs e)
         {
-            // ovde ide kod za pravljenje rezervacije
+            DateTime date = new DateTime();
+            if (DatePicker.SelectedDate != null)
+            {
+                date = DatePicker.SelectedDate.Value.Date;
+
+            }
+            else
+            {
+                return;
+            }
+            if (DateTime.Compare(date, DateTime.Now) < 0)
+            {
+                return;
+            }
+
+            if (TicketNumberPicker.SelectedIndex == -1)
+            {
+                return;
+            }
+            int numberOfTickets = TicketNumberPicker.SelectedIndex + 1;
+
+            int selectedRideIndex = ridesTable.SelectedIndex;
+
+            RideDTO selectedRide = ridesToShow.ElementAt(selectedRideIndex);
+            Service.reserveTickets(numberOfTickets,(Client)SystemData.currentUser, selectedRide.TimeTable, date, selectedRide.Polaziste, selectedRide.Odrediste);
+
+            ReservationModal.IsOpen = false;
+
         }
     }
 }

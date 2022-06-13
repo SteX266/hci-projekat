@@ -20,6 +20,7 @@ namespace ZeleznicaSrbije.model
             this.ArrivalStation = r.endStation.Name;
             this.Line = r.ride.line.Name;
             this.Client = r.client.username;
+            this.SeatNumber = r.seatNumber;
         }
 
         public DateTime Date { get; set; }
@@ -35,6 +36,15 @@ namespace ZeleznicaSrbije.model
         public string Line { get; set; }
 
         public string Client { get; set; }
+
+        public int SeatNumber { get; set; }   
+
+
+        public string DateString { get { return Date.ToShortDateString(); } }
+        public string StartTimeString { get { return StartTime.ToString(@"hh\:mm") ; }  }
+        public string ArrivalTimeString { get { return ArrivalTime.ToString(@"hh\:mm"); } }
+
+
 
     }
 }
