@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ThinkSharp.FeatureTouring.Models;
+using ThinkSharp.FeatureTouring.Navigation;
 using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
@@ -22,6 +24,7 @@ namespace ZeleznicaSrbije
     /// </summary>
     public partial class ReservationPage : Page
     {
+
 
         public ObservableCollection<RideDTO> ridesToShow;
         public ReservationPage()
@@ -33,7 +36,75 @@ namespace ZeleznicaSrbije
             OriginPicker.ItemsSource = Service.getStationNames();
             DestinationPicker.ItemsSource = Service.getStationNames();
 
+        }
 
+        private void originSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (OriginPicker.SelectedItem.ToString() == "Jagodina")
+            {
+                OriginPicker.IsEnabled = false;
+                DestinationPicker.IsEnabled = true;
+                var navigator = FeatureTour.GetNavigator();
+                navigator.IfCurrentStepEquals(Elements.OriginPickerCombo).GoNext();
+            }
+        }
+        private void destinationSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DestinationPicker.SelectedItem.ToString() == "Novi Sad")
+            {
+                DestinationPicker.IsEnabled = false;
+                SearchBtn.IsEnabled = true;
+                var navigator = FeatureTour.GetNavigator();
+                navigator.IfCurrentStepEquals(Elements.DestinationPickerCombo).GoNext();
+            }
+        }
+        private void searchButtonClickedEvent(object sender, RoutedEventArgs e)
+        {
+                var navigator = FeatureTour.GetNavigator();
+                navigator.IfCurrentStepEquals(Elements.DestinationPickerCombo).GoNext();
+        }
+
+        public void startTutorial()
+        {
+            var navigator = FeatureTour.GetNavigator();
+
+            navigator.ForStep(Elements.OriginPickerCombo).AttachDoable(s => OriginPicker.SelectedItem = "Jagodina");
+            navigator.ForStep(Elements.DestinationPickerCombo).AttachDoable(s => DestinationPicker.SelectedItem = "Novi Sad");
+
+            navigator.OnStepEntered(Elements.OriginPickerCombo).Execute(s => OriginPicker.Focus());
+            navigator.OnStepEntered(Elements.DestinationPickerCombo).Execute(s => DestinationPicker.Focus());
+            navigator.OnStepEntered(Elements.SearchButton).Execute(s => SearchBtn.Focus());
+
+            OriginPicker.SelectionChanged += originSelectionChanged;
+            DestinationPicker.SelectionChanged += destinationSelectionChanged;
+            SearchBtn.Click += searchButtonClickedEvent;
+
+            
+
+            DestinationPicker.IsEnabled = false;
+            SearchBtn.IsEnabled = false;
+
+            StartReservationTour();
+
+        }
+
+
+
+        private void StartReservationTour()
+        {
+            var tour = new Tour
+            {
+                Name = "Reservation tour",
+                ShowNextButtonDefault = false,
+                Steps = new[]
+    {
+                    new Step(Elements.OriginPickerCombo, "Izaberite pocetnu stanicu", "Izaberite \"Jagodina\". "),
+                    new Step(Elements.DestinationPickerCombo, "Izaberite krajnju stanicu", "Izaberite \"Novi Sad\". "),
+                    new Step(Elements.SearchButton, "Pritisnite na dugme \"Pretraži\"", "Kliknite pretraži"),
+                }
+            };
+
+            tour.Start();
         }
 
         public void Search()
@@ -49,7 +120,6 @@ namespace ZeleznicaSrbije
                 ridesToShow.Add(ride);
             }
 
-
             ridesTable.ItemsSource = ridesToShow;
         }
 
@@ -59,7 +129,8 @@ namespace ZeleznicaSrbije
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Search();
+            startTutorial();
+        //    this.Search();
         }
 
         

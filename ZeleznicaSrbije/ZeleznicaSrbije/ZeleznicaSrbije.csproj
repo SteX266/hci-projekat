@@ -61,6 +61,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="ThinkSharp.FeatureTour, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Thinksharp.FeatureTour.2.1.0\lib\net40\ThinkSharp.FeatureTour.dll</HintPath>
+    </Reference>
     <Reference Include="ToastNotifications, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
       <HintPath>..\packages\ToastNotifications.2.5.1\lib\net40\ToastNotifications.dll</HintPath>
     </Reference>
@@ -91,6 +94,7 @@
     <Compile Include="CreateRoutePage.xaml.cs">
       <DependentUpon>CreateRoutePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Elements.cs" />
     <Compile Include="model\ReservationDTO.cs" />
     <Compile Include="model\RideDTO.cs" />
     <Compile Include="model\TrainDTO.cs" />
@@ -277,6 +281,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\done.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\tutorial.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
