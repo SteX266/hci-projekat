@@ -8,7 +8,7 @@
         xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         
         mc:Ignorable="d"
-        Title="AdminWindow" Height="430" Width="750">
+        Title="Zeleznica Srbije" Height="430" Width="750" Icon="/voz.jpg">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

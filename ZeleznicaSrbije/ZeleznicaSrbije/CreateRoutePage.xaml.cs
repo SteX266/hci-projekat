@@ -15,6 +15,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Maps.MapControl.WPF;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
@@ -32,6 +36,21 @@ namespace ZeleznicaSrbije
         TrainLine editTrainLine;
 
         Frame f;
+
+        private Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows[1],
+                corner: Corner.BottomRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
 
         public ObservableCollection<Station> routeStations
         {
@@ -153,6 +172,9 @@ namespace ZeleznicaSrbije
                 string stationName = allStations.SelectedItem.ToString();
                 Station station = Service.getStationByName(stationName);
                 handlePin(station);
+            } else
+            {
+                notifier.ShowWarning("Niste izabrali stanicu!");
             }
 
         }
@@ -240,11 +262,19 @@ namespace ZeleznicaSrbije
 
         public void editStation(object sender, RoutedEventArgs e)
         {
-            double price = Double.Parse(EPrice.Text);
-            int minutes = Int32.Parse(EMinutes.Text);
-            durations[currentStation] = new TimeSpan(0, 0, minutes, 0);
-            prices[currentStation] = price;
-            closeEditModal(sender, e);
+            try
+            {
+                double price = Double.Parse(EPrice.Text);
+                int minutes = Int32.Parse(EMinutes.Text);
+                durations[currentStation] = new TimeSpan(0, 0, minutes, 0);
+                prices[currentStation] = price;
+                closeEditModal(sender, e);
+            }
+            catch (Exception)
+            {
+                notifier.ShowError("Niste uneli validnu vrednost! Ocekuje se broj!");
+            }
+            
         }
 
 

@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Maps.MapControl.WPF;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
@@ -25,6 +29,21 @@ namespace ZeleznicaSrbije
 
         List<Pushpin> pushpins = new List<Pushpin>();
         List<MapPolyline> polylines = new List<MapPolyline>();
+        private Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows[1],
+                corner: Corner.BottomRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
+
         public RoutesPage()
         {
             InitializeComponent();
@@ -44,42 +63,48 @@ namespace ZeleznicaSrbije
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (polylines.Count > 0)
+            if (RoutePicker.SelectedIndex == -1)
             {
-                foreach(MapPolyline line in polylines)
-                {
-                    MainMap.Children.Remove(line);
-                }
-                polylines = new List<MapPolyline>();
+                notifier.ShowError("Niste izabrali liniju!");
             }
-            if (pushpins.Count > 0)
+            else
             {
-                foreach (Pushpin pin in pushpins)
+                if (polylines.Count > 0)
                 {
-                    MainMap.Children.Remove(pin);
+                    foreach (MapPolyline line in polylines)
+                    {
+                        MainMap.Children.Remove(line);
+                    }
+                    polylines = new List<MapPolyline>();
                 }
-                pushpins = new List<Pushpin>();
-            }
-
-            string lineName = RoutePicker.SelectedItem.ToString();
-
-            if (lineName == "Sve linije")
-            {
-                foreach(TrainLine line in SystemData.trainsLines)
+                if (pushpins.Count > 0)
                 {
+                    foreach (Pushpin pin in pushpins)
+                    {
+                        MainMap.Children.Remove(pin);
+                    }
+                    pushpins = new List<Pushpin>();
+                }
+
+                string lineName = RoutePicker.SelectedItem.ToString();
+
+                if (lineName == "Sve linije")
+                {
+                    foreach (TrainLine line in SystemData.trainsLines)
+                    {
+                        addPins(line.stations);
+                        connectPins(line);
+                    }
+                }
+
+                else
+                {
+                    TrainLine line = SystemData.getTrainLineByName(lineName);
                     addPins(line.stations);
                     connectPins(line);
                 }
-            }
 
-            else
-            {
-                TrainLine line = SystemData.getTrainLineByName(lineName);
-                addPins(line.stations);
-                connectPins(line);
             }
-            
-
         }
 
         private void connectPins(TrainLine line)

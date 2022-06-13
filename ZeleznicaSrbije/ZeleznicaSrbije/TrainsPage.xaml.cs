@@ -74,25 +74,40 @@ namespace ZeleznicaSrbije
 
         public void CreateTrain(object sender, RoutedEventArgs e)
         {
-            Train t = new Train(Int32.Parse(VagonNumber.Text), Int32.Parse(RowNumber.Text), Int32.Parse(SeatsNumber.Text), TrainName.Text);
-            SystemData.trains.Add(t);
+            try
+            {
+                Train t = new Train(Int32.Parse(VagonNumber.Text), Int32.Parse(RowNumber.Text), Int32.Parse(SeatsNumber.Text), TrainName.Text);
+                SystemData.trains.Add(t);
 
-            trainsToShow.Add(new TrainDTO(t));
-            notifier.ShowSuccess($"Uspesno kreiran voz {t.name}.");
+                trainsToShow.Add(new TrainDTO(t));
+                notifier.ShowSuccess($"Uspesno kreiran voz {t.name}.");
 
-            CloseCreateModal(sender, e);
+                CloseCreateModal(sender, e);
+            }
+            catch (Exception)
+            {
+                notifier.ShowError("Podaci forme nisu validni.");
+            }
+            
         }
 
 
         public void OpenEditModal(object sender, RoutedEventArgs e)
         {
-            EditModal.IsOpen = true;
-            TrainDTO train = (TrainDTO)Trains.SelectedItem;
-            string trainName = train.Naziv;
-            ETrainName.Text = train.Naziv;
-            EVagonNumber.Text = train.BrojVagona.ToString();
-            ERowNumber.Text = train.BrojRedova.ToString();
-            ESeatsNumber.Text = train.BrojSedista.ToString();
+            if (Trains.SelectedIndex == -1)
+            {
+                notifier.ShowError("Niste izabrali voz!");
+            } else
+            {
+                EditModal.IsOpen = true;
+                TrainDTO train = (TrainDTO)Trains.SelectedItem;
+                string trainName = train.Naziv;
+                ETrainName.Text = train.Naziv;
+                EVagonNumber.Text = train.BrojVagona.ToString();
+                ERowNumber.Text = train.BrojRedova.ToString();
+                ESeatsNumber.Text = train.BrojSedista.ToString();
+            }
+            
         }
 
         public void CloseEditModal(object sender, RoutedEventArgs e)
@@ -102,33 +117,47 @@ namespace ZeleznicaSrbije
 
         public void EditTrain(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                TrainDTO train = (TrainDTO)Trains.SelectedItem;
+                foreach (TrainDTO t in trainsToShow)
+                {
+                    if (train.Naziv.Equals(t.Naziv))
+                    {
+                        t.BrojVagona = Int32.Parse(EVagonNumber.Text);
+                        t.BrojSedista = Int32.Parse(ESeatsNumber.Text);
+                        t.BrojRedova = Int32.Parse(ERowNumber.Text);
+                    }
+                }
+                foreach (Train t in SystemData.trains)
+                {
+                    if (t.name.Equals(train.Naziv))
+                    {
+                        t.numberOfWagons = Int32.Parse(EVagonNumber.Text);
+                        t.numberOfRowsInWagon = Int32.Parse(ERowNumber.Text);
+                        t.numberOfSeatsPerRow = Int32.Parse(ESeatsNumber.Text);
+                    }
+                }
+                CloseEditModal(sender, e);
+                notifier.ShowSuccess($"Uspesno azuriran voz {train.Naziv}.");
+            }
+            catch (Exception)
+            {
+                notifier.ShowError("Uneti podaci nisu validni!");
+            }
             
-            TrainDTO train = (TrainDTO) Trains.SelectedItem;
-            foreach(TrainDTO t in trainsToShow)
-            {
-                if (train.Naziv.Equals(t.Naziv))
-                {
-                    t.BrojVagona = Int32.Parse(EVagonNumber.Text);
-                    t.BrojSedista = Int32.Parse(ESeatsNumber.Text);
-                    t.BrojRedova = Int32.Parse(ERowNumber.Text);
-                }
-            }
-            foreach(Train t in SystemData.trains)
-            {
-                if (t.name.Equals(train.Naziv))
-                {
-                    t.numberOfWagons = Int32.Parse(EVagonNumber.Text);
-                    t.numberOfRowsInWagon = Int32.Parse(ERowNumber.Text);
-                    t.numberOfSeatsPerRow = Int32.Parse(ESeatsNumber.Text);
-                }
-            }
-            CloseEditModal(sender, e);
-            notifier.ShowSuccess($"Uspesno azuriran voz {train.Naziv}.");
         }
 
         public void OpenDeleteModal(object sender, RoutedEventArgs e)
         {
-            DeleteModal.IsOpen = true;
+            if (Trains.SelectedIndex == -1)
+            {
+                notifier.ShowError("Niste izabrali voz!");
+            } else
+            {
+                DeleteModal.IsOpen = true;
+            }
+            
         }
 
         public void CloseDeleteModal(object sender, RoutedEventArgs e)
@@ -137,17 +166,11 @@ namespace ZeleznicaSrbije
         }
         public void DeleteTrain(object sender, RoutedEventArgs e)
         {
-            if(Trains.SelectedIndex == -1)
-            {
-                notifier.ShowError("Niste izabrali voz!");
-            } else
-            {
-                TrainDTO train = (TrainDTO)Trains.SelectedItem;
-                trainsToShow.Remove(train);
-                SystemData.deleteTrainByName(train.Naziv);
-                CloseDeleteModal(sender, e);
-                notifier.ShowSuccess($"Uspesno izbrisan voz {train.Naziv}.");
-            }
+            TrainDTO train = (TrainDTO)Trains.SelectedItem;
+            trainsToShow.Remove(train);
+            SystemData.deleteTrainByName(train.Naziv);
+            CloseDeleteModal(sender, e);
+            notifier.ShowSuccess($"Uspesno izbrisan voz {train.Naziv}.");
             
         }
     }

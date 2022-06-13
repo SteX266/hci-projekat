@@ -14,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 using ZeleznicaSrbije.model;
 
 namespace ZeleznicaSrbije
@@ -26,6 +30,21 @@ namespace ZeleznicaSrbije
     public partial class ReportPage : Page
     {
         List<Reservation> reservationList;
+
+        private Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows[1],
+                corner: Corner.BottomRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
 
         ObservableCollection<ReservationDTO> reservationsToShow
         {
@@ -62,21 +81,27 @@ namespace ZeleznicaSrbije
 
         private void LineReport(object sender, RoutedEventArgs e)
         {
-            reservationsToShow = new ObservableCollection<ReservationDTO>();
-            string line = LinePicker.SelectedItem.ToString();
-
-            foreach(Reservation r in SystemData.reservations)
+            if (LinePicker.SelectedIndex == -1)
             {
-                if(r.ride.line.Name.Equals(line))
+                notifier.ShowWarning("Niste izabrali nijednu liniju!");
+            } else
+            {
+                reservationsToShow = new ObservableCollection<ReservationDTO>();
+                string line = LinePicker.SelectedItem.ToString();
+
+                foreach(Reservation r in SystemData.reservations)
                 {
-                    reservationsToShow.Add(new ReservationDTO(r));
+                    if(r.ride.line.Name.Equals(line))
+                    {
+                        reservationsToShow.Add(new ReservationDTO(r));
+                    }
                 }
+
+
+                reservationsTable.ItemsSource = reservationsToShow;
+
+                CloseLineChoiceModal(sender, e);
             }
-
-
-            reservationsTable.ItemsSource = reservationsToShow;
-
-            CloseLineChoiceModal(sender, e);
         }
 
         private void MonthlyReport(object sender, RoutedEventArgs e)
