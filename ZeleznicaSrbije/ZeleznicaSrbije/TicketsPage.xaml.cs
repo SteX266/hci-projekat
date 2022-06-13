@@ -23,7 +23,7 @@ namespace ZeleznicaSrbije
     public partial class TicketsPage : Page
     {
 
-        List<Reservation> reservationList = ((Client)SystemData.currentUser).reservations;
+        List<Reservation> reservationList;
 
         ObservableCollection<ReservationDTO> reservationsToShow
         {
@@ -34,6 +34,7 @@ namespace ZeleznicaSrbije
         public TicketsPage()
         {
             InitializeComponent();
+            reservationList = ((Client)SystemData.currentUser).reservations;
             DataContext = this;
             OriginPicker.ItemsSource = Service.getStationNames();
             DestinationPicker.ItemsSource = Service.getStationNames();
@@ -60,6 +61,7 @@ namespace ZeleznicaSrbije
                 ReservationDTO reservationDTO = new ReservationDTO(r);
                 reservationsToShow.Add(reservationDTO);
             }
+            reservationsTable.ItemsSource = reservationsToShow;
 
         }
 

@@ -124,7 +124,7 @@ namespace ZeleznicaSrbije
 
                    
                     string lineName = line.Name;
-                    RideDTO ride = new RideDTO(origin, destination, start, end, price, lineName);
+                    RideDTO ride = new RideDTO(origin, destination, start, end, price, lineName, timeTable);
                     rides.Add(ride);
 
                 }
@@ -280,12 +280,11 @@ namespace ZeleznicaSrbije
         } 
 
 
-        public static List<Reservation> reserveTickets(int numberOfTickets, Client client, TimeTable timeTable, DateTime date, string startStation, string destinationStation)
+        public static bool reserveTickets(int numberOfTickets, Client client, TimeTable timeTable, DateTime date, string startStation, string destinationStation)
         {
-            List<Reservation> reservations = new List<Reservation>();
             if (emptySeatsInRide(timeTable, date).Count < numberOfTickets)
             {
-                return null;
+                return false;
             }
         
             bool canSeat = false;
@@ -305,7 +304,8 @@ namespace ZeleznicaSrbije
                     for (int i = 0; i < numberOfTickets; i++)
                     {
                         Reservation r = new Reservation(client, timeTable, getStationByName(startStation), getStationByName(destinationStation), date, ReservationStatus.REZERVISANA,seatNumber+i);
-                        reservations.Add(r);
+                        SystemData.reservations.Add(r);
+                        ((Client)SystemData.currentUser).reservations.Add(r);
                     }
                 }
             }
@@ -315,10 +315,12 @@ namespace ZeleznicaSrbije
                 for (int i = 0; i < numberOfTickets; i++)
                 {
                     Reservation r = new Reservation(client, timeTable, getStationByName(startStation), getStationByName(destinationStation), date, ReservationStatus.REZERVISANA, emptySeatsInRide(timeTable, date)[i]);
-                    reservations.Add(r);
+                    SystemData.reservations.Add(r);
+                    ((Client)SystemData.currentUser).reservations.Add(r);
                 }
             }
-            return reservations;
+            
+            return true;
         }
     }
 }
