@@ -38,7 +38,19 @@
                     <Image Source="icons/create_plus.png" Width="20" VerticalAlignment="Center" Margin="2, 3"/>
                 </StackPanel>
             </Button>
-            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Trains" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="false" IsReadOnly="True"  ColumnWidth="*" ItemsSource="{Binding Path=trainsToShow}"/>
+            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="Trains" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="false" IsReadOnly="True"  ColumnWidth="*" ItemsSource="{Binding Path=trainsToShow}" AutoGenerateColumns="False">
+
+
+                <DataGrid.Columns >
+
+                    <DataGridTextColumn Binding="{Binding Naziv}" Header="Naziv"  Width="*"/>
+                    <DataGridTextColumn Binding="{Binding BrojVagona}" Header="Broj vagona"  Width="*"/>
+                    <DataGridTextColumn Binding="{Binding BrojRedova}" Header="Broj redova"  Width="*"/>
+                    <DataGridTextColumn Binding="{Binding BrojSedista}" Header="Broj sedista"  Width="*"/>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
 
             <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="CreateModal">
                 <custom:Modal.Background>

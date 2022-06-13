@@ -28,7 +28,22 @@
             <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Kreiraj red voznje" Grid.Column="3" Click="OpenCreateModal"/>
 
 
-            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="TimeTables" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" SelectionUnit="FullRow" ColumnWidth="*" IsReadOnly="true" CanUserReorderColumns="false" ItemsSource="{Binding Path=routes}"/>
+            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="TimeTables" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" SelectionUnit="FullRow" ColumnWidth="*" IsReadOnly="true" CanUserReorderColumns="false" ItemsSource="{Binding Path=routes}" AutoGenerateColumns="False">
+
+
+                <DataGrid.Columns >
+
+                    <DataGridTextColumn Binding="{Binding Polaziste}" Header="Polazište"  Width="1.5*"/>
+                    <DataGridTextColumn Binding="{Binding Odrediste}" Header="Odredište"  Width="1.5*"/>
+                    <DataGridTextColumn Binding="{Binding PolazakString}" Header="Polazak"  Width="*"/>
+                    <DataGridTextColumn Binding="{Binding DolazakString}" Header="Dolazak"  Width="*"/>
+                    <DataGridTextColumn Binding="{Binding TrajanjeString}" Header="Trajanje"  Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Cena}" Header="Cena"  Width="0.7*"/>
+                    <DataGridTextColumn Binding="{Binding Linija}" Header="Linija"  Width="0.7*"/>
+
+
+                </DataGrid.Columns>
+            </DataGrid>
 
             <custom:Modal Name="CreateModal"
                 Grid.Column="1" Grid.Row="0"
