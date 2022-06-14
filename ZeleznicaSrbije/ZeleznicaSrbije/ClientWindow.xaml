@@ -8,6 +8,12 @@
         
         mc:Ignorable="d"
         Title="Zeleznica Srbije" Height="430" Width="750" Icon="/voz.jpg">
+
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

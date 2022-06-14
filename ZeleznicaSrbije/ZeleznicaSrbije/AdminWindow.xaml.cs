@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ZeleznicaSrbije.Hlp;
 
 namespace ZeleznicaSrbije
 {
@@ -49,6 +50,11 @@ namespace ZeleznicaSrbije
         {
             this.Close();
             mainWindow.Show();
+        }
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var p = this.ClientContentFrame.Content as Page;
+            HelpProvider.ShowHelp(p.Title, this);
         }
 
     }

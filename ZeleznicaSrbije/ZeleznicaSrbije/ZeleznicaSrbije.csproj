@@ -95,6 +95,11 @@
       <DependentUpon>CreateRoutePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Elements.cs" />
+    <Compile Include="Hlp\HelpProvider.cs" />
+    <Compile Include="Hlp\HelpViewer.xaml.cs">
+      <DependentUpon>HelpViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hlp\JavaScriptControlHelper.cs" />
     <Compile Include="model\ReservationDTO.cs" />
     <Compile Include="model\RideDTO.cs" />
     <Compile Include="model\TrainDTO.cs" />
@@ -137,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateRoutePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hlp\HelpViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -215,8 +224,6 @@
     <Resource Include="icons\employees-server.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AdminPages\" />
-    <Folder Include="ClientPages\" />
     <Folder Include="Styles\" />
     <Folder Include="Windows\" />
   </ItemGroup>
@@ -287,6 +294,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Hlp\ReportPage.htm" />
+    <Content Include="Hlp\AdminRoutesPage.htm" />
+    <Content Include="Hlp\TicketsPage.htm" />
+    <Content Include="Hlp\TimetablePage.htm" />
+    <Content Include="Hlp\AdminTimeTablePage.htm" />
+    <Content Include="Hlp\ReservationPage.htm" />
+    <Content Include="Hlp\RoutesPage.htm" />
+    <Content Include="Hlp\TrainsPage.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

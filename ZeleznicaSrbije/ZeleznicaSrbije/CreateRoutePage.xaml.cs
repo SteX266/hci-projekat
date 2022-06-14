@@ -169,7 +169,7 @@ namespace ZeleznicaSrbije
         }
         public void CloseStationModal(object sender, RoutedEventArgs e)
         {
-
+            
             durations[currentStation] = new TimeSpan(0, 0, 0, 0);
             prices[currentStation] = 0;
             StationModal.IsOpen = false;
