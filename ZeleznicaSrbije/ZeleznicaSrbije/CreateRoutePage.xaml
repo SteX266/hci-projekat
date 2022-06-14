@@ -24,7 +24,7 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
-            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="0" Grid.Column="1" Margin="20,20,20,20" Name="stations" Grid.ColumnSpan="2" ItemsSource="{Binding routeStations}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="0" Grid.Column="1" Margin="20,20,20,20" Name="stations" Grid.ColumnSpan="2" ItemsSource="{Binding routeStations}" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" CanUserDeleteRows="False" CanUserReorderColumns="false" IsReadOnly="True">
 
 
 

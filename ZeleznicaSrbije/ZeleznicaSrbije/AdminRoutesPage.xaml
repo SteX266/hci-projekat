@@ -25,7 +25,7 @@
             <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Izbriši voznu liniju" Grid.Column="2" Click="OpenDeleteModal"/>
             <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Content="Kreiraj voznu liniju" Grid.Column="3" Click="NavigateToCreate"/>
 
-            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="trainLines" ItemsSource="{Binding allTrainLines}" AutoGenerateColumns="False">
+            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="trainLines" ItemsSource="{Binding allTrainLines}" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="false" IsReadOnly="True">
 
 
                 <DataGrid.CellStyle>

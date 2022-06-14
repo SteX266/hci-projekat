@@ -30,7 +30,7 @@
 
 
 
-            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="reservationsTable" ColumnWidth="*" ItemsSource="{Binding reservationsToShow}" AutoGenerateColumns="False">
+            <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="reservationsTable" ColumnWidth="*" ItemsSource="{Binding reservationsToShow}" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="false" IsReadOnly="True">
 
                 <DataGrid.Columns >
 

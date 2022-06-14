@@ -94,7 +94,7 @@ namespace ZeleznicaSrbije
             ReserveButton.IsEnabled = false;
             CancelButton.IsEnabled = false;
 
-            Thread.Sleep(100);
+            Thread.Sleep(500);
             continueTutorial();
 
             
@@ -129,6 +129,9 @@ namespace ZeleznicaSrbije
         }
         private void reserveButtonClicked(object sender, RoutedEventArgs e)
         {
+            DestinationPicker.IsEnabled = true;
+            OriginPicker.IsEnabled = true;
+            SearchBtn.IsEnabled = true;
             var navigator = FeatureTour.GetNavigator();
             navigator.IfCurrentStepEquals(Elements.ReserveButtonElement).GoNext();
         }

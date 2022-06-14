@@ -192,6 +192,7 @@ namespace ZeleznicaSrbije
 
             if (routeStations.Contains(station))
             {
+                notifier.ShowWarning("Izabrana stanica je vec u voznoj liniji!");
                 return;
             }
             Pushpin pin = new Pushpin
@@ -271,6 +272,8 @@ namespace ZeleznicaSrbije
 
         public void closeEditModal(object sender, RoutedEventArgs e)
         {
+            durations[currentStation] = new TimeSpan(0, 0, 0, 0);
+            prices[currentStation] = 0;
             EditStationModal.IsOpen=false; 
         }
 

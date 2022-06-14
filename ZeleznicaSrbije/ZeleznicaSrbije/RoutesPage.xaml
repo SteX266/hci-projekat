@@ -22,7 +22,7 @@
                 <RowDefinition Height="13*"/>
                 <RowDefinition Height="1.3*"/>
             </Grid.RowDefinitions>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" Name="RoutePicker"  ToolTip="Odabir vozne linije" IsEditable="True" IsReadOnly="False" Text="Linija" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBox Margin="30, 30, 30, 10" Grid.Column="1" Name="RoutePicker"  ToolTip="Odabir vozne linije" IsEditable="True" IsReadOnly="False" Text="Linija" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
             <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" Content="Prikaži" ToolTip="prikaz  odabrane linije" Grid.Column="4" Click="Button_Click">
             </Button>
