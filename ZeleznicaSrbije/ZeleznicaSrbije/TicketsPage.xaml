@@ -20,6 +20,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
+                <RowDefinition Height="1.3*"/>
             </Grid.RowDefinitions>
             <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" Name="OriginPicker"  ToolTip="Odabir polazišta" IsEditable="True" IsReadOnly="True" Text="Polazište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
@@ -50,6 +51,9 @@
                 </DataGrid.Columns>
 
             </DataGrid>
+            <Button Style="{StaticResource CloseButton}" Grid.Column="4"  Grid.Row="2" Margin="145, 3, 0, 0" Width="25" Panel.ZIndex="10">
+                <Image Source="icons/help.png"/>
+            </Button>
         </Grid>
     </Border>
 </Page>

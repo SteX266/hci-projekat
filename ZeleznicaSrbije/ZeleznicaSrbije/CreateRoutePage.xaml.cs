@@ -152,13 +152,20 @@ namespace ZeleznicaSrbije
         }
         public void setPriceAndTime(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                int price = Int32.Parse(Price.Text);
+                int minutes = Int32.Parse(Minutes.Text);
 
-            int price = Int32.Parse(Price.Text);
-            int minutes = Int32.Parse(Minutes.Text);
-
-            durations[currentStation] = new TimeSpan(0, 0, minutes, 0);
-            prices[currentStation] = price;
-            CloseStationModal(sender, e);
+                durations[currentStation] = new TimeSpan(0, 0, minutes, 0);
+                prices[currentStation] = price;
+                CloseStationModal(sender, e);
+            }
+            catch (Exception)
+            {
+                notifier.ShowError("Nisu uneti validni podaci!");
+            }
+            
         }
         public void CloseStationModal(object sender, RoutedEventArgs e)
         {
@@ -248,11 +255,18 @@ namespace ZeleznicaSrbije
         public void openEditModal(object sender, RoutedEventArgs e)
         {
             int index = stations.SelectedIndex;
-            Station station = routeStations.ElementAt(index);
-            EPrice.Text = prices[station].ToString();
-            EMinutes.Text = durations[station].TotalMinutes.ToString();
-            currentStation = station;
-            EditStationModal.IsOpen = true;
+            if(index == 0)
+            {
+                notifier.ShowError("Ne mozete azurirati podatke prve stanice!");
+            } else
+            {
+                Station station = routeStations.ElementAt(index);
+                EPrice.Text = prices[station].ToString();
+                EMinutes.Text = durations[station].TotalMinutes.ToString();
+                currentStation = station;
+                EditStationModal.IsOpen = true;
+            }
+            
         }
 
         public void closeEditModal(object sender, RoutedEventArgs e)

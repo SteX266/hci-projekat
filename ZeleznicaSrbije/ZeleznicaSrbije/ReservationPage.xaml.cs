@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -82,10 +84,56 @@ namespace ZeleznicaSrbije
         private void searchButtonClickedEvent(object sender, RoutedEventArgs e)
         {
                 var navigator = FeatureTour.GetNavigator();
-                navigator.IfCurrentStepEquals(Elements.DestinationPickerCombo).GoNext();
+                navigator.IfCurrentStepEquals(Elements.SearchButton).GoNext();
         }
 
-        public void startTutorial()
+        private void tableSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            TicketNumberPicker.IsEnabled = false;
+            ReserveButton.IsEnabled = false;
+            CancelButton.IsEnabled = false;
+
+            Thread.Sleep(100);
+            continueTutorial();
+
+            
+
+        }
+
+        private void continueTutorial()
+        {
+            var navigator = FeatureTour.GetNavigator();
+            navigator.IfCurrentStepEquals(Elements.OpenModalElement).GoNext();
+        }
+        private void datePickerChanged(object sender,SelectionChangedEventArgs e)
+        {
+            DatePicker.IsEnabled = false;
+            TicketNumberPicker.IsEnabled = true;
+
+            var navigator = FeatureTour.GetNavigator();
+            navigator.IfCurrentStepEquals(Elements.DatePickerElement).GoNext();
+        }
+        private void ticketNumberPickerChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TicketNumberPicker.SelectedIndex == 0)
+            {
+                TicketNumberPicker.IsEnabled = false;
+                ReserveButton.IsEnabled = true;
+
+                var navigator = FeatureTour.GetNavigator();
+                navigator.IfCurrentStepEquals(Elements.TicketNumberPickerElement).GoNext();
+            }
+
+
+        }
+        private void reserveButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var navigator = FeatureTour.GetNavigator();
+            navigator.IfCurrentStepEquals(Elements.ReserveButtonElement).GoNext();
+        }
+
+        public void startTutorial(object sender, RoutedEventArgs e)
         {
             var navigator = FeatureTour.GetNavigator();
 
@@ -95,10 +143,20 @@ namespace ZeleznicaSrbije
             navigator.OnStepEntered(Elements.OriginPickerCombo).Execute(s => OriginPicker.Focus());
             navigator.OnStepEntered(Elements.DestinationPickerCombo).Execute(s => DestinationPicker.Focus());
             navigator.OnStepEntered(Elements.SearchButton).Execute(s => SearchBtn.Focus());
+            navigator.OnStepEntered(Elements.OpenModalElement).Execute(s=> ridesTable.Focus());
+            navigator.OnStepEntered(Elements.DatePickerElement).Execute(s => DatePicker.Focus());
+            navigator.OnStepEntered(Elements.TicketNumberPickerElement).Execute(s => TicketNumberPicker.Focus());
+            navigator.OnStepEntered(Elements.ReserveButtonElement).Execute(s=>ReserveButton.Focus());
+            
+
 
             OriginPicker.SelectionChanged += originSelectionChanged;
             DestinationPicker.SelectionChanged += destinationSelectionChanged;
             SearchBtn.Click += searchButtonClickedEvent;
+            ridesTable.SelectionChanged += tableSelectionChanged;
+            DatePicker.SelectedDateChanged += datePickerChanged;
+            TicketNumberPicker.SelectionChanged += ticketNumberPickerChanged;
+            ReserveButton.Click += reserveButtonClicked;
 
             
 
@@ -122,6 +180,10 @@ namespace ZeleznicaSrbije
                     new Step(Elements.OriginPickerCombo, "Izaberite pocetnu stanicu", "Izaberite \"Jagodina\". "),
                     new Step(Elements.DestinationPickerCombo, "Izaberite krajnju stanicu", "Izaberite \"Novi Sad\". "),
                     new Step(Elements.SearchButton, "Pritisnite na dugme \"Pretraži\"", "Kliknite pretraži"),
+                    new Step(Elements.OpenModalElement, "Pritisnite Rezerviši","Pritisnite na dugme \"Rezerviši\" na nekoj od ponuđenih vožnji"),
+                    new Step(Elements.DatePickerElement, "Datum rezervacije","Izaberite zeljeni datum rezervacije karte"),
+                    new Step(Elements.TicketNumberPickerElement, "Izaberite broj karata", "Izaberite jednu kartu za kupovinu"),
+                    new Step(Elements.ReserveButtonElement, "Kliknite na dugme Rezervisi", "Pritisnite na dugme rezerviši kako biste završili rezervaciju"),
                 }
             };
 
@@ -168,8 +230,7 @@ namespace ZeleznicaSrbije
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            startTutorial();
-        //    this.Search();
+            this.Search();
         }
 
         
@@ -222,10 +283,18 @@ namespace ZeleznicaSrbije
                 int selectedRideIndex = ridesTable.SelectedIndex;
 
                 RideDTO selectedRide = ridesToShow.ElementAt(selectedRideIndex);
-                Service.reserveTickets(numberOfTickets,(Client)SystemData.currentUser, selectedRide.TimeTable, date, selectedRide.Polaziste, selectedRide.Odrediste);
+                bool isSuccess = Service.reserveTickets(numberOfTickets,(Client)SystemData.currentUser, selectedRide.TimeTable, date, selectedRide.Polaziste, selectedRide.Odrediste);
 
                 ReservationModal.IsOpen = false;
+                if (isSuccess)
+                {
+                    notifier.ShowSuccess($"Uspešno kreiranje rezervacije! Broj sedišta: {((Client)SystemData.currentUser).reservations.Last().seatNumber}");
 
+                }
+                else
+                {
+                    notifier.ShowError("Sva mesta u vozu su zauzeta!");
+                }
             }
         }
     }

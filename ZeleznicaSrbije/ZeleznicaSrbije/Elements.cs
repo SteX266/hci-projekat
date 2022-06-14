@@ -12,5 +12,11 @@ namespace ZeleznicaSrbije
         public static readonly string OriginPickerCombo = "OriginPickerCombo";
         public static readonly string DestinationPickerCombo = "DestinationPickerCombo";
         public static readonly string SearchButton = "SearchButton";
+
+
+        public static readonly string DatePickerElement = "DatePickerElement";
+        public static readonly string TicketNumberPickerElement = "TicketNumberPickerElement";
+        public static readonly string ReserveButtonElement = "ReserveButtonElement";
+        public static readonly string OpenModalElement = "OpenModalElement";
     }
 }

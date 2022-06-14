@@ -19,6 +19,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
+                <RowDefinition Height="1.3*"/>
             </Grid.RowDefinitions>
             <Button Style="{StaticResource ButtonStyle}" Margin="40, 30, 40, 10" Grid.Column="1"  Click="OpenEditModal">
                 <StackPanel Orientation="Horizontal">
@@ -52,7 +53,7 @@
 
             </DataGrid>
 
-            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="CreateModal">
+            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="CreateModal">
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
@@ -98,7 +99,7 @@
 
             </custom:Modal>
 
-            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="EditModal">
+            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="EditModal">
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
@@ -139,7 +140,7 @@
                                 <Image Source="icons/edit.png" Width="20" VerticalAlignment="Center" Margin="2, 3"/>
                             </StackPanel>
                         </Button>
-                        <Button Click="CloseEditModal" Style="{StaticResource CloseButton}" Grid.Column="1"  Grid.Row="0" Margin="120, 5, 5, 10">
+                        <Button Click="CloseEditModal" Style="{StaticResource CloseButton}" Grid.Column="1"  Grid.Row="0" Margin="120, 5, 5, 10" >
                             <Image Source="icons/close.png"/>
                         </Button>
                     </Grid>
@@ -147,7 +148,7 @@
 
             </custom:Modal>
 
-            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="DeleteModal">
+            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="DeleteModal">
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
@@ -174,6 +175,9 @@
 
             </custom:Modal>
 
+            <Button Style="{StaticResource CloseButton}" Grid.Column="3"  Grid.Row="2" Margin="200, 3, 0, 0" Width="25" Panel.ZIndex="10">
+                <Image Source="icons/help.png"/>
+            </Button>
         </Grid>
     </Border>
 </Page>
