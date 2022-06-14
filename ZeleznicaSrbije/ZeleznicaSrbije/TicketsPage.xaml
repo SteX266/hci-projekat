@@ -21,13 +21,13 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" Name="OriginPicker" IsEditable="True" IsReadOnly="True" Text="Polazište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" Name="OriginPicker"  ToolTip="Odabir polazišta" IsEditable="True" IsReadOnly="True" Text="Polazište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="2" Name="DestinationPicker" IsEditable="True" IsReadOnly="True" Text="Odredište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="2" Name="DestinationPicker" ToolTip="Odabir odredišta" IsEditable="True" IsReadOnly="True" Text="Odredište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="3" Name="StatusPicker" IsEditable="True" IsReadOnly="True" Text="Status" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="3" Name="StatusPicker" IsEditable="True" ToolTip="Odabir statusa karte" IsReadOnly="True" Text="Status" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
-            <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" Content="Pretraži" Grid.Column="4" Click="Button_Click">
+            <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" Content="Pretraži" Grid.Column="4" ToolTip="Prikaz svojih karata" Click="Button_Click">
             </Button>
 
             <DataGrid Style="{StaticResource DataGridStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" Name="reservationsTable" ColumnWidth="*"  AutoGenerateColumns="False">

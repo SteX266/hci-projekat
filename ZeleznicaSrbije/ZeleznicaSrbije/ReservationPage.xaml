@@ -20,19 +20,19 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" x:Name="OriginPicker" IsEditable="True" IsReadOnly="False" Text="Polazište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" x:Name="OriginPicker" ToolTip="Odabir polazišta" IsEditable="True" IsReadOnly="False" Text="Polazište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                       featureTouring:TourHelper.Placement="BottomLeft"
                       featureTouring:TourHelper.ElementID="{x:Static local:Elements.OriginPickerCombo}"
                       />
 
 
 
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="2" x:Name="DestinationPicker" IsEditable="True" IsReadOnly="False" Text="Odredište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+            <ComboBox Margin="30, 40, 30, 10" Grid.Column="2" x:Name="DestinationPicker" ToolTip="Odabir odredišta" IsEditable="True" IsReadOnly="False" Text="Odredište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                                             featureTouring:TourHelper.Placement="BottomLeft"
                       featureTouring:TourHelper.ElementID="{x:Static local:Elements.DestinationPickerCombo}"
                       />
 
-            <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" Content="Pretraži" Grid.Column="4" Click="Button_Click" x:Name="SearchBtn"
+            <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" ToolTip="Pretraga termina vožnji" Content="Pretraži" Grid.Column="4" Click="Button_Click" x:Name="SearchBtn"
                       featureTouring:TourHelper.Placement="BottomLeft"
                       featureTouring:TourHelper.ElementID="{x:Static local:Elements.SearchButton}"
                     >
