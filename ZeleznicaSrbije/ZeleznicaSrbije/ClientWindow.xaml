@@ -7,7 +7,7 @@
         xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         
         mc:Ignorable="d"
-        Title="Zeleznica Srbije" Height="430" Width="750" Icon="/voz.jpg">
+        Title="Zeleznica Srbije" Height="430" Width="750" Icon="/voz.jpg" Closing="logout">
 
 
     <Window.CommandBindings>

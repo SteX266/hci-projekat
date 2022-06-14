@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace ZeleznicaSrbije
         public AdminWindow(MainWindow mw)
         {
             this.mainWindow = mw;
-          //  mainWindow.Hide();
+            mainWindow.Hide();
             InitializeComponent();
         }
 
@@ -48,8 +49,8 @@ namespace ZeleznicaSrbije
         }
         private void logout_selected(object sender, RoutedEventArgs e)
         {
+
             this.Close();
-            mainWindow.Show();
         }
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -57,5 +58,11 @@ namespace ZeleznicaSrbije
             HelpProvider.ShowHelp(p.Title, this);
         }
 
+        public void logout(object sender, CancelEventArgs e)
+        {
+
+            mainWindow.Show();
+
+        }
     }
 }

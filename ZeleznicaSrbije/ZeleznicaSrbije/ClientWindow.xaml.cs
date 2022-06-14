@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace ZeleznicaSrbije
         public ClientWindow(MainWindow mw)
         {
             mainWindow = mw;
-        //    mainWindow.Hide();
+            mainWindow.Hide();
             InitializeComponent();
 
             ClientContentFrame.Content = new TicketsPage();
@@ -64,8 +65,15 @@ namespace ZeleznicaSrbije
         }
         private void logout_selected(object sender, RoutedEventArgs e)
         {
+
             this.Close();
+        }
+
+        public void logout(object sender, CancelEventArgs e)
+        {
+
             mainWindow.Show();
+
         }
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
