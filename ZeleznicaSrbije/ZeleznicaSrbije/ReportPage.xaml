@@ -46,7 +46,7 @@
             </DataGrid>
 
 
-            <modalcontrol:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="LineChoiceModal">
+            <modalcontrol:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="LineChoiceModal">
                 <modalcontrol:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </modalcontrol:Modal.Background>

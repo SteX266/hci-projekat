@@ -53,7 +53,7 @@
 
             </DataGrid>
 
-            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="CreateModal">
+            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="CreateModal">
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
@@ -99,7 +99,7 @@
 
             </custom:Modal>
 
-            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="EditModal">
+            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="EditModal">
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
@@ -148,7 +148,7 @@
 
             </custom:Modal>
 
-            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="DeleteModal">
+            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="DeleteModal">
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>
