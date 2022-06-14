@@ -233,6 +233,9 @@
                     </Grid>
                 </Border>
             </modalcontrol:Modal>
+            <Button Style="{StaticResource CloseButton}" Grid.Column="4"  Grid.Row="2" Margin="305, 25, 0, 0" Width="25" Panel.ZIndex="10">
+                <Image Source="icons/help.png"/>
+            </Button>
         </Grid>
 
         

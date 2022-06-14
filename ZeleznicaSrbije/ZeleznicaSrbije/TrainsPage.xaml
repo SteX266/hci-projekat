@@ -175,7 +175,7 @@
 
             </custom:Modal>
 
-            <Button Click="CloseEditModal" Style="{StaticResource CloseButton}" Grid.Column="3"  Grid.Row="2" Margin="200, 3, 0, 0" Width="25" Panel.ZIndex="10">
+            <Button Style="{StaticResource CloseButton}" Grid.Column="3"  Grid.Row="2" Margin="200, 3, 0, 0" Width="25" Panel.ZIndex="10">
                 <Image Source="icons/help.png"/>
             </Button>
         </Grid>
