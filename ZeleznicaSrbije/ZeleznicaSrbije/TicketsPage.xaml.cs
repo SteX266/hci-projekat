@@ -116,6 +116,10 @@ namespace ZeleznicaSrbije
                         }
                     }
                 }
+                if (reservationDTOs.Count <= 0)
+                {
+                    notifier.ShowInformation("Nista nije nadjeno!");
+                }
                 reservationsTable.ItemsSource = reservationDTOs;
             }
         }

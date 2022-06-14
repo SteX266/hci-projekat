@@ -62,17 +62,28 @@ namespace ZeleznicaSrbije
                 List<RideDTO> arrivingRides = new List<RideDTO>();
                 foreach (string station in stations)
                 {
-                    leavingRides.AddRange(Service.getRidesBetweenDestinations(origin, station));
-                    arrivingRides.AddRange(Service.getRidesBetweenDestinations(station, origin));
+                    if (!origin.Equals(station))
+                    {
+                        leavingRides.AddRange(Service.getRidesBetweenDestinations(origin, station));
+                        arrivingRides.AddRange(Service.getRidesBetweenDestinations(station, origin));
+                    }
                 }
 
                 if (type.Equals("Polasci"))
                 {
+                    if (leavingRides.Count <= 0)
+                    {
+                        notifier.ShowInformation("Nista nije nadjeno!");
+                    }
                     Timetables.ItemsSource = leavingRides;
 
                 }
                 else
                 {
+                    if (arrivingRides.Count <= 0)
+                    {
+                        notifier.ShowInformation("Nista nije nadjeno!");
+                    }
                     Timetables.ItemsSource=arrivingRides;
                 }
             }
