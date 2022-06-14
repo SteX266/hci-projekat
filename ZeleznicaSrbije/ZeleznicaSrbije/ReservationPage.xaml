@@ -40,7 +40,8 @@
             </Button>
 
 
-            <DataGrid Style="{StaticResource DataGridStyle}" Name="ridesTable" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20"  AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="false" IsReadOnly="True"  > 
+            <DataGrid Style="{StaticResource DataGridStyle}" Name="ridesTable" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20"  AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="false" IsReadOnly="True" featureTouring:TourHelper.Placement="BottomLeft"
+                            featureTouring:TourHelper.ElementID="{x:Static local:Elements.OpenModalElement}"  > 
 
 
                 <DataGrid.Columns >
@@ -57,7 +58,9 @@
                     <DataGridTemplateColumn Header="Rezerviši"  Width="1.2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Click="OpenReservationModal" Height="30" Background="White" Content="Rezerviši">
+                                <Button x:Name="Blyat" Click="OpenReservationModal" Height="30" Background="White" Content="Rezerviši"
+                                                                     >
+                                    
                                     <Button.ToolTip>
                                         <ToolTip Content="Rezervišite kartu za ovu vožnju" />
                                     </Button.ToolTip>
@@ -90,7 +93,10 @@
                                     Name="DatePicker"
                                     FontSize="18"
                                     HorizontalContentAlignment="Center"
-                                    VerticalContentAlignment="Center"/>
+                                    VerticalContentAlignment="Center"
+                                    featureTouring:TourHelper.Placement="BottomLeft"
+                      featureTouring:TourHelper.ElementID="{x:Static local:Elements.DatePickerElement}"
+                                    />
 
 
                         <ComboBox 
@@ -103,16 +109,24 @@
                             Text="Broj karata"
                             VerticalContentAlignment="Center"
                             HorizontalContentAlignment="Center"
-                            FontSize="18"/>
+                            FontSize="18"
+                            featureTouring:TourHelper.Placement="BottomLeft"
+                            featureTouring:TourHelper.ElementID="{x:Static local:Elements.TicketNumberPickerElement}"
+                            />
 
 
                         <Button Content="Rezervisi"
+                                Name="ReserveButton"
                                 Grid.Column="0" Grid.Row="2"
                                 Margin="20, 10" FontSize="18"
-                                Click="MakeReservation"/>
+                                Click="MakeReservation"
+                                featureTouring:TourHelper.Placement="BottomLeft"
+                      featureTouring:TourHelper.ElementID="{x:Static local:Elements.ReserveButtonElement}"
+                                />
 
                         <Button 
                             Content="Otkazi"
+                            Name="CancelButton"
                             Grid.Column="1"  Grid.Row="2"
                             Margin="20, 10" FontSize="18"
                             Click="CloseReservationModal"/>
@@ -123,7 +137,7 @@
             <Button Style="{StaticResource CloseButton}" Grid.Column="3"  Grid.Row="2" Margin="200, 3, 0, 0" Width="25" Panel.ZIndex="10">
                 <Image Source="icons/help.png"/>
             </Button>
-            <Button Style="{StaticResource CloseButton}" Grid.Column="3"  Grid.Row="2" Margin="140, 3, 0, 0" Width="25" Panel.ZIndex="10">
+            <Button Click="startTutorial" Style="{StaticResource CloseButton}" Grid.Column="3"  Grid.Row="2" Margin="140, 3, 0, 0" Width="25" Panel.ZIndex="10">
                 <Image Source="icons/tutorial.png"/>
             </Button>
         </Grid>
