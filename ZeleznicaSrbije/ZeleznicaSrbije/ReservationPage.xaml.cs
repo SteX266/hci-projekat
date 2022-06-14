@@ -270,15 +270,18 @@ namespace ZeleznicaSrbije
                 }
                 else
                 {
+                    notifier.ShowWarning("Niste izabrali  odgovarajuć datum rezervacije!");
                     return;
                 }
                 if (DateTime.Compare(date, DateTime.Now) < 0)
                 {
+                    notifier.ShowWarning("Ne možete izabrati datum koji je prošao!");
                     return;
                 }
 
                 if (TicketNumberPicker.SelectedIndex == -1)
                 {
+                    notifier.ShowWarning("Niste izabrali datum rezervacije!");
                     return;
                 }
                 int numberOfTickets = TicketNumberPicker.SelectedIndex + 1;
