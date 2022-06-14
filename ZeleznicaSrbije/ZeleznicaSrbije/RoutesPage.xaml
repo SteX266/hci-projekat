@@ -22,9 +22,9 @@
                 <RowDefinition Height="13*"/>
                 <RowDefinition Height="1.3*"/>
             </Grid.RowDefinitions>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" Name="RoutePicker" IsEditable="True" IsReadOnly="False" Text="Linija" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBox Margin="30, 30, 30, 10" Grid.Column="1" Name="RoutePicker" IsEditable="True" IsReadOnly="False" Text="Linija" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             </ComboBox>
-            <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" Content="Prikaži" Grid.Column="4" Click="Button_Click">
+            <Button Style="{StaticResource ButtonStyle}" Margin="30, 30, 30, 10" Content="Prikaži" Grid.Column="4" Click="Button_Click">
             </Button>
 
             <m:Map  x:Name="MainMap" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="20, 20" CredentialsProvider="l9xWt8P3CjQ55RX6uLgj~iBGvWRv6V5c41-w4kjxVnQ~AmX9wKBN8ediYL1sv0cefEwKH8cuBM7fdKee2to583NcA4JdaIL378u7S-BYT0g7" Mode="Road" ZoomLevel="7" Center="43.981270 , 21.257441">

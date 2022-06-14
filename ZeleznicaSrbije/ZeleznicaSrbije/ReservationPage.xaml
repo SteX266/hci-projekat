@@ -21,19 +21,19 @@
                 <RowDefinition Height="13*"/>
                 <RowDefinition Height="1.3*"/>
             </Grid.RowDefinitions>
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="1" x:Name="OriginPicker" IsEditable="True" IsReadOnly="False" Text="Polazište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+            <ComboBox Margin="30, 30, 30, 10" Grid.Column="1" x:Name="OriginPicker" IsEditable="True" IsReadOnly="False" Text="Polazište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                       featureTouring:TourHelper.Placement="BottomLeft"
                       featureTouring:TourHelper.ElementID="{x:Static local:Elements.OriginPickerCombo}"
                       />
 
 
 
-            <ComboBox Margin="30, 40, 30, 10" Grid.Column="2" x:Name="DestinationPicker" IsEditable="True" IsReadOnly="False" Text="Odredište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+            <ComboBox Margin="30, 30, 30, 10" Grid.Column="2" x:Name="DestinationPicker" IsEditable="True" IsReadOnly="False" Text="Odredište" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                                             featureTouring:TourHelper.Placement="BottomLeft"
                       featureTouring:TourHelper.ElementID="{x:Static local:Elements.DestinationPickerCombo}"
                       />
 
-            <Button Style="{StaticResource ButtonStyle}" Margin="30, 40, 30, 10" Content="Pretraži" Grid.Column="4" Click="Button_Click" x:Name="SearchBtn"
+            <Button Style="{StaticResource ButtonStyle}" Margin="30, 30, 30, 10" Content="Pretraži" Grid.Column="4" Click="Button_Click" x:Name="SearchBtn"
                       featureTouring:TourHelper.Placement="BottomLeft"
                       featureTouring:TourHelper.ElementID="{x:Static local:Elements.SearchButton}"
                     >
@@ -71,7 +71,7 @@
                 </DataGrid.Columns>
 
             </DataGrid>
-            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="ReservationModal">
+            <custom:Modal  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Name="ReservationModal">
                 <custom:Modal.Background>
                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                 </custom:Modal.Background>

@@ -79,7 +79,7 @@
                     Content="Dodaj stanicu"
                     Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Click="addStation"/>
 
-            <Button Style="{StaticResource ButtonStyle}" Name="createButton" Margin="20,20,20,10" 
+            <Button Style="{StaticResource ButtonStyle}" Name="createButton" Margin="20,15,20,10" 
                     Content="Kreiraj"
                     Grid.Column="3" Grid.Row="1" Click="createTrainLine"/>
 
@@ -233,6 +233,9 @@
                     </Grid>
                 </Border>
             </modalcontrol:Modal>
+            <Button Style="{StaticResource CloseButton}" Grid.Column="4"  Grid.Row="2" Margin="305, 25, 0, 0" Width="25" Panel.ZIndex="10">
+                <Image Source="icons/help.png"/>
+            </Button>
         </Grid>
 
         
