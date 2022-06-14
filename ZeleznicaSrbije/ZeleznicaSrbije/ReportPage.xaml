@@ -34,9 +34,11 @@
 
                 <DataGrid.Columns >
 
-                    <DataGridTextColumn Binding="{Binding Date}" Header="Datum"  Width="1.5*"/>
-                    <DataGridTextColumn Binding="{Binding StartTime}" Header="Polazak"  Width="1.5*"/>
-                    <DataGridTextColumn Binding="{Binding ArrivalTime}" Header="Dolazak"  Width="1.5*"/>
+                    <DataGridTextColumn Binding="{Binding DateString}" Header="Datum"  Width="1.5*"/>
+                    <DataGridTextColumn Binding="{Binding OriginStation}" Header="Polazašte"  Width="1.5*"/>
+                    <DataGridTextColumn Binding="{Binding ArrivalStation}" Header="Dolazište"  Width="1.5*"/>
+                    <DataGridTextColumn Binding="{Binding StartTimeString}" Header="Polazak"  Width="1*"/>
+                    <DataGridTextColumn Binding="{Binding ArrivalTimeString}" Header="Dolazak"  Width="1*"/>
                     <DataGridTextColumn Binding="{Binding Line}" Header="Linija"  Width="*"/>
                     <DataGridTextColumn Binding="{Binding Client}" Header="Klijent"  Width="*"/>
                     <DataGridTextColumn Binding="{Binding Price}" Header="Cena"  Width="*"/>
